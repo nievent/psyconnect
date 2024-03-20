@@ -1,0 +1,64 @@
+main {
+  background-image: linear-gradient(to bottom, #00daff, #22d3ff, #3bcbff, #51c2ff, #64bafd, #6ab4ff, #74adff, #81a5ff, #8d9dff, #9e94ff, #b188ff, #c67aff);
+  padding: 15%;
+  font-family: "Roboto", sans-serif;
+}
+
+form {
+  background-color: white;
+  width: 400px;
+  margin: 0 auto;
+  padding: 40px;
+  text-align: center;
+  border-radius: 5px;
+}
+form h1 {
+  margin-bottom: 20px;
+}
+form img {
+  width: 100px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: smaller;
+  text-align: left;
+}
+form input[type=text], form input[type=password] {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid black;
+  margin-bottom: 20px;
+  outline: none;
+}
+form a {
+  display: block;
+  font-size: smaller;
+  font-style: italic;
+  text-align: right;
+  margin-top: 10px;
+}
+
+button {
+  height: 3rem;
+  padding: 0 2rem;
+  background: linear-gradient(to right, #00daff, #00cbff, #29b8ff, #859eff, #c67aff);
+  color: white;
+  background-size: 400%;
+  background-position: 90% 0;
+  border-radius: 20px;
+  padding: 5px 20px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6);
+  transition: all 0.8s ease;
+  margin: 10px;
+}
+button:hover {
+  background-position: 185% 50%;
+  transform: translateY(-2px);
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+/*# sourceMappingURL=login.css.map */

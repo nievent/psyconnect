@@ -1,0 +1,57 @@
+@import "../globals"
+.header
+    background-color: white
+    padding: 20px
+    border-bottom: 10px solid $base-color 
+    position: fixed
+    width: 100%
+    top: 0
+    left: 0
+    z-index: 999 // Asegura que la barra de navegación esté por encima de otros elementos
+
+.navbar
+    display: flex
+    justify-content: space-between
+    align-items: center
+    width: 100% // Ajusta el ancho de la barra de navegación al 100% del contenedor
+
+    .logo
+        font-size: 3rem
+        font-family: "Kode Mono", monospace
+        font-optical-sizing: auto
+        font-style: normal
+        display: flex
+        align-items: center
+        a
+            display: flex
+
+    .logoText
+        color: $base-color
+        transition: color 0.5s ease
+        padding-left: 5%
+        &:hover
+            color: $base-color2
+            
+    
+    .logoLink
+        display: flex
+        align-items: center
+
+    img
+        height: 5rem
+        
+
+    .navLinks
+        list-style: none
+        display: flex
+        margin: 0
+        
+    li
+        margin-right: 20px
+
+    a
+        text-decoration: none
+        color: $base-color2
+        transition: color 0.5s ease
+        &:hover
+            color: $base-color

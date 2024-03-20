@@ -1,0 +1,61 @@
+.header {
+  background-color: white;
+  padding: 20px;
+  border-bottom: 10px solid #00daff;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.navbar .logo {
+  font-size: 3rem;
+  font-family: "Kode Mono";
+  font-optical-sizing: auto;
+  font-style: normal;
+  display: flex;
+  align-items: center;
+}
+.navbar .logo a {
+  display: flex;
+}
+.navbar .logoText {
+  color: #00daff;
+  transition: color 0.5s ease;
+  padding-left: 5%;
+}
+.navbar .logoText:hover {
+  color: #c67aff;
+}
+.navbar .logoLink {
+  display: flex;
+  align-items: center;
+}
+.navbar img {
+  height: 5rem;
+}
+.navbar .navLinks {
+  list-style: none;
+  display: flex;
+  margin: 0;
+}
+.navbar li {
+  margin-right: 20px;
+}
+.navbar a {
+  text-decoration: none;
+  color: #c67aff;
+  transition: color 0.5s ease;
+}
+.navbar a:hover {
+  color: #00daff;
+}
+
+/*# sourceMappingURL=header.css.map */

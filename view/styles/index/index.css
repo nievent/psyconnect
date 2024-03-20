@@ -1,0 +1,86 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  margin-top: 6rem;
+  min-height: 60vh;
+  background-color: rgba(0, 217, 255, 0.1764705882);
+  color: #000000;
+}
+
+.movil {
+  margin: 10% 20%;
+}
+
+.boton {
+  height: 3rem;
+  padding: 0 2rem;
+  background: linear-gradient(to right, #00daff, #00cbff, #29b8ff, #859eff, #c67aff);
+  color: white;
+  background-size: 400%;
+  background-position: 90% 0;
+  border-radius: 10px;
+  padding: 5px 20px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6);
+  transition: all 0.8s ease;
+}
+.boton:hover {
+  background-position: 185% 50%;
+  transform: translateY(-2px);
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6);
+}
+.boton a {
+  color: white;
+  text-decoration: none;
+}
+
+.inicio {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10rem;
+  margin-left: 10%;
+}
+.inicio h1 {
+  color: #00daff;
+  font-family: "Roboto", sans-serif;
+  margin-top: 20%;
+  font-size: 3.5rem;
+}
+.inicio h2 {
+  color: #00daff;
+  font-family: "Roboto", sans-serif;
+  font-size: 3.5rem;
+}
+.inicio img {
+  max-width: 100%;
+  height: auto;
+}
+.inicio .texto {
+  max-width: 50%;
+  font-size: 1.4rem;
+  text-align: justify;
+}
+.inicio .texto h1 {
+  color: #c67aff;
+  padding: 20px 0;
+}
+.inicio .texto p {
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .inicio {
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  .movil {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
+
+/*# sourceMappingURL=index.css.map */

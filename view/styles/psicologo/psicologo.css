@@ -1,0 +1,254 @@
+body {
+  font-family: "Roboto", sans-serif; }
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 217, 255, 0.05);
+  color: #c67aff;
+  padding: 15px;
+  border-bottom: 10px solid #c67aff; }
+
+.welcome {
+  display: flex;
+  align-items: center;
+  font-family: "Kode Mono", monospace; }
+  .welcome img {
+    height: 3rem;
+    margin-right: 10px; }
+
+.logout-button {
+  color: #00daff;
+  transition: all 0.3s ease;
+  margin-right: 30px; }
+
+.logout-button:hover {
+  color: #c67aff;
+  transform: scale(1.1); }
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(197, 122, 255, 0.05);
+  padding: 20px;
+  border-bottom: 10px solid #00daff;
+  justify-items: center;
+  font-size: 1.2rem; }
+  .menu a {
+    text-decoration: none;
+    color: #c67aff;
+    padding: 20px;
+    grid-column: 1/-1;
+    transition: all 0.5s ease; }
+    .menu a:hover {
+      color: #00daff; }
+
+.active {
+  color: #00daff !important; }
+
+main {
+  background-color: rgba(0, 217, 255, 0.05);
+  min-height: 100vh;
+  padding-top: 20px; }
+
+.inicio {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr; }
+
+.articulo-inicio {
+  border: 3px solid #00daff;
+  margin: 5%;
+  background-color: white;
+  border-radius: 10px; }
+  .articulo-inicio h1 {
+    color: #00daff;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px; }
+
+.fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 15px;
+  border-bottom: 1px solid #00daff; }
+
+.lista-pacientes h1 {
+  color: #c67aff;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 0; }
+
+.pacientes {
+  font-size: 1.2rem; }
+
+.tooltip {
+  position: relative;
+  display: inline-block; }
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  background-color: #f4fdff;
+  color: #c67aff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s; }
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1; }
+
+.fa-eye, .fa-file-alt {
+  color: #00daff;
+  margin-right: 20px; }
+
+.fa-file, .fa-plus {
+  color: #48d654; }
+
+.fa-plus {
+  margin-right: 20px; }
+
+.fa-user-times, .fa-trash {
+  color: #e44444;
+  margin-right: 20px; }
+
+i {
+  cursor: pointer;
+  transition: transform 0.3s ease; }
+
+i:hover {
+  transform: scale(1.1); }
+
+.modal {
+  position: fixed;
+  z-index: 1000;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  height: fit-content;
+  background-color: #eafbff;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: none;
+  border: 2px solid #00daff; }
+  .modal h2 {
+    color: #c67aff; }
+
+.detalles-text {
+  margin: 10px; }
+
+#backdrop {
+  position: fixed;
+  z-index: 990;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none; }
+
+table {
+  width: 90%;
+  overflow-y: auto; }
+
+#camposRegistro {
+  border-collapse: collapse;
+  width: 100%; }
+
+#camposRegistro th {
+  padding: 8px;
+  text-align: left; }
+
+#camposRegistro th {
+  background-color: #c67aff;
+  color: white;
+  font-weight: bold; }
+
+#camposRegistro tr:nth-child(even) {
+  background-color: #f2f2f2; }
+
+#camposRegistro tr:hover {
+  background-color: #ddd; }
+
+td {
+  background-color: #00daff;
+  padding: 8px;
+  text-align: left;
+  width: 50px;
+  height: 50px; }
+
+.modal input, select {
+  width: 100%;
+  padding: 8px;
+  margin: 20px 0;
+  box-sizing: border-box; }
+
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f7eeff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+
+.form-container label {
+  display: block;
+  margin-bottom: 10px; }
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box; }
+
+.btn {
+  height: 2rem;
+  padding: 0 1.5rem;
+  background: linear-gradient(to right, #00daff, #00cbff, #29b8ff, #859eff, #c67aff);
+  color: white;
+  background-size: 400%;
+  background-position: 90% 0;
+  border-radius: 10px;
+  padding: 5px 20px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6);
+  transition: all 0.8s ease;
+  cursor: pointer; }
+  .btn:hover {
+    background-position: 185% 50%;
+    transform: translateY(-2px);
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6); }
+
+.cancelBtn {
+  height: 2rem;
+  padding: 0 1.5rem;
+  color: white;
+  background-color: #e44444;
+  border-radius: 10px;
+  padding: 5px 20px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6);
+  transition: all 0.8s ease;
+  cursor: pointer; }
+  .cancelBtn:hover {
+    background-color: #d61f1f;
+    transform: translateY(-2px);
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6); }
+
+/*# sourceMappingURL=psicologo.css.map */

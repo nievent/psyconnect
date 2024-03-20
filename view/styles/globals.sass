@@ -1,0 +1,52 @@
+$base-color: #00daff
+$base-color2: #c67aff
+$base-colorTransparent: rgba(0, 217, 255, 0.05)
+$base-color2Transparent: rgba(197, 122, 255, 0.05)
+$gradient: linear-gradient(to bottom, #00daff, #22d3ff, #3bcbff, #51c2ff, #64bafd, #6ab4ff, #74adff, #81a5ff, #8d9dff, #9e94ff, #b188ff, #c67aff)
+$base-color-whited: #eafbff
+$base-color2-whited: #f7eeff
+$delete-color: #e44444
+$add-color: #48d654
+
+$border-radius-small: 5px
+$border-radius-medium: 10px
+$border-radius-large: 20px
+
+$font-title: 3.5rem
+$font-corp: "Roboto", sans-serif
+$font-logo:"Kode Mono", monospace
+
+@mixin boton-gradiente($altura, $padding-horizontal, $border-radius, $transicion-velocidad) 
+    height: $altura
+    padding: 0 $padding-horizontal
+    background: linear-gradient(to right, #00daff, #00cbff, #29b8ff, #859eff, #c67aff)
+    color: white
+    background-size: 400%
+    background-position: 90% 0
+    border-radius: $border-radius
+    padding: 5px 20px
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6)
+    transition: all $transicion-velocidad ease
+    cursor: pointer
+
+    &:hover
+        background-position: 185% 50%
+        transform: translateY(-2px) 
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6)
+    
+@mixin boton($altura, $padding-horizontal, $border-radius, $transicion-velocidad, $background-color) 
+    height: $altura
+    padding: 0 $padding-horizontal
+    color: white
+    background-color: $background-color
+    border-radius: $border-radius
+    padding: 5px 20px
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6)
+    transition: all $transicion-velocidad ease
+    cursor: pointer
+
+    &:hover
+        background-color: darken($background-color, 10%)
+        transform: translateY(-2px) 
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6)
+    

@@ -1,0 +1,46 @@
+@import "../globals"
+main
+    background-image: $gradient
+    padding: 15%
+    font-family: $font-corp
+
+form
+    background-color: white
+    width: 400px
+    margin: 0 auto
+    padding: 40px
+    text-align: center
+    border-radius: $border-radius-small
+
+    h1
+        margin-bottom: 20px  // Aumentamos el espacio inferior para centrar el h1
+
+    img
+        width: 100px  // Reducimos el tamaño de la imagen
+        margin-bottom: 20px
+        margin-left: auto  // Centramos la imagen horizontalmente
+        margin-right: auto
+
+    label
+        display: block
+        margin-bottom: 5px
+        font-size: smaller
+        text-align: left  // Alineamos el texto a la izquierda
+
+    input[type="text"], input[type="password"]
+        width: 100%
+        border: none
+        border-bottom: 1px solid black
+        margin-bottom: 20px
+        outline: none
+
+    a
+        display: block
+        font-size: smaller
+        font-style: italic
+        text-align: right
+        margin-top: 10px
+
+button
+    @include boton-gradiente(3rem, 2rem, $border-radius-large, 0.8s)
+    margin: 10px

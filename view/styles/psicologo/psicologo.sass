@@ -1,0 +1,254 @@
+@import "../globals"
+body
+    font-family: $font-corp
+// estilos del header
+header 
+    display: flex
+    justify-content: space-between
+    align-items: center
+    background-color: $base-colorTransparent
+    color: $base-color2
+    padding: 15px
+    border-bottom: 10px solid $base-color2
+
+.welcome
+    display: flex
+    align-items: center
+    font-family: $font-logo
+    img
+        height: 3rem
+        margin-right: 10px
+
+
+.logout-button 
+    color: $base-color
+    transition: all 0.3s ease
+    margin-right: 30px
+
+
+.logout-button:hover 
+    color: $base-color2
+    transform: scale(1.1)
+
+//menu
+.menu
+    display: grid
+    grid-template-columns: repeat(4, 1fr)  /* Cuatro columnas con igual ancho */
+    justify-content: center
+    align-items: center
+    background-color: $base-color2Transparent
+    padding: 20px
+    border-bottom: 10px solid $base-color
+    justify-items: center
+    font-size: 1.2rem
+    a
+        text-decoration: none
+        color: $base-color2
+        padding: 20px
+        grid-column: 1 / -1  /* Ocupar todas las columnas */
+        transition: all 0.5s ease
+        &:hover
+            color: $base-color
+
+.active 
+    color: $base-color!important
+
+
+            
+
+//main
+main
+    background-color: $base-colorTransparent
+    min-height: 100vh 
+    padding-top: 20px
+
+//secciones
+.inicio
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-template-rows: 1fr 1fr
+
+.articulo-inicio
+    border: 3px solid $base-color
+    margin: 5%
+    background-color: white
+    border-radius: $border-radius-medium
+    h1
+        color: $base-color
+        font-size: 2rem
+        text-align: center
+        margin-bottom: 20px
+
+//pacientes
+.fila 
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin: 20px 15px
+    border-bottom: 1px solid $base-color
+
+
+.lista-pacientes
+    h1
+        color: $base-color2
+        font-size: 2rem
+        text-align: center
+        margin-bottom: 20px
+        margin-top: 0
+
+.pacientes
+    font-size: 1.2rem
+
+
+.tooltip 
+    position: relative
+    display: inline-block
+
+
+.tooltip .tooltiptext 
+    visibility: hidden
+    width: 100px
+    background-color: #f4fdff
+    color: $base-color2
+    text-align: center
+    padding: 5px
+    border-radius: 6px
+    position: absolute
+    z-index: 1
+    bottom: 125%
+    left: 50%
+    margin-left: -60px
+    opacity: 0
+    transition: opacity 0.3s
+
+
+.tooltip:hover .tooltiptext 
+    visibility: visible
+    opacity: 1
+
+.fa-eye, .fa-file-alt
+    color: $base-color
+    margin-right: 20px
+
+.fa-file, .fa-plus
+    color: $add-color
+
+.fa-plus
+    margin-right: 20px
+
+.fa-user-times, .fa-trash
+    color: $delete-color
+    margin-right: 20px
+
+i
+    cursor: pointer
+    transition: transform 0.3s ease
+
+i:hover
+    transform: scale(1.1)
+
+//modales
+.modal
+    position: fixed
+    z-index: 1000
+    top: 20%
+    left: 30%
+    width: 40%
+    height: fit-content
+    background-color: $base-color-whited
+    padding: 1rem
+    border-radius: 6px
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2)
+    display: none
+    border: 2px solid $base-color
+    h2
+        color: $base-color2
+
+.detalles-text 
+    margin: 10px
+
+#backdrop 
+    position: fixed
+    z-index: 990
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-color: rgba(0, 0, 0, 0.7)
+    display: none
+
+//tabla detalles registros 
+table 
+    width: 90%
+    overflow-y: auto  
+
+#camposRegistro 
+    border-collapse: collapse
+    width: 100%
+
+
+#camposRegistro th
+    padding: 8px
+    text-align: left
+
+
+#camposRegistro th 
+    background-color: $base-color2
+    color: white
+    font-weight: bold
+
+
+#camposRegistro tr:nth-child(even) 
+    background-color: #f2f2f2
+
+
+#camposRegistro tr:hover 
+    background-color: #ddd
+
+td 
+    background-color: $base-color
+    padding: 8px
+    text-align: left
+    width: 50px
+    height: 50px
+
+.modal input, select 
+    width: 100%
+    padding: 8px
+    margin: 20px 0
+    box-sizing: border-box
+
+//formulario alta 
+.form-container 
+    max-width: 400px
+    margin: 0 auto
+    padding: 20px
+    background-color: $base-color2-whited
+    border-radius: 5px
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+
+
+.form-container label 
+    display: block
+    margin-bottom: 10px
+
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"] 
+    width: 100%
+    padding: 10px
+    margin-bottom: 20px
+    border: 1px solid #ccc
+    border-radius: 3px
+    box-sizing: border-box
+
+
+
+
+//botones
+.btn 
+    @include boton-gradiente(2rem, 1.5rem, $border-radius-medium, 0.8s)
+
+.cancelBtn
+    @include boton(2rem, 1.5rem, $border-radius-medium, 0.8s, $delete-color)
