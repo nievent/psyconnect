@@ -33,9 +33,8 @@ class Psicologo {
 
     function insertar ($link){
         try{
-            $consulta="INSERT INTO psicologo (id, nombre, apellidos, cop_num, email, pwd, rol) VALUES (:id,:nombre,:apellidos, :cop_num, :email,:pwd, false)";
+            $consulta="INSERT INTO psicologo (nombre, apellidos, cop_num, email, pwd, rol) VALUES (:nombre,:apellidos, :cop_num, :email,:pwd, false)";
             $result=$link->prepare($consulta);
-            $result->bindParam(':id',$this->id);
             $result->bindParam(':nombre',$this->nombre);
             $result->bindParam(':apellidos',$this->apellidos);
             $result->bindParam(':cop_num',$this->cop_num);
@@ -43,10 +42,11 @@ class Psicologo {
             $result->bindParam(':pwd',$this->pwd);
             
             $result->execute();
-            return $result->fetch(PDO::FETCH_ASSOC);
+            return $result;
         }
         catch(PDOException $e){
             $dato= "¡Error!: " . $e->getMessage() . "<br/>";
+            echo ($dato);
             die();
         }
     }
@@ -65,7 +65,7 @@ class Psicologo {
 
     function buscar ($link){
         try{
-            $consulta="SELECT * FROM psicologo where id='$this->id'";
+            $consulta="SELECT * FROM psicologo where cop_num='$this->cop_num'";
             $result=$link->prepare($consulta);
             $result->execute();
             return $result->fetch(PDO::FETCH_ASSOC);

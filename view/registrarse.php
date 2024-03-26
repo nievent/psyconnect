@@ -14,27 +14,34 @@
         <link rel="stylesheet" href="./styles/login/login.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
         
-    <title>Inicia sesión</title>
+    <title>Regístrate en PsyConnect</title>
 </head>
 <body>
+
 <?php printHeader("./img/logo-sin-fondo.png", "../index.php", "./login.php", "./registrarse.php"); ?>
     <main>
-        <form action="../controller/loginLogic.php" method="POST">
-            <h1>Login</h1>
+        <form action="../controller/registrarseLogic.php" method="POST">
+            <h1>Regístrate</h1>
             <img src="./img/logo-sin-fondo.png" alt="logo psyconnect">
             <label for="user">Correo electrónico:</label>
-            <input type="text" name="user" placeholder="Escribe tu correo electrónico">
+            <input type="email" name="email" placeholder="Escribe tu correo electrónico" required>
             <label for="pwd">Contraseña:</label>
-            <input type="password" name="password" placeholder="Escribe tu contraseña">
-            <a href="#">¿Has olvidado tu contraseña?</a>
+            <input type="password" name="pwd" placeholder="Escribe tu contraseña" required>
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" placeholder="Escribe tu nombre" required>
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" name="apellidos" placeholder="Escribe tus apellidos" required>
+            <label for="cop_num">Número del COP (Colegio Oficial de Psicólogos):</label>
+            <input type="text" name="cop_num" placeholder="Escribe tu numero del COP" required>
             <button type="submit" name="submit" class="btn-submit"><i class="fa-solid fa-arrow-right"></i></button>
         <?php 
             if(isset($_GET['error']) && $_GET['error'] == 1){
-                echo '<div class="alert alert-danger" role="alert">Usuario o contraseña incorrectos</div>';
+                echo '<div class="alert alert-danger" role="alert">El usuario ya existe</div>';
             }
         ?>
         </form>
     </main>
+    
     <?php require './footer.php'; ?>
 </body>
 </html>

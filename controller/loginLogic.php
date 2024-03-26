@@ -42,6 +42,7 @@ if (isset($_POST['submit'])) {
                 $pacienteObj->id_psicologo,
                 $pacienteObj->nombre,
                 $pacienteObj->apellidos,
+                $pacienteObj->dni,
                 $pacienteObj->email,
                 $pacienteObj->pwd
             );

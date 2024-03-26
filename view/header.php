@@ -1,5 +1,5 @@
 <?php 
-function printHeader($urlLogo, $urlIndex, $urlLogin) {
+function printHeader($urlLogo, $urlIndex, $urlLogin, $urlRegistrarse) {
     echo <<<HTML
         <header class="header">
             <nav class="navbar">
@@ -14,7 +14,7 @@ function printHeader($urlLogo, $urlIndex, $urlLogin) {
                         <a href="$urlLogin" class="navLink">Inicia Sesión</a>
                     </li>
                     <li>
-                        <a href="" class="navLink">Regístrate</a>
+                        <a href="$urlRegistrarse" class="navLink">Regístrate</a>
                     </li>
                 </ul>
             </nav>

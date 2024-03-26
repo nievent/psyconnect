@@ -74,7 +74,7 @@ class Paciente {
 
     function insertar ($link){
         try{
-            $consulta="INSERT INTO paciente (id_psicologo, nombre, apellidos, dni, email, pwd) VALUES (:id_psicologo, :nombre, :apellidos, :dni :email,:pwd)";
+            $consulta="INSERT INTO paciente (id_psicologo, nombre, apellidos, dni, email, pwd) VALUES (:id_psicologo, :nombre, :apellidos, :dni, :email,:pwd)";
             $result=$link->prepare($consulta);
             $result->bindParam(':id_psicologo',$this->id_psicologo);
             $result->bindParam(':nombre',$this->nombre);
@@ -87,7 +87,7 @@ class Paciente {
             return $result->fetch(PDO::FETCH_ASSOC);
         }
         catch(PDOException $e){
-            $dato= "¡Error!: " . $e->getMessage() . "<br/>";
+echo ( "¡Error!: " . $e->getMessage() . "<br/>");
             die();
         }
     }
