@@ -178,8 +178,64 @@ echo ( "¡Error!: " . $e->getMessage() . "<br/>");
         }
     }
     
+    // Getters
+    public function getId() {
+        return $this->id;
+    }
 
+    public function getIdPsicologo() {
+        return $this->id_psicologo;
+    }
 
-}  
+    public function getNombre() {
+        return $this->nombre;
+    }
+
+    public function getApellidos() {
+        return $this->apellidos;
+    }
+
+    public function getDni() {
+        return $this->dni;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function getPwd() {
+        return $this->pwd;
+    }
+
+    // Setters
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    public function setIdPsicologo($id_psicologo) {
+        $this->id_psicologo = $id_psicologo;
+    }
+
+    public function setNombre($nombre) {
+        $this->nombre = $nombre;
+    }
+
+    public function setApellidos($apellidos) {
+        $this->apellidos = $apellidos;
+    }
+
+    public function setDni($dni) {
+        $this->dni = $dni;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+
+    public function setPwd($pwd) {
+        $this->pwd = $pwd;
+    }
+}
+ 
 
 ?>

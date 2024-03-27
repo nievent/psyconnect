@@ -42,7 +42,7 @@ function mostrarDetallesRegistro(descripcion, id, registro = null) {
             campo4.textContent = 'Concentración conseguida';
             tabla.appendChild(campo4);
         
-            // Añadir filas vacías con cuatro celdas cada una
+            if(registro == null) {
             for (let i = 0; i < 2; i++) {
                 let fila = document.createElement('tr');
                 for (let j = 0; j < 4; j++) {
@@ -52,6 +52,22 @@ function mostrarDetallesRegistro(descripcion, id, registro = null) {
                 }
                 tbody.appendChild(fila);
             }
+        } else {
+            registro = registro.trim();
+            let data = JSON.parse(registro);
+            console.log(data.length);
+            for (let i = 0; i < data.length; i++) {
+                let fila = document.createElement('tr');
+                let campos = ['fecha', 'momento_dia', 'relajacion_conseguida', 'concentracion_conseguida'];
+                for (let j = 0; j < campos.length; j++) {
+                    let celda = document.createElement('td');
+                    celda.textContent = data[i][campos[j]]; // Asignar el valor de la propiedad al texto de la celda
+                    fila.appendChild(celda);
+                }
+                tbody.appendChild(fila); // Agregar la fila al cuerpo de la tabla
+            }
+        }
+
         break;
         case "2":
             console.log("Caso 2 ejecutado");
@@ -125,7 +141,7 @@ function mostrarDetallesRegistro(descripcion, id, registro = null) {
             tabla.appendChild(campo4_3);
 
         
-            // Añadir filas vacías con cuatro celdas cada una
+            if (registro == null) {
             for (let i = 0; i < 2; i++) {
                 let fila = document.createElement('tr');
                 for (let j = 0; j < 4; j++) {
@@ -135,6 +151,22 @@ function mostrarDetallesRegistro(descripcion, id, registro = null) {
                 }
                 tbody.appendChild(fila);
             }
+        } else {
+            registro = registro.trim();
+            let data = JSON.parse(registro);
+            console.log(data.length);
+
+            for (let i = 0; i < data.length; i++) {
+                let fila = document.createElement('tr');
+                let campos = ['fecha', 'emociones', 'grado_intensidad', 'sensaciones_corporales'];
+                for (let j = 0; j < campos.length; j++) {
+                    let celda = document.createElement('td');
+                    celda.textContent = data[i][campos[j]]; // Asignar el valor de la propiedad al texto de la celda
+                    fila.appendChild(celda);
+                }
+                tbody.appendChild(fila); // Agregar la fila al cuerpo de la tabla
+            }
+        }
             break;
         case "4":
             console.log("Caso 4 ejecutado");
@@ -158,6 +190,7 @@ function mostrarDetallesRegistro(descripcion, id, registro = null) {
             campo5_4.textContent = 'Premio obtenido';
             tabla.appendChild(campo5_4);
         
+            if (registro == null) {
             // Añadir filas vacías con cuatro celdas cada una
             for (let i = 0; i < 2; i++) {
                 let fila = document.createElement('tr');
@@ -168,6 +201,22 @@ function mostrarDetallesRegistro(descripcion, id, registro = null) {
                 }
                 tbody.appendChild(fila);
             }
+        }else {
+            registro = registro.trim();
+            let data = JSON.parse(registro);
+            
+            for (let i = 0; i < data.length; i++) {
+                let fila = document.createElement('tr');
+                let campos = ['fecha', 'que_he_logrado', 'acciones_realizadas', 'como_me_siento', 'premio_obtenido'];
+                for (let j = 0; j < campos.length; j++) {
+                    let celda = document.createElement('td');
+                    celda.textContent = data[i][campos[j]]; // Asignar el valor de la propiedad al texto de la celda
+                    fila.appendChild(celda);
+                }
+                tbody.appendChild(fila); // Agregar la fila al cuerpo de la tabla
+            }
+        }
+
             break;
         case "5":
             console.log("Caso  ejecutado");
@@ -188,7 +237,7 @@ function mostrarDetallesRegistro(descripcion, id, registro = null) {
             tabla.appendChild(campo4_5);
 
         
-        
+            if(registro == null) {
             // Añadir filas vacías con cuatro celdas cada una
             for (let i = 0; i < 2; i++) {
                 let fila = document.createElement('tr');
@@ -199,6 +248,21 @@ function mostrarDetallesRegistro(descripcion, id, registro = null) {
                 }
                 tbody.appendChild(fila);
             }
+        } else {
+            registro = registro.trim();
+            let data = JSON.parse(registro);
+
+            for (let i = 0; i < data.length; i++) {
+                let fila = document.createElement('tr');
+                let campos = ['fecha', 'ejercicio_provocador', 'numero_repeticion', 'miedo_maximo'];
+                for (let j = 0; j < campos.length; j++) {
+                    let celda = document.createElement('td');
+                    celda.textContent = data[i][campos[j]]; // Asignar el valor de la propiedad al texto de la celda
+                    fila.appendChild(celda);
+                }
+                tbody.appendChild(fila); // Agregar la fila al cuerpo de la tabla
+            }
+        }
             break;
         default:
             // Manejar el caso en que id no coincida con ningún caso específico
@@ -213,7 +277,7 @@ function mostrarAsignarRegistro(id) {
     document.getElementById('idPacienteAR').value = id;
 }
 
-function detallesRegistroTipo(registro, descripcion){
+function detallesRegistroTipo(registro, id_tipo, descripcion){
     console.log(registro);
-    mostrarDetallesRegistro(descripcion, 2, registro);
+    mostrarDetallesRegistro(descripcion, id_tipo, registro);
 }

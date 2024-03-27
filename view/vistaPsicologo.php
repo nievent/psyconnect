@@ -20,6 +20,7 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
     <link rel="stylesheet" href="./styles/login/login.css">
     <link rel="stylesheet" href="./styles/psicologo/psicologo.css">
     <link rel="stylesheet" href="./styles/modals/modals.css">
+    <link rel="stylesheet" href="./styles/estilos_comunes/comunes.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
@@ -36,22 +37,24 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
             echo "<script>alert('No se puede eliminar a un paciente con registros asignados.');</script>";
         } else if ($_GET['error'] == 2) {
             echo "<script>alert('El paciente ya existe');</script>";
+        }else if ($_GET['error'] == 3) {
+            echo "<script>alert('No puedes borrar un registro con lineas escritas.');</script>";
         }
     }
     ?>
 
-    <div id="backdrop" onclick="ocultarOverlay()"></div>
+<div id="backdrop" onclick="ocultarOverlay()"></div>
 
-    <div class="modal" id="detalles">
-        <h2>Detalles del Cliente:</h2>
-        <div class="form-control">
-            <div class="detalles-text">Nombre: <span id="detallesNombre"></span></div>
-            <div class="detalles-text">Apellidos: <span id="detallesApellidos"></span></div>
-            <div class="detalles-text">Email: <span id="detallesEmail"></span></div>
-            <div class="detalles-text">DNI: <span id="detallesDni"></span></div>
-            <button type="reset" class="btn" onclick="ocultarOverlay()">Salir</button>
-        </div>
+<div class="modal" id="detalles">
+    <h2>Detalles del Cliente:</h2>
+    <div class="form-control">
+        <div class="detalles-text">Nombre: <span id="detallesNombre"></span></div>
+        <div class="detalles-text">Apellidos: <span id="detallesApellidos"></span></div>
+        <div class="detalles-text">Email: <span id="detallesEmail"></span></div>
+        <div class="detalles-text">DNI: <span id="detallesDni"></span></div>
+        <button type="reset" class="btn" onclick="ocultarOverlay()">Salir</button>
     </div>
+</div>
 
     <div class="modal" id="detallesRegistros">
         <article><strong>Descripcion: </strong><span id="descripcionRegistro"></span></article>
@@ -60,17 +63,17 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
             <table>
                 <thead>
                     <tr id="camposRegistro">
-                    </tr>
-                </thead>
-                <tbody id="tbodyRegistro">
-
-                </tbody>
-            </table>
-        </article>
-    </div>
-
-    <div class="modal" id="asignarRegistro">
-        <form action="../controller/psicologo/asignarRegistro.php" method="POST">
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyRegistro">
+                        
+                        </tbody>
+                    </table>
+                </article>
+            </div>
+            
+            <div class="modal" id="asignarRegistro">
+                <form action="../controller/psicologo/asignarRegistro.php" method="POST">
             <input type="text" name="id_paciente" id="idPacienteAR" hidden>
             <label for="tipo_reg">Selecciona el registro que quieres asignar:</label>
             <select name="tipo_reg" id="tipo_reg">
@@ -83,7 +86,7 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
         </form>
     </div>
 
-
+    
     <header>
         <div class="welcome">
             <img src="../view/img/logo-sin-fondo.png" alt="logo PsyConnect">
@@ -93,17 +96,18 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
             <a href="../controller/logout.php" class="logout-button"><i class="fas fa-sign-out-alt"></i></a>
             <span class="tooltiptext">Cerrar sesión</span>
         </div>
-        </div>
-    </header>
+    </div>
+</header>
     <nav class="menu">
-    <div class="seccion">
-        <a id="limpiarParametro" href="#" <?php echo ($mainValue == 0) ? 'class="active"' : ''; ?>>Inicio</a>
-    </div>
-    <div class="seccion">
-        <a href="?main=1" <?php echo ($mainValue == 1) ? 'class="active"' : ''; ?>>Pacientes</a>
-    </div>
-    <div class="seccion">
-        <a href="?main=2" <?php echo ($mainValue == 2) ? 'class="active"' : ''; ?>>Registros</a>
+        <div class="seccion">
+            <a id="limpiarParametro" href="#" <?php echo ($mainValue == 0) ? 'class="active"' : ''; ?>>Inicio</a>
+        </div>
+        <div class="seccion">
+            <a href="?main=1" <?php echo ($mainValue == 1) ? 'class="active"' : ''; ?>>Pacientes</a>
+        </div>
+        <div class="seccion">
+            <a href="?main=2" <?php echo ($mainValue == 2) ? 'class="active"' : ''; ?>>Registros</a>
+            
     </div>
     <div class="seccion">
         <a href="?main=3" <?php echo ($mainValue == 3) ? 'class="active"' : ''; ?>>Dar de alta</a>
@@ -117,9 +121,9 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
             switch ($mainValue) {
                 case 1:
                     echo <<<HTML
-            <section class='lista-pacientes'>
-                <h1>Pacientes:</h1>
-            HTML;
+                        <section class='lista-pacientes'>
+                        <h1>Pacientes:</h1>
+                    HTML;
                     listarPacientes($bdd, $_SESSION['psicologo']->getId());
                     break;
                 case 2:
@@ -156,12 +160,6 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
         ?>
             <section class="inicio">
                 <article class="articulo-inicio">
-                    <h1>Registros sin ver</h1>
-                </article>
-                <article class="articulo-inicio">
-                    <h1>Registros pendientes</h1>
-                </article>
-                <article class="articulo-inicio">
                     <h1>Notificaciones</h1>
                 </article>
                 <article class="articulo-inicio">
@@ -173,6 +171,7 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
 
     </main>
     <script src="../controller/JS/psicologo.js"></script>
+    <script src="../controller/JS/comunes.js"></script>
 </body>
 
 </html>

@@ -64,6 +64,37 @@
             }
         }
 
+        function buscarLinea($link) {
+            try {
+                switch ($this->id_tipo_reg) {
+                    case 1: 
+                        $consulta = "SELECT * FROM relajacion_muscular WHERE id_registro = :id;";
+                        break;
+                    case 2: 
+                        $consulta = "SELECT * FROM pensamientos WHERE id_registro = :id;";
+                        break;
+                    case 3: 
+                        $consulta = "SELECT * FROM estado_animo WHERE id_registro = :id;";
+                        break;
+                    case 4:
+                        $consulta = "SELECT * FROM logros WHERE id_registro = :id;";
+                        break;
+                    case 5:
+                        $consulta = "SELECT * FROM sensaciones_corporales WHERE id_registro = :id;";
+                        break;
+                    default:
+                    return null;
+                }
+                $result = $link->prepare($consulta);
+                $result->bindParam(':id', $this->id);
+                $result->execute();
+                return $result;
+            }catch(PDOException $e){
+                $dato= "¡Error!: " . $e->getMessage() . "<br/>";
+                die();
+            }
+        }
+
         function borrarPacienteRegistro($link) {
             try {
                 $consulta = "DELETE FROM paciente_registro WHERE id_registro = :id";

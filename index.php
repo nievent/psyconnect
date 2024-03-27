@@ -24,7 +24,7 @@
                     <h1>Todo el poder de la psicología</h1>
                     <h2>Al alcance de un click</h2>
                     <p>En PsyConnect buscamos la manera más eficiente de atender a un paciente. Con PsyConnect el psicólogo se ahorra esperas innecesarias para observar cómo se siente su paciente, y a su vez el paciente puede invertir toda la hora de terapia que ha pagado, únicamente en su bienestar.</p>
-                    <button class="boton"><a href="./view/login.php">Regístrate</a></button>
+                    <button class="boton"><a href="./view/registrarse.php">Regístrate</a></button>
                 </div>
                 <img class="movil" src="./view/img/movil.png" alt="telefono movil con el logo" />
             </section>

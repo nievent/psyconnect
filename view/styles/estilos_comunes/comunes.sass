@@ -1,0 +1,101 @@
+@import "../globals"
+body
+    font-family: $font-corp
+// estilos del header
+header 
+    display: flex
+    justify-content: space-between
+    align-items: center
+    background-color: $base-colorTransparent
+    color: $base-color2
+    padding: 15px
+    border-bottom: 10px solid $base-color2
+
+.welcome
+    display: flex
+    align-items: center
+    font-family: $font-logo
+    img
+        height: 3rem
+        margin-right: 10px
+
+
+.logout-button 
+    color: $base-color
+    transition: all 0.3s ease
+    margin-right: 30px
+
+
+.logout-button:hover 
+    color: $base-color2
+    transform: scale(1.1)
+
+
+//tooltip
+.tooltip 
+    position: relative
+    display: inline-block
+
+
+.tooltip .tooltiptext 
+    visibility: hidden
+    width: 100px
+    background-color: #f4fdff
+    color: $base-color2
+    text-align: center
+    padding: 5px
+    border-radius: 6px
+    position: absolute
+    z-index: 1
+    bottom: 125%
+    left: 50%
+    margin-left: -60px
+    opacity: 0
+    transition: opacity 0.3s
+
+
+.tooltip:hover .tooltiptext 
+    visibility: visible
+    opacity: 1
+
+//iconos
+
+.fa-eye, .fa-file-alt
+    color: $base-color
+    margin-right: 20px
+
+.fa-file, .fa-plus
+    color: $add-color
+
+.fa-plus
+    margin-right: 20px
+
+.fa-user-times, .fa-trash
+    color: $delete-color
+    margin-right: 20px
+
+i
+    cursor: pointer
+    transition: transform 0.3s ease
+
+i:hover
+    transform: scale(1.1)
+
+//menu
+.menu
+    background-color: $base-color2Transparent
+    padding: 20px
+    border-bottom: 10px solid $base-color
+    justify-items: center
+    font-size: 1.2rem
+    a
+        text-decoration: none
+        color: $base-color2
+        padding: 20px
+        grid-column: 1 / -1  /* Ocupar todas las columnas */
+        transition: all 0.5s ease
+        &:hover
+            color: $base-color
+
+.active 
+    color: $base-color!important
