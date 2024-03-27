@@ -1,6 +1,6 @@
 <?php
 require '../model/conexion.php';
-require '../model/paciente.php';
+require '../controller/paciente/controllerPaciente.php';
 
 $bdd = new BD();
 session_start();

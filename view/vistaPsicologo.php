@@ -1,6 +1,7 @@
 <?php
 require '../model/conexion.php';
 require '../controller/psicologo/controllerPsicologo.php';
+require '../controller/comun/controllerComun.php';
 
 $bdd = new BD();
 session_start();
