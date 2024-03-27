@@ -2,6 +2,7 @@
 require '../model/psicologo.php';
 require '../model/paciente.php';
 require '../model/registro.php';
+require '../model/pensamientos.php';
 
 function listarPacientes($bdd, $id) {
     $pacientes = Paciente::getAllById($bdd->link, $id);
@@ -53,11 +54,46 @@ function registrosAsignados($bdd, $id) {
     $paciente = Paciente::verRegistrosAsignados($bdd->link, $id);
     while($fila = $paciente->fetch(PDO::FETCH_ASSOC)){
         echo '<article class="fila">
-        <div class=pacientes">' .  $fila["titulo"] . ' </div>
-        <div>
-        <div class="tooltip">  <a><i class="fa-solid fa-eye"></i></a>
-        <span class="tooltiptext">Detalles</span></div>
-        <div class="tooltip">  <a href="#" onclick="confirmarBajaRegistro(\''.$fila['id']. '\')"><i class="fa-solid fa-trash"></i></a>
+        <div class=pacientes">' .  $fila["titulo"] . ' </div>';
+        switch ($fila["id_tipo_reg"]) {
+            case 1:
+                echo '<div>
+                <div class="tooltip">  <a><i class="fa-solid fa-eye"></i></a>
+                <span class="tooltiptext">Detalles</span></div>';
+                break;
+            case 2:
+                $pensamientos = Pensamientos::getAllById($bdd->link, $fila["id"])->fetchAll(PDO::FETCH_ASSOC);
+                $pensamientos_json = json_encode($pensamientos);
+                echo '<div>
+                    <div class="tooltip">  
+                        <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($pensamientos_json) . '\' , \''.$fila["descripcion"] . '\')">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                        <span class="tooltiptext">Detalles</span>
+                    </div>';
+                break;
+            case 3:
+                echo '<div>
+                <div class="tooltip">  <a ><i class="fa-solid fa-eye"></i></a>
+                <span class="tooltiptext">Detalles</span></div>';
+                break;
+            case 4: 
+                echo '<div>
+                <div class="tooltip">  <a><i class="fa-solid fa-eye"></i></a>
+                <span class="tooltiptext">Detalles</span></div>';;
+                break;
+            case 5:
+                echo '<div>
+                <div class="tooltip">  <a><i class="fa-solid fa-eye"></i></a>
+                <span class="tooltiptext">Detalles</span> </div>';
+                break;
+            default: 
+                echo '<div>
+                    <div class="tooltip">  <a><i class="fa-solid fa-eye"></i></a>
+                    <span class="tooltiptext">Detalles</span> </div>';
+        }
+
+        echo '<div class="tooltip">  <a href="#" onclick="confirmarBajaRegistro(\''.$fila['id']. '\')"><i class="fa-solid fa-trash"></i></a>
         <span class="tooltiptext">Borrar registro</span> </div>
     </article>';
     } 

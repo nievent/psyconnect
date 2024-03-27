@@ -17,7 +17,7 @@
         <title>PsyConnect</title>
     </head>
     <body>
-        <?php printHeader("./view/img/logo-sin-fondo.png", "./index.php", "./view/login.php"); ?>
+        <?php printHeader("./view/img/logo-sin-fondo.png", "./index.php", "./view/login.php", "./view/registrarse.php"); ?>
         <main>
             <section class="inicio">
                 <div>

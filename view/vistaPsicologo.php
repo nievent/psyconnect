@@ -17,13 +17,14 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/login/login.css">
     <link rel="stylesheet" href="./styles/psicologo/psicologo.css">
+    <link rel="stylesheet" href="./styles/modals/modals.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Madimi+One&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="./styles/modals/modals.css">
     <title>Area Psicólogo</title>
     <script src="../controller/JS/modals.js"></script>
 </head>
@@ -126,7 +127,6 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                     break;
                     case 3:
                         echo <<<HTML
-                        <div class="form-container">
                             <form method='post' action='../controller/psicologo/insertarPaciente.php'>
                                 <label for="nombre">Nombre del paciente:</label>
                                 <input type="text" name="nombre" required>
@@ -141,7 +141,6 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                                 <input type="password" name="pwd" id="pwd" required>
                                 <button type="submit" class="btn">Dar de alta</button>
                             </form>
-                        </div>
                         HTML;
                         break;
                     

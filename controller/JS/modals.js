@@ -14,13 +14,13 @@ function mostrarDetalles(nombre, apellidos, email, dni) {
     document.getElementById('detallesDni').textContent = dni;
 }
 
-function mostrarDetallesRegistro(descripcion, id) {
+function mostrarDetallesRegistro(descripcion, id, registro = null) {
     document.getElementById('backdrop').style.display = 'block';
     document.getElementById('detallesRegistros').style.display = 'block';
     document.getElementById('descripcionRegistro').textContent = descripcion;
     let tabla = document.getElementById('camposRegistro')
     let tbody = document.getElementById('tbodyRegistro');
-    console.log(id);
+    id = id.toString();
     tabla.innerHTML = '';
     tbody.innerHTML = '';
     switch(id) {
@@ -75,16 +75,36 @@ function mostrarDetallesRegistro(descripcion, id) {
             campo5_2.textContent = 'Qué he hecho?';
             tabla.appendChild(campo5_2);
         
-            // Añadir filas vacías con cuatro celdas cada una
-            for (let i = 0; i < 2; i++) {
-                let fila = document.createElement('tr');
-                for (let j = 0; j < 5; j++) {
-                    let celda = document.createElement('td');
-                    celda.textContent = ''; // Contenido de la celda vacía
-                    fila.appendChild(celda);
+            if (registro == null) {
+                console.log("registro es null");
+                // Añadir dos filas vacías con cinco celdas cada una
+                for (let i = 0; i < 2; i++) {
+                    let fila = document.createElement('tr');
+                    for (let j = 0; j < 5; j++) {
+                        let celda = document.createElement('td');
+                        celda.textContent = ''; // Contenido de la celda vacía
+                        fila.appendChild(celda);
+                    }
+                    tbody.appendChild(fila); // Agregar la fila al cuerpo de la tabla
                 }
-                tbody.appendChild(fila);
+            } else {
+                registro = registro.trim();
+                let data = JSON.parse(registro);
+                console.log(data.length);
+
+                for (let i = 0; i < data.length; i++) {
+                    let fila = document.createElement('tr');
+                    let campos = ['fecha', 'que_ha_sucedido', 'que_he_pensado', 'como_me_he_sentido', 'que_he_hecho'];
+                    for (let j = 0; j < campos.length; j++) {
+                        let celda = document.createElement('td');
+                        celda.textContent = data[i][campos[j]]; // Asignar el valor de la propiedad al texto de la celda
+                        fila.appendChild(celda);
+                    }
+                    tbody.appendChild(fila); // Agregar la fila al cuerpo de la tabla
+                }
             }
+            
+            
             break;
         case "3":
             console.log("Caso 3 ejecutado");
@@ -191,4 +211,9 @@ function mostrarAsignarRegistro(id) {
     document.getElementById('backdrop').style.display = 'block';
     document.getElementById('asignarRegistro').style.display = 'block';
     document.getElementById('idPacienteAR').value = id;
+}
+
+function detallesRegistroTipo(registro, descripcion){
+    console.log(registro);
+    mostrarDetallesRegistro(descripcion, 2, registro);
 }

@@ -7,6 +7,19 @@ class Pensamientos extends Registro {
     private $como_me_he_sentido;
     private $que_he_hecho;
 
+    static function getAllById($link, $id){
+        try {
+            $consulta = "SELECT * FROM pensamientos WHERE id_registro = :id;";
+            $result = $link->prepare($consulta);
+            $result->bindParam(':id', $id);
+            $result->execute();
+            return $result;
+        } catch (PDOException $e) {
+            $dato = $e->getMessage();
+            die();
+        }
+    }
+
     // Constructor
     public function __construct($id, $id_tipo_reg, $titulo, $descripcion, $id_linea, $fecha, $que_ha_sucedido, $que_he_pensado, $como_me_he_sentido, $que_he_hecho) {
         parent::__construct($id, $id_tipo_reg, $titulo, $descripcion);

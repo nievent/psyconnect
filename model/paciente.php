@@ -22,7 +22,7 @@ class Paciente {
 
     static function verRegistrosAsignados($link, $id) {
         try {
-            $consulta = "SELECT t.titulo, r.id FROM tipo_registro t 
+            $consulta = "SELECT t.titulo, r.id, r.id_tipo_reg, t.descripcion FROM tipo_registro t 
             INNER JOIN registro r ON t.id = r.id_tipo_reg
             INNER JOIN paciente_registro pr ON pr.id_registro = r.id
             INNER JOIN paciente p ON p.id = pr.id_paciente
@@ -74,7 +74,7 @@ class Paciente {
 
     function insertar ($link){
         try{
-            $consulta="INSERT INTO paciente (id_psicologo, nombre, apellidos, dni, email, pwd) VALUES (:id_psicologo, :nombre, :apellidos, :dni :email,:pwd)";
+            $consulta="INSERT INTO paciente (id_psicologo, nombre, apellidos, dni, email, pwd) VALUES (:id_psicologo, :nombre, :apellidos, :dni, :email,:pwd)";
             $result=$link->prepare($consulta);
             $result->bindParam(':id_psicologo',$this->id_psicologo);
             $result->bindParam(':nombre',$this->nombre);
@@ -87,7 +87,7 @@ class Paciente {
             return $result->fetch(PDO::FETCH_ASSOC);
         }
         catch(PDOException $e){
-            $dato= "¡Error!: " . $e->getMessage() . "<br/>";
+echo ( "¡Error!: " . $e->getMessage() . "<br/>");
             die();
         }
     }
