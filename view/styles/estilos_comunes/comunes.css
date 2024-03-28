@@ -7,9 +7,9 @@ header {
   justify-content: space-between;
   align-items: center;
   background-color: rgba(0, 217, 255, 0.05);
-  color: #c67aff;
+  color: #AB7FC8;
   padding: 15px;
-  border-bottom: 10px solid #c67aff;
+  border-bottom: 10px solid #AB7FC8;
 }
 
 .welcome {
@@ -29,7 +29,7 @@ header {
 }
 
 .logout-button:hover {
-  color: #c67aff;
+  color: #AB7FC8;
   transform: scale(1.1);
 }
 
@@ -42,7 +42,7 @@ header {
   visibility: hidden;
   width: 100px;
   background-color: #f4fdff;
-  color: #c67aff;
+  color: #AB7FC8;
   text-align: center;
   padding: 5px;
   border-radius: 6px;
@@ -96,7 +96,7 @@ i:hover {
 }
 .menu a {
   text-decoration: none;
-  color: #c67aff;
+  color: #AB7FC8;
   padding: 20px;
   grid-column: 1/-1;
   transition: all 0.5s ease;

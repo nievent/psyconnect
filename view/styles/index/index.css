@@ -17,7 +17,7 @@ main {
 .boton {
   height: 3rem;
   padding: 0 2rem;
-  background: linear-gradient(to right, #00daff, #00cbff, #29b8ff, #859eff, #c67aff);
+  background: linear-gradient(to right, #00daff, #00cbff, #29b8ff, #859eff, #AB7FC8);
   color: white;
   background-size: 400%;
   background-position: 90% 0;
@@ -63,7 +63,7 @@ main {
   text-align: justify;
 }
 .inicio .texto h1 {
-  color: #c67aff;
+  color: #AB7FC8;
   padding: 20px 0;
 }
 .inicio .texto p {

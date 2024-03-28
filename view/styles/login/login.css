@@ -1,5 +1,5 @@
 main {
-  background-image: linear-gradient(to bottom, #00daff, #22d3ff, #3bcbff, #51c2ff, #64bafd, #6ab4ff, #74adff, #81a5ff, #8d9dff, #9e94ff, #b188ff, #c67aff);
+  background-image: linear-gradient(to bottom, #00daff, #22d3ff, #3bcbff, #51c2ff, #64bafd, #6ab4ff, #74adff, #81a5ff, #8d9dff, #9e94ff, #b188ff, #AB7FC8);
   padding: 15%;
   font-family: "Roboto", sans-serif; }
 
@@ -38,7 +38,7 @@ form {
 button {
   height: 3rem;
   padding: 0 2rem;
-  background: linear-gradient(to right, #00daff, #00cbff, #29b8ff, #859eff, #c67aff);
+  background: linear-gradient(to right, #00daff, #00cbff, #29b8ff, #859eff, #AB7FC8);
   color: white;
   background-size: 400%;
   background-position: 90% 0;
