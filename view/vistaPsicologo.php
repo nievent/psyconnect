@@ -151,7 +151,7 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                     
                 case 4:
                     introPaciente($bdd, $_GET["id"]);
-                    registrosAsignados($bdd, $_GET["id"]);
+                    registrosAsignados($bdd, $_GET["id"], true);
                     break;
                 default:
                     header("Location:./vistaPsicologo.php");

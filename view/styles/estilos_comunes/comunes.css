@@ -65,11 +65,11 @@ header {
   margin-right: 20px;
 }
 
-.fa-file, .fa-plus {
+.fa-file, .fa-plus, .fa-pencil-alt {
   color: #48d654;
 }
 
-.fa-plus {
+.fa-plus, .fa-pencil-alt {
   margin-right: 20px;
 }
 
@@ -107,6 +107,26 @@ i:hover {
 
 .active {
   color: #00daff !important;
+}
+
+.fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 15px;
+  border-bottom: 1px solid #00daff;
+}
+
+.lista-pacientes h1 {
+  color: #AB7FC8;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.pacientes {
+  font-size: 1.2rem;
 }
 
 /*# sourceMappingURL=comunes.css.map */

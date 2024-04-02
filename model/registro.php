@@ -104,6 +104,7 @@
                 return $result->fetch(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
                 $dato = "¡Error!: " . $e->getMessage() . "<br/>";
+                echo $dato;
                 die();
             }
         }
@@ -117,6 +118,7 @@
                 return $result->fetch(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
                 $dato = "¡Error!: " . $e->getMessage() . "<br/>";
+                echo $dato;
                 die();
             }
         }

@@ -1,9 +1,3 @@
-function ocultarOverlay() {
-    document.getElementById('backdrop').style.display = 'none';
-    document.getElementById('detalles').style.display = 'none';
-    document.getElementById('detallesRegistros').style.display = 'none';
-    document.getElementById('asignarRegistro').style.display = 'none';
-}
 
 function mostrarDetalles(nombre, apellidos, email, dni) {
     document.getElementById('backdrop').style.display = 'block';
@@ -280,4 +274,12 @@ function mostrarAsignarRegistro(id) {
 function detallesRegistroTipo(registro, id_tipo, descripcion){
     console.log(registro);
     mostrarDetallesRegistro(descripcion, id_tipo, registro);
+}
+
+function ocultarOverlay() {
+    document.getElementById('backdrop').style.display = 'none';
+var modales = document.getElementsByClassName('modal');
+for (var i = 0; i < modales.length; i++) {
+    modales[i].style.setProperty('display', 'none');
+}
 }

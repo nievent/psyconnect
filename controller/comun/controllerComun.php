@@ -8,7 +8,7 @@ require '../model/estado_animo.php';
 require '../model/logros.php';
 require '../model/sensaciones_corporales.php';
 
-function registrosAsignados($bdd, $id) {
+function registrosAsignados($bdd, $id, $psicologo) {
     $paciente = Paciente::verRegistrosAsignados($bdd->link, $id);
     while($fila = $paciente->fetch(PDO::FETCH_ASSOC)){
         echo '<article class="fila">
@@ -22,9 +22,22 @@ function registrosAsignados($bdd, $id) {
                     <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($relajacion_json) . '\' , 1, \''.$fila["descripcion"] . '\')">
                         <i class="fa-solid fa-eye"></i>
                     </a>
-                <span class="tooltiptext">Detalles</span></div>
-                <div class="tooltip">  <a href="#" onclick="confirmarBajaRegistro(\''.$fila['id']. '\',1)"><i class="fa-solid fa-trash"></i></a>
-                <span class="tooltiptext">Borrar registro</span> </div>';
+                <span class="tooltiptext">Detalles</span></div>';
+                if ($psicologo) {
+                    echo '<div class="tooltip">  
+                            <a href="#" onclick="confirmarBajaRegistro(\''.$fila['id']. '\',1)">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                            <span class="tooltiptext">Borrar registro</span>
+                          </div>';
+                } else {
+                    echo '<div class="tooltip">  
+                            <a href="#" onclick="editarRegistro(\''.$fila['id']. '\',1)">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <span class="tooltiptext">Editar registro</span>
+                          </div>';
+                }
                 break;
             case 2:
                 $pensamientos = Pensamientos::getAllById($bdd->link, $fila["id"])->fetchAll(PDO::FETCH_ASSOC);
@@ -35,9 +48,22 @@ function registrosAsignados($bdd, $id) {
                             <i class="fa-solid fa-eye"></i>
                         </a>
                         <span class="tooltiptext">Detalles</span>
-                    </div>
-                    <div class="tooltip">  <a href="#" onclick="confirmarBajaRegistro(\''.$fila['id']. '\',2)"><i class="fa-solid fa-trash"></i></a>
-                    <span class="tooltiptext">Borrar registro</span> </div>';
+                    </div>';
+                    if ($psicologo) {
+                        echo '<div class="tooltip">  
+                                <a href="#" onclick="confirmarBajaRegistro(\''.$fila['id']. '\',1)">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                                <span class="tooltiptext">Borrar registro</span>
+                              </div>';
+                    } else {
+                        echo '<div class="tooltip">  
+                                <a href="#" onclick="editarRegistro(\''.$fila['id']. '\',1)">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                <span class="tooltiptext">Editar registro</span>
+                              </div>';
+                    }
                 break;
             case 3:
                 $estado_animo = Estado_animo::getAllById($bdd->link, $fila["id"])->fetchAll(PDO::FETCH_ASSOC);
@@ -47,9 +73,22 @@ function registrosAsignados($bdd, $id) {
                     <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($estado_animo_json) . '\' , 3, \''.$fila["descripcion"] . '\')">
                         <i class="fa-solid fa-eye"></i>
                     </a>
-                <span class="tooltiptext">Detalles</span></div>
-                <div class="tooltip">  <a href="#" onclick="confirmarBajaRegistro(\''.$fila['id']. '\', 3)"><i class="fa-solid fa-trash"></i></a>
-                <span class="tooltiptext">Borrar registro</span> </div>';
+                <span class="tooltiptext">Detalles</span></div>';
+                if ($psicologo) {
+                    echo '<div class="tooltip">  
+                            <a href="#" onclick="confirmarBajaRegistro(\''.$fila['id']. '\',1)">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                            <span class="tooltiptext">Borrar registro</span>
+                          </div>';
+                } else {
+                    echo '<div class="tooltip">  
+                            <a href="#" onclick="editarRegistro(\''.$fila['id']. '\',1)">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <span class="tooltiptext">Editar registro</span>
+                          </div>';
+                }
                 break;
             case 4:
                 $logros = Logros::getAllById($bdd->link, $fila["id"])->fetchAll(PDO::FETCH_ASSOC); 
@@ -59,9 +98,22 @@ function registrosAsignados($bdd, $id) {
                     <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($logros_json) . '\' , 4, \''.$fila["descripcion"] . '\')">
                         <i class="fa-solid fa-eye"></i>
                     </a>
-                <span class="tooltiptext">Detalles</span></div>
-                <div class="tooltip">  <a href="#" onclick="confirmarBajaRegistro(\''.$fila['id']. '\', 4)"><i class="fa-solid fa-trash"></i></a>
-                <span class="tooltiptext">Borrar registro</span> </div>';
+                <span class="tooltiptext">Detalles</span></div>';
+                if ($psicologo) {
+                    echo '<div class="tooltip">  
+                            <a href="#" onclick="confirmarBajaRegistro(\''.$fila['id']. '\',1)">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                            <span class="tooltiptext">Borrar registro</span>
+                          </div>';
+                } else {
+                    echo '<div class="tooltip">  
+                    <a href="#" onclick="editarConJson(\''.$fila['id']. '\',\'' . htmlspecialchars($logros_json) . '\')">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
+                    <span class="tooltiptext">Editar registro</span>
+                  </div>';            
+                }
                 break;
             case 5:
                 $sensaciones_corporales = Sensaciones_corporales::getAllById($bdd->link, $fila["id"])->fetchAll(PDO::FETCH_ASSOC);
@@ -71,9 +123,22 @@ function registrosAsignados($bdd, $id) {
                     <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($sensaciones_corporales_json) . '\' , 5, \''.$fila["descripcion"] . '\')">
                         <i class="fa-solid fa-eye"></i>
                     </a>
-                <span class="tooltiptext">Detalles</span> </div>
-                <div class="tooltip">  <a href="#" onclick="confirmarBajaRegistro(\''.$fila['id']. '\', 5)"><i class="fa-solid fa-trash"></i></a>
-                <span class="tooltiptext">Borrar registro</span> </div>';
+                <span class="tooltiptext">Detalles</span> </div>';
+                if ($psicologo) {
+                    echo '<div class="tooltip">  
+                            <a href="#" onclick="confirmarBajaRegistro(\''.$fila['id']. '\',1)">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                            <span class="tooltiptext">Borrar registro</span>
+                          </div>';
+                } else {
+                    echo '<div class="tooltip">  
+                            <a href="#" onclick="editarRegistro(\''.$fila['id']. '\',1)">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <span class="tooltiptext">Editar registro</span>
+                          </div>';
+                }
                 
                 break;
             default: 
