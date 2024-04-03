@@ -1,11 +1,11 @@
 <?php
 require '../../model/conexion.php';
-require '../../model/logros.php';
+require '../../model/estado_animo.php';
 $bdd = new BD();
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['editableData'])) {
     $data = json_decode($_POST['editableData'], true);
-
     if (!empty($data)) {
         // Inicializar el array organizado
         $lastIdRegistro = $data[0]['id_registro'];
@@ -27,24 +27,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['editableData'])) {
         // Puedes procesarlos según tus necesidades
         // print_r($organizedData);
         // Borrar los registros correspondientes al lastIdRegistro
-        Logros::deleteById($bdd->link, $lastIdRegistro);
+        Estado_animo::deleteById($bdd->link, $lastIdRegistro);
         
         // Iterar sobre los datos organizados para insertarlos en la base de datos
         foreach ($organizedData as $row) {
                 // Crear un nuevo objeto Logros con los datos de la fila
-                $logro = new Logros(
+                $estadoAnimo = new Estado_animo(
                         $row['id_registro'],
                         $row['id_linea'],
                         $row['cell_1'],
                         $row['cell_2'],
                         $row['cell_3'],
-                        $row['cell_4'],
-                        $row['cell_5']
+                        $row['cell_4']
                     );
                 
                     // Insertar el nuevo registro en la base de datos
-                    $logro->insertar($bdd->link);
+                    $estadoAnimo->insertar($bdd->link);
         }
         header('location:  ../../view/vistaPaciente.php');     
+    } else {
+        header('location:  ../../view/vistaPaciente.php?error=1');
     }
-}
+    
+} 
+

@@ -50,6 +50,17 @@ function introPaciente($bdd, $id_paciente) {
     echo "<h1>Registros de " . $datosPaciente["nombre"]."</h1>";
 }
 
+function comentariosPendientes($bdd, $id) {
+    $comentarios = Comentario::getAllById($bdd->link, $id);
+    while ($fila = $comentarios->fetch(PDO::FETCH_ASSOC)) {
+        echo "<article class='fila'>";
+        echo "<div class='pacientes'><strong>" . $fila['nombre'] . " " . $fila['apellidos'] . "</strong> ha comentado: " . $fila["comentario"] . "</div>";
+        echo '<div>
+        <div class="tooltip">  <a href="../controller/psicologo/verComentario.php?id=' . $fila['id'] . ' "><i class="fas fa-check-circle"></i></a>
+        <span class="tooltiptext">Marcar como leído</span> </div>
+        </div> </article>';
+    }
+}
 
 
 ?>

@@ -27,12 +27,19 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Madimi+One&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <title>Area Paciente</title>
-    
+
 </head>
 
 <body>
-<div id="backdrop" onclick="ocultarOverlay()"></div>
-<div class="modal" id="detallesRegistros">
+<?php
+    if (isset($_GET['error'])) {
+        if ($_GET['error'] == 1) {
+            echo "<script>alert('No se puede enviar un registro vacio.');</script>";
+        } 
+    }
+?>
+    <div id="backdrop" onclick="ocultarOverlay()"></div>
+    <div class="modal" id="detallesRegistros">
         <article><strong>Descripcion: </strong><span id="descripcionRegistro"></span></article>
         <article><strong>Campos: </strong></article>
         <article>
@@ -41,23 +48,38 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                     <tr id="camposRegistro"></tr>
                 </thead>
                 <tbody id="tbodyRegistro">
-                    
+
                 </tbody>
             </table>
         </article>
     </div>
 
-    <form class="modal" id="formularioEditar" action="?main=2" method="POST">
+    <form class="modal" id="formularioEditarLogros" action="?main=2" method="POST">
         <input type="hidden" id="inputLogrosJson" name="logros_json" value="">
     </form>
 
+    <form class="modal" id="formularioEditarSensaciones" action="?main=3" method="POST">
+        <input type="hidden" id="inputSensacionesJson" name="sensaciones_json" value="">
+    </form>
+
+    <form class="modal" id="formularioEditarEstadoAnimo" action="?main=4" method="POST">
+        <input type="hidden" id="inputEstadoAnimoJson" name="estadoAnimo_json" value="">
+    </form>
+
+    <form class="modal" id="formularioEditarPensamiento" action="?main=5" method="POST">
+        <input type="hidden" id="inputPensamientoJson" name="pensamiento_json" value="">
+    </form>
+
+    <form class="modal" id="formularioEditarRelajacion" action="?main=6" method="POST">
+        <input type="hidden" id="inputRelajacionJson" name="relajacion_json" value="">
+    </form>
 
     <header>
         <div class="welcome">
             <img src="../view/img/logo-sin-fondo.png" alt="logo PsyConnect">
             <h1>Hola, <?php echo $_SESSION['paciente']->getNombre() ?>.</h1>
         </div>
-        
+
         <div class="tooltip">
             <a href="../controller/logout.php" class="logout-button"><i class="fas fa-sign-out-alt"></i></a>
             <span class="tooltiptext">Cerrar sesión</span>
@@ -65,7 +87,7 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
         </div>
     </header>
 
-            
+
     <nav class="menu">
         <div class="seccion">
             <a id="limpiarParametro" href="#" <?php echo ($mainValue == 0) ? 'class="active"' : ''; ?>>Registros</a>
@@ -80,48 +102,61 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
         $mainValue = $_GET['main'];
         switch ($mainValue) {
             case 1:
+                echo <<<HTML
+                <h1>Ponte en contacto con tu terapeuta</h1>
+                <form action="../controller/paciente/enviarComentario.php" method="POST">
+                    <input type="number" name="id_paciente" value="{$_SESSION['paciente']->getId()}" hidden>
+                    <input type="number" name="id_psicologo" value="{$_SESSION['paciente']->getIdPsicologo()}" hidden>
+                    <label for="comentario">Escribe aquí tu notificación</label>
+                    <textarea name="comentario" id="comentario" cols="30" rows="10"></textarea>
+                    <button type="submit">Enviar comentario</button>
+                </form>
+                HTML;
                 break;
             case 2:
-                if(isset($_POST['logros_json'])) {
-                    // Decodificar el JSON recibido
+                if (isset($_POST['logros_json'])) {
                     $logros = json_decode($_POST['logros_json'], true);
-                    
-                    // Crear una tabla para mostrar los datos del JSON
-                    echo '<div id="div">';
-                    echo '<table id="registro">';
-                    echo '<thead><tr><th>Fecha</th><th>Nombre del Logro</th><th>Acciones Realizadas</th><th>Cómo me Siento</th><th>Premio Obtenido</th></tr></thead>';
-                    echo '<tbody>';
-                    $rowCount = 0; // Contador de filas
-                    foreach($logros as $logro) {
-                        // Obtener id_registro e id_linea
-                        $idRegistro = $logro['id_registro'];
-                        $idLinea = $logro['id_linea'];
-                        
-                        // Crear una fila de la tabla con atributos data
-                        echo '<tr class="editable-row" data-id-registro="' . $idRegistro . '" data-id-linea="' . $idLinea . '">';
-                        echo '<td contenteditable="true">' . $logro['fecha'] . '</td>';
-                        echo '<td contenteditable="true">' . $logro['que_he_logrado'] . '</td>';
-                        echo '<td contenteditable="true">' . $logro['acciones_realizadas'] . '</td>';
-                        echo '<td contenteditable="true">' . $logro['como_me_siento'] . '</td>';
-                        echo '<td contenteditable="true">' . $logro['premio_obtenido'] . '</td>';
-                        echo '</tr>';
-                        
-                        // Actualizar las variables con el id de la última fila
-                        $idRegistroLast = $idRegistro;
-                        $idLineaLast = $idLinea;
-                        $rowCount++; // Incrementar el contador de filas
-                    }
-                    echo '</tbody>';
-                    echo '</table>';
-                    echo '<button id="agregarFilaBtn" data-id-registro="' . $idRegistroLast . '" data-id-linea="' . ($idLineaLast + 1) . '">Agregar Fila</button>';
-                    echo '<button id="enviarDatos">Enviar Datos</button>';
-                    echo '</div>';
+                    tablaLogros($logros);
                 } else {
                     // Si no se proporcionó un JSON, mostrar un mensaje de error
                     echo '<div id="div">No se recibieron datos para mostrar.</div>';
                 }
-                
-                
+                break;
+            case 3:
+                if (isset($_POST['sensaciones_json'])) {
+                    $sensaciones = json_decode($_POST['sensaciones_json'], true);
+                    tablaSensaciones($sensaciones);
+                } else {
+                    // Si no se proporcionó un JSON, mostrar un mensaje de error
+                    echo '<div id="div">No se recibieron datos para mostrar.</div>';
+                }
+                break;
+            case 4:
+                if (isset($_POST['estadoAnimo_json'])) {
+                    $estadoAnimo = json_decode($_POST['estadoAnimo_json'], true);
+                    tablaEstadoAnimo($estadoAnimo);
+                } else {
+                    // Si no se proporcionó un JSON, mostrar un mensaje de error
+                    echo '<div id="div">No se recibieron datos para mostrar.</div>';
+                }
+                break;
+            case 5:
+                if (isset($_POST['pensamiento_json'])) {
+                    $pensamientos = json_decode($_POST['pensamiento_json'], true);
+                    tablaPensamientos($pensamientos);
+                } else {
+                    // Si no se proporcionó un JSON, mostrar un mensaje de error
+                    echo '<div id="div">No se recibieron datos para mostrar.</div>';
+                }
+                break;
+            case 6:
+                if (isset($_POST['relajacion_json'])) {
+                    $relajacion = json_decode($_POST['relajacion_json'], true);
+                    tablaRelajacion($relajacion);
+                } else {
+                    // Si no se proporcionó un JSON, mostrar un mensaje de error
+                    echo '<div id="div">No se recibieron datos para mostrar.</div>';
+                }
                 break;
         }
     } else {

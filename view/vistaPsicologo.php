@@ -159,14 +159,11 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
             }
         } else {
         ?>
-            <section class="inicio">
-                <article class="articulo-inicio">
-                    <h1>Notificaciones</h1>
-                </article>
-                <article class="articulo-inicio">
-                    <h1>Avisar</h1>
-                </article>
-            <?php } ?>
+            <section>
+                <h1>Notificaciones</h1>
+                <?php
+                comentariosPendientes($bdd,$_SESSION["psicologo"]->getId());
+        } ?>
             </section>
 
 

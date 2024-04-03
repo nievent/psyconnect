@@ -1,76 +1,137 @@
-function editarConJson(id, logros_json) {
+function editarLogros(logros_json) {
     document.getElementById('inputLogrosJson').value = logros_json;
-    document.getElementById('formularioEditar').submit();
+    document.getElementById('formularioEditarLogros').submit();
+}
+
+function editarSensaciones(logros_json) {
+    document.getElementById('inputSensacionesJson').value = logros_json;
+    document.getElementById('formularioEditarSensaciones').submit();
+}
+
+function editarEstadoAnimo(estadoAnimo_json) {
+    document.getElementById('inputEstadoAnimoJson').value = estadoAnimo_json;
+    document.getElementById('formularioEditarEstadoAnimo').submit();
+}
+
+function editarPensamiento(pensamiento_json) {
+    document.getElementById('inputPensamientoJson').value = pensamiento_json;
+    document.getElementById('formularioEditarPensamiento').submit();
+}
+
+function editarRelajacion(relajacion_json) {
+    document.getElementById('inputRelajacionJson').value = relajacion_json;
+    document.getElementById('formularioEditarRelajacion').submit();
 }
 
 
-document.getElementById('enviarDatos').addEventListener('click', function() {
-    // Obtener todos los divs editables dentro de la tabla
-    var editableRows = document.querySelectorAll('.editable-row');
-    var data = [];
-    
-    // Iterar sobre cada fila editable y recopilar los datos
-    editableRows.forEach(function(row) {
-        var rowData = {};
-        var cells = row.querySelectorAll('td[contenteditable="true"]');
+document.querySelectorAll('.enviar-datos-btn').forEach(function(button) {
+    button.addEventListener('click', function() {
+        let tableId = this.getAttribute('data-table');
+        let controller = this.getAttribute('data-controller');
+
+        // Obtener todos los divs editables dentro de la tabla
+        let editableRows = document.querySelectorAll('#' + tableId + ' .editable-row');
+        let data = [];
         
-        // Recopilar los datos de las celdas editables
-        cells.forEach(function(cell, index) {
-            rowData['cell_' + (index + 1)] = cell.textContent.trim();
+        // Iterar sobre cada fila editable y recopilar los datos
+        editableRows.forEach(function(row) {
+            let rowData = {};
+            let cells = row.querySelectorAll('td[contenteditable="true"]');
+            
+            // Recopilar los datos de las celdas editables
+            cells.forEach(function(cell, index) {
+                rowData['cell_' + (index + 1)] = cell.textContent.trim();
+            });
+            
+            // Obtener los atributos data-id-registro y data-id-linea
+            let idRegistro = row.dataset.idRegistro;
+            let idLinea = row.dataset.idLinea;
+            
+            // Añadir los datos y los atributos al objeto rowData
+            rowData['id_registro'] = idRegistro;
+            rowData['id_linea'] = idLinea;
+            
+            // Añadir el objeto rowData al arreglo de datos
+            data.push(rowData);
         });
         
-        // Obtener los atributos data-id-registro y data-id-linea
-        var idRegistro = row.dataset.idRegistro;
-        var idLinea = row.dataset.idLinea;
+        // Convertir los datos a JSON
+        let jsonData = JSON.stringify(data);
         
-        // Añadir los datos y los atributos al objeto rowData
-        rowData['id_registro'] = idRegistro;
-        rowData['id_linea'] = idLinea;
+        // Crear un formulario oculto y enviar los datos
+        let form = document.createElement('form');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', '../controller/paciente/' + controller);
         
-        // Añadir el objeto rowData al arreglo de datos
-        data.push(rowData);
+        let input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', 'editableData');
+        input.setAttribute('value', jsonData);
+        
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
     });
-    
-    // Convertir los datos a JSON
-    var jsonData = JSON.stringify(data);
-    
-    // Crear un formulario oculto y enviar los datos
-    var form = document.createElement('form');
-    form.setAttribute('method', 'post');
-    form.setAttribute('action', '../controller/paciente/editarRegistro.php');
-    
-    var input = document.createElement('input');
-    input.setAttribute('type', 'hidden');
-    input.setAttribute('name', 'editableData');
-    input.setAttribute('value', jsonData);
-    
-    form.appendChild(input);
-    document.body.appendChild(form);
-    form.submit();
 });
 
-// Función para agregar una nueva fila a la tabla
-function agregarFila() {
+function agregarFila(btn, event=null) {
     // Obtener la fecha actual
-    var fechaActual = new Date().toISOString().slice(0, 10);
+    let fechaActual = new Date().toISOString().slice(0, 10);
 
     // Obtener el id_registro y el id_linea del botón "Agregar Fila"
-    var idRegistro = this.getAttribute('data-id-registro');
-    var idLinea = this.getAttribute('data-id-linea');
+    let idRegistro = btn.getAttribute('data-id-registro');
+    let idLinea = btn.getAttribute('data-id-linea');
+    let numTds = btn.getAttribute('data-tds');
+
+    // Crear una cadena para las celdas de la nueva fila
+    let tdContent = '';
+    for (let i = 0; i < numTds; i++) {
+        tdContent += '<td contenteditable="true"></td>';
+    }
 
     // Crear una nueva fila con los valores predeterminados y los datos obtenidos
-    var nuevaFila = '<tr class="editable-row" data-id-registro="' + idRegistro + '" data-id-linea="' + idLinea + '">' +
+    let nuevaFila = '<tr class="editable-row" data-id-registro="' + idRegistro + '" data-id-linea="' + idLinea + '">' +
                         '<td contenteditable="true">' + fechaActual + '</td>' +
-                        '<td contenteditable="true"></td>' +
-                        '<td contenteditable="true"></td>' +
-                        '<td contenteditable="true"></td>' +
-                        '<td contenteditable="true"></td>' +
+                        tdContent + // Añadir las celdas generadas dinámicamente
+                        '<td><button class="borrar-btn" data-row="' + idLinea + '"><i class="fas fa-trash"></i></button></td>' +
                     '</tr>';
 
-    // Agregar la nueva fila al final de la tabla
-    var tabla = document.getElementById("registro")
-    tabla.insertAdjacentHTML('beforeend', nuevaFila);
+    // Agregar la nueva fila al final de la tabla correspondiente
+    let tablaId = btn.getAttribute('data-table-id');
+    let tabla = document.getElementById(tablaId);
+    if (tabla) {
+        tabla.insertAdjacentHTML('beforeend', nuevaFila);
+
+        // Agregar evento de clic al botón de borrar fila
+        let botonBorrar = tabla.querySelector('.borrar-btn[data-row="' + idLinea + '"]');
+        botonBorrar.addEventListener('click', function() {
+            if (confirm('¿Estás seguro de que quieres borrar esta fila?')) {
+                let fila = this.closest('tr'); // Obtener la fila padre del botón
+                fila.remove(); // Borrar la fila
+            }
+        });
+    } else {
+        console.error("No se encontró la tabla con ID:", tablaId);
+    }
 }
+
+
+
+
+
+
 
 // Asignar evento clic al botón de agregar fila
 document.getElementById('agregarFilaBtn').addEventListener('click', agregarFila);
+
+    // Agregar evento de clic a todos los botones de borrar fila
+    const botonesBorrar = document.querySelectorAll('.borrar-btn');
+    botonesBorrar.forEach(boton => {
+        boton.addEventListener('click', function() {
+            const filaId = 'fila_' + this.dataset.row; // Obtener el ID único de la fila
+            const fila = document.getElementById(filaId); // Obtener la fila correspondiente
+            if (confirm('¿Estás seguro de que quieres borrar esta fila?')) {
+                fila.remove(); // Borrar la fila
+            }
+        });
+    });

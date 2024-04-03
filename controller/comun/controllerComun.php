@@ -7,6 +7,8 @@ require '../model/relajacion_muscular.php';
 require '../model/estado_animo.php';
 require '../model/logros.php';
 require '../model/sensaciones_corporales.php';
+require '../model/comentario.php';
+
 
 function registrosAsignados($bdd, $id, $psicologo) {
     $paciente = Paciente::verRegistrosAsignados($bdd->link, $id);
@@ -32,7 +34,7 @@ function registrosAsignados($bdd, $id, $psicologo) {
                           </div>';
                 } else {
                     echo '<div class="tooltip">  
-                            <a href="#" onclick="editarRegistro(\''.$fila['id']. '\',1)">
+                            <a href="#" onclick="editarRelajacion(\'' . htmlspecialchars($relajacion_json) . '\')">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                             <span class="tooltiptext">Editar registro</span>
@@ -58,7 +60,7 @@ function registrosAsignados($bdd, $id, $psicologo) {
                               </div>';
                     } else {
                         echo '<div class="tooltip">  
-                                <a href="#" onclick="editarRegistro(\''.$fila['id']. '\',1)">
+                                <a href="#" onclick="editarPensamiento(\'' . htmlspecialchars($pensamientos_json) . '\')">
                                     <i class="fas fa-pencil-alt"></i>
                                 </a>
                                 <span class="tooltiptext">Editar registro</span>
@@ -83,7 +85,7 @@ function registrosAsignados($bdd, $id, $psicologo) {
                           </div>';
                 } else {
                     echo '<div class="tooltip">  
-                            <a href="#" onclick="editarRegistro(\''.$fila['id']. '\',1)">
+                            <a href="#" onclick="editarEstadoAnimo(\'' . htmlspecialchars($estado_animo_json) . '\')">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                             <span class="tooltiptext">Editar registro</span>
@@ -108,7 +110,7 @@ function registrosAsignados($bdd, $id, $psicologo) {
                           </div>';
                 } else {
                     echo '<div class="tooltip">  
-                    <a href="#" onclick="editarConJson(\''.$fila['id']. '\',\'' . htmlspecialchars($logros_json) . '\')">
+                    <a href="#" onclick="editarLogros(\'' . htmlspecialchars($logros_json) . '\')">
                         <i class="fas fa-pencil-alt"></i>
                     </a>
                     <span class="tooltiptext">Editar registro</span>
@@ -133,7 +135,7 @@ function registrosAsignados($bdd, $id, $psicologo) {
                           </div>';
                 } else {
                     echo '<div class="tooltip">  
-                            <a href="#" onclick="editarRegistro(\''.$fila['id']. '\',1)">
+                    <a href="#" onclick="editarSensaciones(\'' . htmlspecialchars($sensaciones_corporales_json) . '\')">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                             <span class="tooltiptext">Editar registro</span>
