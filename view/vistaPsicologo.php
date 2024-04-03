@@ -142,8 +142,6 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                                 <input type="text" name="dni">
                                 <label for="mail">Correo electrónico:</label>
                                 <input type="email" name="email" required>
-                                <label for="pwd">Contraseña:</label>
-                                <input type="password" name="pwd" id="pwd" required>
                                 <button type="submit" class="btn">Dar de alta</button>
                             </form>
                         HTML;

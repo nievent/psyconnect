@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
         $consulta->execute();
         $psicologoObj = $consulta->fetch(PDO::FETCH_OBJ);
 
-        if ($psicologoObj && $password == $psicologoObj->pwd) {
+        if ($psicologoObj && password_verify($password, $psicologoObj->pwd)) {
             $psicologo = new Psicologo(
                 $psicologoObj->id,
                 $psicologoObj->nombre,
@@ -36,7 +36,9 @@ if (isset($_POST['submit'])) {
         $consulta2->bindParam(':email', $email);
         $consulta2->execute();
         $pacienteObj = $consulta2->fetch(PDO::FETCH_OBJ);
-        if ($pacienteObj && $password == $pacienteObj->pwd) {
+        echo $pacienteObj->pwd;
+        echo $password;
+        if ($pacienteObj && password_verify($password, $pacienteObj->pwd)) {
             $paciente = new Paciente(
                 $pacienteObj->id,
                 $pacienteObj->id_psicologo,
@@ -47,6 +49,7 @@ if (isset($_POST['submit'])) {
                 $pacienteObj->pwd
             );
             $_SESSION['paciente'] = $paciente;
+            echo "hola4!";
             header("Location:../view/vistaPaciente.php");
             exit();
         }
