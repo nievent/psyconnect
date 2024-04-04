@@ -5,3 +5,20 @@
     grid-template-columns: repeat(2, 1fr)  /* Cuatro columnas con igual ancho */
     justify-content: center
     align-items: center
+
+#agregarFilaBtn
+    margin-top: 30px
+    background: none
+    @include boton(2rem, 1.5rem, $border-radius-medium, 0.8s, $add-color)
+
+
+.enviar-datos-btn
+    margin-top: 30px
+    @include boton(2rem, 1.5rem, $border-radius-medium, 0.8s, $base-color)
+
+.borrar-btn
+    background: none
+    @include boton(2rem, 0.5rem, $border-radius-large, 0.8s, $delete-color)
+    i
+        color: $base-color2-whited
+        margin-right: 0px

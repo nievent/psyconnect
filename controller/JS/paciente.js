@@ -74,7 +74,8 @@ document.querySelectorAll('.enviar-datos-btn').forEach(function(button) {
     });
 });
 
-function agregarFila(btn, event=null) {
+// Función para agregar una nueva fila a la tabla
+function agregarFila(btn, event = null) {
     // Obtener la fecha actual
     let fechaActual = new Date().toISOString().slice(0, 10);
 
@@ -91,47 +92,35 @@ function agregarFila(btn, event=null) {
 
     // Crear una nueva fila con los valores predeterminados y los datos obtenidos
     let nuevaFila = '<tr class="editable-row" data-id-registro="' + idRegistro + '" data-id-linea="' + idLinea + '">' +
-                        '<td contenteditable="true">' + fechaActual + '</td>' +
-                        tdContent + // Añadir las celdas generadas dinámicamente
-                        '<td><button class="borrar-btn" data-row="' + idLinea + '"><i class="fas fa-trash"></i></button></td>' +
-                    '</tr>';
+        '<td contenteditable="true">' + fechaActual + '</td>' +
+        tdContent + // Añadir las celdas generadas dinámicamente
+        '<td><button class="borrar-btn" data-row="' + idLinea + '"><i class="far fa-trash-alt"></i></button></td>' +
+        '</tr>';
 
     // Agregar la nueva fila al final de la tabla correspondiente
     let tablaId = btn.getAttribute('data-table-id');
     let tabla = document.getElementById(tablaId);
     if (tabla) {
         tabla.insertAdjacentHTML('beforeend', nuevaFila);
-
-        // Agregar evento de clic al botón de borrar fila
-        let botonBorrar = tabla.querySelector('.borrar-btn[data-row="' + idLinea + '"]');
-        botonBorrar.addEventListener('click', function() {
-            if (confirm('¿Estás seguro de que quieres borrar esta fila?')) {
-                let fila = this.closest('tr'); // Obtener la fila padre del botón
-                fila.remove(); // Borrar la fila
-            }
-        });
     } else {
         console.error("No se encontró la tabla con ID:", tablaId);
     }
 }
 
-
-
-
-
-
-
 // Asignar evento clic al botón de agregar fila
-document.getElementById('agregarFilaBtn').addEventListener('click', agregarFila);
+document.getElementById('agregarFilaBtn').addEventListener('click', function() {
+    // Incrementar el valor de data-id-linea para que la próxima fila tenga un ID único
+    let nuevoIdLinea = parseInt(this.getAttribute('data-id-linea')) + 1;
+    this.setAttribute('data-id-linea', nuevoIdLinea);
+    agregarFila(this);
+});
 
-    // Agregar evento de clic a todos los botones de borrar fila
-    const botonesBorrar = document.querySelectorAll('.borrar-btn');
-    botonesBorrar.forEach(boton => {
-        boton.addEventListener('click', function() {
-            const filaId = 'fila_' + this.dataset.row; // Obtener el ID único de la fila
-            const fila = document.getElementById(filaId); // Obtener la fila correspondiente
-            if (confirm('¿Estás seguro de que quieres borrar esta fila?')) {
-                fila.remove(); // Borrar la fila
-            }
-        });
-    });
+// Agregar evento de clic al contenedor de la tabla para manejar los clics en los botones de borrar fila
+document.getElementById('div').addEventListener('click', function(event) {
+    if (event.target && event.target.classList.contains('borrar-btn')) {
+        const fila = event.target.closest('tr'); // Obtener la fila que contiene el botón de borrar
+        if (confirm('¿Estás seguro de que quieres borrar esta fila?')) {
+            fila.remove(); // Borrar la fila
+        }
+    }
+});

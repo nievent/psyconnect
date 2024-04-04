@@ -27,11 +27,10 @@ function tablaLogros($logros) {
     }
     echo '</tbody>';
     echo '</table>';
-    echo '<button id="agregarFilaBtn" onclick="agregarFila(this, event)" data-id-registro="' . $idRegistro . '" data-id-linea="' . ($idLinea + 1) . '" data-tds="' . 4 . '" data-table-id="registro-logros">Agregar Fila</button>';
+    echo '<button id="agregarFilaBtn" data-id-registro="' . $idRegistro . '" data-id-linea="' . ($idLinea + 1) . '" data-tds="' . 4 . '" data-table-id="registro-logros">Agregar Fila</button>';
     echo '<button class="enviar-datos-btn" data-controller="editarRegistroLogros.php" data-table="registro-logros">Enviar Datos</button>';
     echo '</div>';
 }
-
 
 function tablaSensaciones($sensaciones) {
     // Crear una tabla para mostrar los datos del JSON
@@ -61,7 +60,7 @@ function tablaSensaciones($sensaciones) {
     }
     echo '</tbody>';
     echo '</table>';
-    echo '<button id="agregarFilaBtn" onclick="agregarFila(this, event)" data-id-registro="' . $idRegistro . '" data-id-linea="' . ($idLinea + 1) . '" data-tds="' . 3 . '" data-table-id="registro-sensaciones">Agregar Fila</button>';
+    echo '<button id="agregarFilaBtn" data-id-registro="' . $idRegistro . '" data-id-linea="' . ($idLinea + 1) . '" data-tds="' . 3 . '" data-table-id="registro-sensaciones">Agregar Fila</button>';
     echo '<button class="enviar-datos-btn" data-controller="editarRegistroSensaciones.php" data-table="registro-sensaciones">Enviar Datos</button>';
     echo '</div>';
 }
@@ -93,7 +92,7 @@ function tablaEstadoAnimo($estadoAnimo) {
     }
     echo '</tbody>';
     echo '</table>';
-    echo '<button id="agregarFilaBtn" onclick="agregarFila(this, event)" data-id-registro="' . $idRegistro . '" data-id-linea="' . ($idLinea + 1) . '" data-tds="' . 3 . '" data-table-id="registro-estadoAnimo">Agregar Fila</button>';
+    echo '<button id="agregarFilaBtn" data-id-registro="' . $idRegistro . '" data-id-linea="' . ($idLinea + 1) . '" data-tds="' . 3 . '" data-table-id="registro-estadoAnimo">Agregar Fila</button>';
     echo '<button class="enviar-datos-btn" data-controller="editarRegistroEstadoAnimo.php" data-table="registro-estadoAnimo">Enviar Datos</button>';
     echo '</div>';
 }
@@ -102,7 +101,7 @@ function tablaPensamientos($pensamientos) {
     // Crear una tabla para mostrar los datos del JSON
     echo '<div id="div">';
     echo '<table id="registro-pensamientos" class="registro-table">';
-    echo '<thead><tr><th>Fecha</th><th>¿Qué ha sudecido?</th><th>¿Qué he pensado?</th><th>¿Cómo me he sentido?</th><th>¿Qué he hecho?</th><th>Operaciones</th></tr></thead>';
+    echo '<thead><tr><th>Fecha</th><th>¿Qué ha sucedido?</th><th>¿Qué he pensado?</th><th>¿Cómo me he sentido?</th><th>¿Qué he hecho?</th><th>Operaciones</th></tr></thead>';
     echo '<tbody>';
     $rowCount = 0; // Contador de filas
 
@@ -126,10 +125,11 @@ function tablaPensamientos($pensamientos) {
     }
     echo '</tbody>';
     echo '</table>';
-    echo '<button id="agregarFilaBtn" onclick="agregarFila(this, event)" data-id-registro="' . $idRegistro . '" data-id-linea="' . ($idLinea + 1) . '" data-tds="' . 4 . '" data-table-id="registro-pensamientos">Agregar Fila</button>';
+    echo '<button id="agregarFilaBtn" data-id-registro="' . $idRegistro . '" data-id-linea="' . ($idLinea + 1) . '" data-tds="' . 4 . '" data-table-id="registro-pensamientos">Agregar Fila</button>';
     echo '<button class="enviar-datos-btn" data-controller="editarRegistroPensamientos.php" data-table="registro-pensamientos">Enviar Datos</button>';
     echo '</div>';
 }
+
 
 function tablaRelajacion($relajacion) {
     // Crear una tabla para mostrar los datos del JSON
@@ -158,7 +158,7 @@ function tablaRelajacion($relajacion) {
     }
     echo '</tbody>';
     echo '</table>';
-    echo '<button id="agregarFilaBtn" onclick="agregarFila(this, event)" data-id-registro="' . $idRegistro . '" data-id-linea="' . ($idLinea + 1) . '" data-tds="' . 3 . '" data-table-id="registro-relajacion">Agregar Fila</button>';
+    echo '<button id="agregarFilaBtn" data-id-registro="' . $idRegistro . '" data-id-linea="' . ($idLinea + 1) . '" data-tds="' . 3 . '" data-table-id="registro-relajacion">Agregar Fila</button>';
     echo '<button class="enviar-datos-btn" data-controller="editarRegistroRelajacion.php" data-table="registro-relajacion">Enviar Datos</button>';
     echo '</div>';
 }
