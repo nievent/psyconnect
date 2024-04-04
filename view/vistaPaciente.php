@@ -40,19 +40,25 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
 ?>
     <div id="backdrop" onclick="ocultarOverlay()"></div>
     <div class="modal" id="detallesRegistros">
-        <article><strong>Descripcion: </strong><span id="descripcionRegistro"></span></article>
-        <article><strong>Campos: </strong></article>
+        <article>
+            <p><strong>Descripcion: </strong></p>
+            <p><span id="descripcionRegistro"></span></p>
+        </article>
+        <article>
+            <p><strong>Campos:</strong></p>
+        </article>
         <article>
             <table>
                 <thead>
-                    <tr id="camposRegistro"></tr>
-                </thead>
-                <tbody id="tbodyRegistro">
-
-                </tbody>
-            </table>
-        </article>
-    </div>
+                    <tr id="camposRegistro">
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyRegistro">
+                        
+                        </tbody>
+                    </table>
+                </article>
+            </div>
 
     <form class="modal" id="formularioEditarLogros" action="?main=2" method="POST">
         <input type="hidden" id="inputLogrosJson" name="logros_json" value="">
@@ -96,6 +102,8 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
             <a href="?main=1" <?php echo ($mainValue == 1) ? 'class="active"' : ''; ?>>Notificar al psicólogo</a>
         </div>
     </nav>
+
+    <main>
 
     <?php
     if (isset($_GET['main'])) {
@@ -163,6 +171,7 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
         registrosAsignados($bdd, $_SESSION['paciente']->getId(), false);
     }
     ?>
+    </main>
     <script src="../controller/JS/comunes.js"></script>
     <script src="../controller/JS/modals.js"></script>
     <script src="../controller/JS/paciente.js"></script>

@@ -1,6 +1,7 @@
 @import "../globals"
 body
     font-family: $font-corp
+    color: #343434
 // estilos del header
 header 
     display: flex
@@ -18,6 +19,11 @@ header
     img
         height: 3rem
         margin-right: 10px
+
+main
+    min-height: 50vh
+    background-image: linear-gradient(to right, #f9edff, #f0f0ff, #e9f3ff, #e3f6ff, #e2f8fd)
+    padding-top: 5%
 
 
 .logout-button 
@@ -61,8 +67,11 @@ header
 //iconos
 
 .fa-eye, .fa-file-alt
-    color: $base-color
+    color: $base-color2
     margin-right: 20px
+
+.fa-check-circle
+    color: $base-color
 
 .fa-file, .fa-plus, .fa-pencil-alt
     color: $add-color
@@ -105,10 +114,11 @@ i:hover
 .fila 
     display: flex
     justify-content: space-between
-    align-items: center
+    align-items: flex-start
     margin: 20px 15px
     border-bottom: 1px solid $base-color
-
+    &>*
+        margin-right: 40px
 
 .lista-pacientes
     h1
@@ -120,4 +130,34 @@ i:hover
 
 .pacientes
     font-size: 1.2rem
+    text-align: justify
+    strong
+        color: $base-color2
+    span
+        text-decoration: underline
+        
 
+//tablas
+.principal_table
+    width: 90%
+    @include tabla()
+    tr td:last-child
+        width: 40%
+
+@media print 
+    body
+        font-size: 12px
+        background-color: #fff
+        color: #343434
+        margin: 0
+        padding: 0
+
+    .principal_table
+        width: 100%
+        @include tabla()
+        tr td:last-child
+            width: 50%
+
+    button
+        background-color: $base-color
+        color: white

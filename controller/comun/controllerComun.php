@@ -12,14 +12,26 @@ require '../model/comentario.php';
 
 function registrosAsignados($bdd, $id, $psicologo) {
     $paciente = Paciente::verRegistrosAsignados($bdd->link, $id);
+    echo <<<HTML
+            <table class="principal_table">
+            <thead>
+                <tr>
+                    <th>Titulo registro</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+        HTML;
     while($fila = $paciente->fetch(PDO::FETCH_ASSOC)){
-        echo '<article class="fila">
-        <div class=pacientes">' .  $fila["titulo"] . ' </div>';
+        echo <<<HTML
+                <tr>
+                    <td>$fila[titulo]</td>
+            HTML;
         switch ($fila["id_tipo_reg"]) {
             case 1:
                 $relajacion = Relajacion_muscular::getAllById($bdd->link, $fila["id"])->fetchAll(PDO::FETCH_ASSOC);
                 $relajacion_json = json_encode($relajacion);
-                echo '<div>
+                echo '<td>
                 <div class="tooltip">  
                     <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($relajacion_json) . '\' , 1, \''.$fila["descripcion"] . '\')">
                         <i class="fa-solid fa-eye"></i>
@@ -44,7 +56,7 @@ function registrosAsignados($bdd, $id, $psicologo) {
             case 2:
                 $pensamientos = Pensamientos::getAllById($bdd->link, $fila["id"])->fetchAll(PDO::FETCH_ASSOC);
                 $pensamientos_json = json_encode($pensamientos);
-                echo '<div>
+                echo '<td>
                     <div class="tooltip">  
                         <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($pensamientos_json) . '\' , 2, \''.$fila["descripcion"] . '\')">
                             <i class="fa-solid fa-eye"></i>
@@ -70,7 +82,7 @@ function registrosAsignados($bdd, $id, $psicologo) {
             case 3:
                 $estado_animo = Estado_animo::getAllById($bdd->link, $fila["id"])->fetchAll(PDO::FETCH_ASSOC);
                 $estado_animo_json = json_encode($estado_animo);
-                echo '<div>
+                echo '<td>
                 <div class="tooltip">  
                     <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($estado_animo_json) . '\' , 3, \''.$fila["descripcion"] . '\')">
                         <i class="fa-solid fa-eye"></i>
@@ -95,7 +107,7 @@ function registrosAsignados($bdd, $id, $psicologo) {
             case 4:
                 $logros = Logros::getAllById($bdd->link, $fila["id"])->fetchAll(PDO::FETCH_ASSOC); 
                 $logros_json = json_encode($logros);
-                echo '<div>
+                echo '<td>
                 <div class="tooltip">  
                     <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($logros_json) . '\' , 4, \''.$fila["descripcion"] . '\')">
                         <i class="fa-solid fa-eye"></i>
@@ -120,7 +132,7 @@ function registrosAsignados($bdd, $id, $psicologo) {
             case 5:
                 $sensaciones_corporales = Sensaciones_corporales::getAllById($bdd->link, $fila["id"])->fetchAll(PDO::FETCH_ASSOC);
                 $sensaciones_corporales_json = json_encode($sensaciones_corporales);
-                echo '<div>
+                echo '<td>
                 <div class="tooltip"> 
                     <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($sensaciones_corporales_json) . '\' , 5, \''.$fila["descripcion"] . '\')">
                         <i class="fa-solid fa-eye"></i>
@@ -151,6 +163,6 @@ function registrosAsignados($bdd, $id, $psicologo) {
                     <span class="tooltiptext">Borrar registro</span> </div>';
         }
 
-        echo '</article>';
+        echo '</td>';
     } 
 }

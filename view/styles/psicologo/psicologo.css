@@ -30,6 +30,12 @@ main {
   margin-bottom: 20px;
 }
 
+.introPaciente {
+  font-family: "Kode Mono", monospace;
+  color: #AB7FC8;
+  text-align: center;
+}
+
 form {
   max-width: 400px;
   margin: 50px auto;

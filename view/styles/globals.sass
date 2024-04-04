@@ -53,3 +53,42 @@ $font-logo:"Kode Mono", monospace
         transform: translateY(-2px) 
         box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6)
     
+@mixin tabla()
+    margin: 0 auto
+    border-collapse: collapse
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.5)
+    border-radius: 8px
+    td, th
+        text-align: center
+    th
+        border: none
+        padding: 8px
+        background-color: $base-color2
+        color: white
+        font-weight: bold
+        &:first-child
+            border-top-left-radius: 8px
+        &:last-child
+            border-top-right-radius: 8px
+    td
+        border: 1px solid $base-color-whited 
+        border-left: none
+        border-right: none
+        width: 50px
+        height: 50px
+        padding: 8px
+    tr
+        background-color: darken($base-color-whited, 5%)
+        &:hover
+            background-color: darken($base-color-whited, 10%)
+    tr:nth-child(even)
+        background-color: darken($base-color-whited, 8%)
+        &:hover
+            background-color: darken($base-color-whited, 10%)
+    tbody tr:last-child
+        td:first-child
+            border: none
+            border-bottom-left-radius: 8px
+        td:last-child
+            border: none
+            border-bottom-right-radius: 8px

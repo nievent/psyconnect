@@ -57,7 +57,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit(); // Detener la ejecución del script después de la redirección
         }
     } else {
-        echo "error";
         header('location: ../../view/vistaPsicologo.php?error=2');
         exit(); // Detener la ejecución del script después de la redirección
     }

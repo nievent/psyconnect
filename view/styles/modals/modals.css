@@ -5,8 +5,9 @@
   left: 30%;
   width: 40%;
   height: fit-content;
+  text-align: center;
   background-color: #eafbff;
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   display: none;
@@ -19,9 +20,18 @@
   background-color: #eafbff;
   box-shadow: none;
 }
-
-.detalles-text {
+.modal input, .modal select {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  box-sizing: border-box;
+}
+.modal .detalles-text {
   margin: 10px;
+}
+.modal strong {
+  color: #AB7FC8;
+  font-size: 1.2rem;
 }
 
 #backdrop {
@@ -38,37 +48,54 @@
 table {
   width: 100%;
   overflow-y: auto;
+  margin: 0 auto;
+  border-collapse: collapse;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
 }
-
-th {
+table td, table th {
+  text-align: center;
+}
+table th {
+  border: none;
   padding: 8px;
-  text-align: left;
   background-color: #AB7FC8;
   color: white;
   font-weight: bold;
 }
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
+table th:first-child {
+  border-top-left-radius: 8px;
 }
-
-tr:hover {
-  background-color: #ddd;
+table th:last-child {
+  border-top-right-radius: 8px;
 }
-
-td {
-  background-color: #b7f1ff;
-  padding: 8px;
-  text-align: left;
+table td {
+  border: 1px solid #eafbff;
+  border-left: none;
+  border-right: none;
   width: 50px;
   height: 50px;
-}
-
-.modal input, select {
-  width: 100%;
   padding: 8px;
-  margin: 20px 0;
-  box-sizing: border-box;
+}
+table tr {
+  background-color: #d1f6ff;
+}
+table tr:hover {
+  background-color: #b7f1ff;
+}
+table tr:nth-child(even) {
+  background-color: #c1f3ff;
+}
+table tr:nth-child(even):hover {
+  background-color: #b7f1ff;
+}
+table tbody tr:last-child td:first-child {
+  border: none;
+  border-bottom-left-radius: 8px;
+}
+table tbody tr:last-child td:last-child {
+  border: none;
+  border-bottom-right-radius: 8px;
 }
 
 /*# sourceMappingURL=modals.css.map */

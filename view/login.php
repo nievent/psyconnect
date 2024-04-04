@@ -26,7 +26,6 @@
             <input type="text" name="user" placeholder="Escribe tu correo electrónico">
             <label for="pwd">Contraseña:</label>
             <input type="password" name="password" placeholder="Escribe tu contraseña">
-            <a href="#">¿Has olvidado tu contraseña?</a>
             <button type="submit" name="submit" class="btn-submit"><i class="fa-solid fa-arrow-right"></i></button>
         <?php 
             if(isset($_GET['error']) && $_GET['error'] == 1){

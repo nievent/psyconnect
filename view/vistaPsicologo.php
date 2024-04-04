@@ -58,8 +58,13 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
 </div>
 
     <div class="modal" id="detallesRegistros">
-        <article><strong>Descripcion: </strong><span id="descripcionRegistro"></span></article>
-        <article><strong>Campos: </strong></article>
+        <article>
+            <p><strong>Descripcion: </strong></p>
+            <p><span id="descripcionRegistro"></span></p>
+        </article>
+        <article>
+            <p><strong>Campos:</strong></p>
+        </article>
         <article>
             <table>
                 <thead>
@@ -115,16 +120,12 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
     </div>
 </nav>
 
-
+<main>
         <?php
         if (isset($_GET['main'])) {
             $mainValue = $_GET['main'];
             switch ($mainValue) {
                 case 1:
-                    echo <<<HTML
-                        <section class='lista-pacientes'>
-                        <h1>Pacientes:</h1>
-                    HTML;
                     listarPacientes($bdd, $_SESSION['psicologo']->getId());
                     break;
                 case 2:
@@ -133,6 +134,8 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                     case 3:
                         echo <<<HTML
                             <form method='post' action='../controller/psicologo/insertarPaciente.php'>
+                                <h1 class='introPaciente'>Alta pacientes</h1>
+                                <img src="./img/logo-sin-fondo.png" alt="logo psyconnect">
                                 <label for="nombre">Nombre del paciente:</label>
                                 <input type="text" name="nombre" required>
                                 <input type="text" name="id_psicologo" value="{$_SESSION['psicologo']->getID()}" hidden> 
@@ -158,7 +161,7 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
         } else {
         ?>
             <section>
-                <h1>Notificaciones</h1>
+                <h1 class="introPaciente">Notificaciones pendientes</h1>
                 <?php
                 comentariosPendientes($bdd,$_SESSION["psicologo"]->getId());
         } ?>

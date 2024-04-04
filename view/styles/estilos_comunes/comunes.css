@@ -1,5 +1,6 @@
 body {
   font-family: "Roboto", sans-serif;
+  color: #343434;
 }
 
 header {
@@ -20,6 +21,12 @@ header {
 .welcome img {
   height: 3rem;
   margin-right: 10px;
+}
+
+main {
+  min-height: 50vh;
+  background-image: linear-gradient(to right, #f9edff, #f0f0ff, #e9f3ff, #e3f6ff, #e2f8fd);
+  padding-top: 5%;
 }
 
 .logout-button {
@@ -61,8 +68,12 @@ header {
 }
 
 .fa-eye, .fa-file-alt {
-  color: #00daff;
+  color: #AB7FC8;
   margin-right: 20px;
+}
+
+.fa-check-circle {
+  color: #00daff;
 }
 
 .fa-file, .fa-plus, .fa-pencil-alt {
@@ -112,9 +123,12 @@ i:hover {
 .fila {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin: 20px 15px;
   border-bottom: 1px solid #00daff;
+}
+.fila > * {
+  margin-right: 40px;
 }
 
 .lista-pacientes h1 {
@@ -127,6 +141,136 @@ i:hover {
 
 .pacientes {
   font-size: 1.2rem;
+  text-align: justify;
+}
+.pacientes strong {
+  color: #AB7FC8;
+}
+.pacientes span {
+  text-decoration: underline;
+}
+
+.principal_table {
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+}
+.principal_table td, .principal_table th {
+  text-align: center;
+}
+.principal_table th {
+  border: none;
+  padding: 8px;
+  background-color: #AB7FC8;
+  color: white;
+  font-weight: bold;
+}
+.principal_table th:first-child {
+  border-top-left-radius: 8px;
+}
+.principal_table th:last-child {
+  border-top-right-radius: 8px;
+}
+.principal_table td {
+  border: 1px solid #eafbff;
+  border-left: none;
+  border-right: none;
+  width: 50px;
+  height: 50px;
+  padding: 8px;
+}
+.principal_table tr {
+  background-color: #d1f6ff;
+}
+.principal_table tr:hover {
+  background-color: #b7f1ff;
+}
+.principal_table tr:nth-child(even) {
+  background-color: #c1f3ff;
+}
+.principal_table tr:nth-child(even):hover {
+  background-color: #b7f1ff;
+}
+.principal_table tbody tr:last-child td:first-child {
+  border: none;
+  border-bottom-left-radius: 8px;
+}
+.principal_table tbody tr:last-child td:last-child {
+  border: none;
+  border-bottom-right-radius: 8px;
+}
+.principal_table tr td:last-child {
+  width: 40%;
+}
+
+@media print {
+  body {
+    font-size: 12px;
+    background-color: #fff;
+    color: #343434;
+    margin: 0;
+    padding: 0;
+  }
+  .principal_table {
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+  }
+  .principal_table td, .principal_table th {
+    text-align: center;
+  }
+  .principal_table th {
+    border: none;
+    padding: 8px;
+    background-color: #AB7FC8;
+    color: white;
+    font-weight: bold;
+  }
+  .principal_table th:first-child {
+    border-top-left-radius: 8px;
+  }
+  .principal_table th:last-child {
+    border-top-right-radius: 8px;
+  }
+  .principal_table td {
+    border: 1px solid #eafbff;
+    border-left: none;
+    border-right: none;
+    width: 50px;
+    height: 50px;
+    padding: 8px;
+  }
+  .principal_table tr {
+    background-color: #d1f6ff;
+  }
+  .principal_table tr:hover {
+    background-color: #b7f1ff;
+  }
+  .principal_table tr:nth-child(even) {
+    background-color: #c1f3ff;
+  }
+  .principal_table tr:nth-child(even):hover {
+    background-color: #b7f1ff;
+  }
+  .principal_table tbody tr:last-child td:first-child {
+    border: none;
+    border-bottom-left-radius: 8px;
+  }
+  .principal_table tbody tr:last-child td:last-child {
+    border: none;
+    border-bottom-right-radius: 8px;
+  }
+  .principal_table tr td:last-child {
+    width: 50%;
+  }
+  button {
+    background-color: #00daff;
+    color: white;
+  }
 }
 
 /*# sourceMappingURL=comunes.css.map */
