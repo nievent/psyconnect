@@ -62,22 +62,27 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
 
     <form class="modal" id="formularioEditarLogros" action="?main=2" method="POST">
         <input type="hidden" id="inputLogrosJson" name="logros_json" value="">
+        <input type="hidden" id="descripcionLogros" name="descripcion_logros" value="">
     </form>
 
     <form class="modal" id="formularioEditarSensaciones" action="?main=3" method="POST">
         <input type="hidden" id="inputSensacionesJson" name="sensaciones_json" value="">
+        <input type="hidden" id="descripcionSensaciones" name="descripcion_sensaciones" value="">
     </form>
 
     <form class="modal" id="formularioEditarEstadoAnimo" action="?main=4" method="POST">
         <input type="hidden" id="inputEstadoAnimoJson" name="estadoAnimo_json" value="">
+        <input type="hidden" id="descripcionEstadoAnimo" name="descripcion_estadoAnimo" value="">
     </form>
 
     <form class="modal" id="formularioEditarPensamiento" action="?main=5" method="POST">
         <input type="hidden" id="inputPensamientoJson" name="pensamiento_json" value="">
+        <input type="hidden" id="descripcionPensamiento" name="descripcion_pensamiento" value="">
     </form>
 
     <form class="modal" id="formularioEditarRelajacion" action="?main=6" method="POST">
         <input type="hidden" id="inputRelajacionJson" name="relajacion_json" value="">
+        <input type="hidden" id="descripcionRelajacion" name="descripcion_relajacion" value="">
     </form>
 
     <header>
@@ -111,8 +116,8 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
         switch ($mainValue) {
             case 1:
                 echo <<<HTML
-                <h1>Ponte en contacto con tu terapeuta</h1>
-                <form action="../controller/paciente/enviarComentario.php" method="POST">
+                <h1 class="titulo">Ponte en contacto con tu terapeuta</h1>
+                <form action="../controller/paciente/enviarComentario.php" method="POST" class="comentarios">
                     <input type="number" name="id_paciente" value="{$_SESSION['paciente']->getId()}" hidden>
                     <input type="number" name="id_psicologo" value="{$_SESSION['paciente']->getIdPsicologo()}" hidden>
                     <label for="comentario">Escribe aquí tu notificación</label>
@@ -123,8 +128,13 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                 break;
             case 2:
                 if (isset($_POST['logros_json'])) {
+                    echo <<<HTML
+                        <h1 class="titulo">Registro de Logros</h1>
+                        <div class="descripcion"> $_POST[descripcion_logros] </div>
+                        <div class="descripcion">Pulsa en las celdas de la tabla para añadir o editar información</div>
+                    HTML;
                     $logros = json_decode($_POST['logros_json'], true);
-                    tablaLogros($logros);
+                    tablaLogros($logros, $_SESSION['paciente']->getId());
                 } else {
                     // Si no se proporcionó un JSON, mostrar un mensaje de error
                     echo '<div id="div">No se recibieron datos para mostrar.</div>';
@@ -132,8 +142,13 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                 break;
             case 3:
                 if (isset($_POST['sensaciones_json'])) {
+                    echo <<<HTML
+                    <h1 class="titulo">Registro del afrontamiento de sensaciones corporales</h1>
+                    <div class="descripcion"> $_POST[descripcion_sensaciones] </div>
+                    <div class="descripcion">Pulsa en las celdas de la tabla para añadir o editar información</div>
+                HTML;
                     $sensaciones = json_decode($_POST['sensaciones_json'], true);
-                    tablaSensaciones($sensaciones);
+                    tablaSensaciones($sensaciones, $_SESSION['paciente']->getId());
                 } else {
                     // Si no se proporcionó un JSON, mostrar un mensaje de error
                     echo '<div id="div">No se recibieron datos para mostrar.</div>';
@@ -141,8 +156,13 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                 break;
             case 4:
                 if (isset($_POST['estadoAnimo_json'])) {
+                    echo <<<HTML
+                    <h1 class="titulo">Registro de estado de animo</h1>
+                    <div class="descripcion"> $_POST[descripcion_estadoAnimo] </div>
+                    <div class="descripcion">Pulsa en las celdas de la tabla para añadir o editar información</div>
+                HTML;
                     $estadoAnimo = json_decode($_POST['estadoAnimo_json'], true);
-                    tablaEstadoAnimo($estadoAnimo);
+                    tablaEstadoAnimo($estadoAnimo, $_SESSION['paciente']->getId());
                 } else {
                     // Si no se proporcionó un JSON, mostrar un mensaje de error
                     echo '<div id="div">No se recibieron datos para mostrar.</div>';
@@ -150,8 +170,13 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                 break;
             case 5:
                 if (isset($_POST['pensamiento_json'])) {
+                    echo <<<HTML
+                    <h1 class="titulo">Registro de logros</h1>
+                    <div class="descripcion"> $_POST[descripcion_pensamiento] </div>
+                    <div class="descripcion">Pulsa en las celdas de la tabla para añadir o editar información</div>
+                HTML;
                     $pensamientos = json_decode($_POST['pensamiento_json'], true);
-                    tablaPensamientos($pensamientos);
+                    tablaPensamientos($pensamientos, $_SESSION['paciente']->getId());
                 } else {
                     // Si no se proporcionó un JSON, mostrar un mensaje de error
                     echo '<div id="div">No se recibieron datos para mostrar.</div>';
@@ -159,8 +184,13 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                 break;
             case 6:
                 if (isset($_POST['relajacion_json'])) {
+                    echo <<<HTML
+                    <h1 class="titulo">Registro para la práctica de la relajación muscular</h1>
+                    <div class="descripcion"> $_POST[descripcion_relajacion] </div>
+                    <div class="descripcion">Pulsa en las celdas de la tabla para añadir o editar información</div>
+                HTML;
                     $relajacion = json_decode($_POST['relajacion_json'], true);
-                    tablaRelajacion($relajacion);
+                    tablaRelajacion($relajacion, $_SESSION['paciente']->getId());
                 } else {
                     // Si no se proporcionó un JSON, mostrar un mensaje de error
                     echo '<div id="div">No se recibieron datos para mostrar.</div>';

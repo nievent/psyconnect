@@ -46,7 +46,7 @@ function registrosAsignados($bdd, $id, $psicologo) {
                           </div>';
                 } else {
                     echo '<div class="tooltip">  
-                            <a href="#" onclick="editarRelajacion(\'' . htmlspecialchars($relajacion_json) . '\')">
+                            <a href="#" onclick="editarRelajacion(\'' . htmlspecialchars($relajacion_json) . '\' , \''.$fila["descripcion"] . '\')">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                             <span class="tooltiptext">Editar registro</span>
@@ -72,7 +72,7 @@ function registrosAsignados($bdd, $id, $psicologo) {
                               </div>';
                     } else {
                         echo '<div class="tooltip">  
-                                <a href="#" onclick="editarPensamiento(\'' . htmlspecialchars($pensamientos_json) . '\')">
+                                <a href="#" onclick="editarPensamiento(\'' . htmlspecialchars($pensamientos_json) . '\' , \''.$fila["descripcion"] . '\')">
                                     <i class="fas fa-pencil-alt"></i>
                                 </a>
                                 <span class="tooltiptext">Editar registro</span>
@@ -97,7 +97,7 @@ function registrosAsignados($bdd, $id, $psicologo) {
                           </div>';
                 } else {
                     echo '<div class="tooltip">  
-                            <a href="#" onclick="editarEstadoAnimo(\'' . htmlspecialchars($estado_animo_json) . '\')">
+                            <a href="#" onclick="editarEstadoAnimo(\'' . htmlspecialchars($estado_animo_json) . '\' , \''.$fila["descripcion"] . '\')">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                             <span class="tooltiptext">Editar registro</span>
@@ -122,7 +122,7 @@ function registrosAsignados($bdd, $id, $psicologo) {
                           </div>';
                 } else {
                     echo '<div class="tooltip">  
-                    <a href="#" onclick="editarLogros(\'' . htmlspecialchars($logros_json) . '\')">
+                    <a href="#" onclick="editarLogros(\'' . htmlspecialchars($logros_json) . '\' , \''.$fila["descripcion"] . '\')">
                         <i class="fas fa-pencil-alt"></i>
                     </a>
                     <span class="tooltiptext">Editar registro</span>
@@ -147,7 +147,7 @@ function registrosAsignados($bdd, $id, $psicologo) {
                           </div>';
                 } else {
                     echo '<div class="tooltip">  
-                    <a href="#" onclick="editarSensaciones(\'' . htmlspecialchars($sensaciones_corporales_json) . '\')">
+                    <a href="#" onclick="editarSensaciones(\'' . htmlspecialchars($sensaciones_corporales_json) . '\' , \''.$fila["descripcion"] . '\')">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                             <span class="tooltiptext">Editar registro</span>

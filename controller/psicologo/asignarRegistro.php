@@ -2,6 +2,7 @@
 require '../../model/conexion.php';
 require '../../model/paciente.php';
 require '../../model/registro.php';
+require '../../vendor/mail.php';
 
 $bdd = new BD();
 
@@ -19,6 +20,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Asignar registro al paciente
     $paciente = new Paciente($idPaciente, "", "", "", "", "", "");
     $paciente->asignarRegistro($bdd->link, $last_registro);
+
+
 
     // Realizar acciones según el tipo de registro
     switch ($id_tipo_reg) {
@@ -53,7 +56,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $fecha = date('Y-m-d');
     $stmt->bindParam(":fecha", $fecha);
     $stmt->execute();
-
-    header("Location: ../../view/vistaPsicologo.php");
+    $resultado_busqueda = $paciente->buscarById($bdd->link);
+    if($resultado_busqueda) {
+        $nombre = $resultado_busqueda["nombre"];
+        $apellidos = $resultado_busqueda["apellidos"];
+        $email = $resultado_busqueda["email"];
+        $subject = "nuevo registro asignado";
+        $body = "<p>¡Su psicólogo le ha asignado un nuevo registro! Acceda a la app para completarlo.</p>
+        <p>Pase un buen día.</p>";
+        if(!sendMail($email, $nombre, $apellidos, $subject, $body)) {
+            echo 'El correo electrónico no pudo ser enviado.';
+            echo 'Error: ' . $mail->ErrorInfo;
+        } else {
+            header('location: ../../view/vistaPsicologo.php');
+            exit(); // Detener la ejecución del script después de la redirección
+        }
+    }
 }
 ?>

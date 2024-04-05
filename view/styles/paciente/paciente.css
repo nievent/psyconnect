@@ -61,4 +61,45 @@
   margin-right: 0px;
 }
 
+.titulo {
+  font-family: "Kode Mono", monospace;
+  color: #AB7FC8;
+  text-align: center;
+}
+
+.comentarios {
+  background-color: transparent;
+  width: 50%;
+}
+.comentarios textarea {
+  resize: vertical;
+  height: 10rem;
+  width: 100%;
+}
+.comentarios label {
+  text-align: center;
+}
+.comentarios button {
+  height: 2rem;
+  padding: 0 1.5rem;
+  color: white;
+  background-color: #00daff;
+  border-radius: 10px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6);
+  transition: all 0.8s ease;
+  cursor: pointer;
+}
+.comentarios button:hover {
+  background-color: #00aecc;
+  transform: translateY(-2px);
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.descripcion {
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 300;
+  margin: 30px 0;
+}
+
 /*# sourceMappingURL=paciente.css.map */

@@ -104,6 +104,36 @@ echo ( "¡Error!: " . $e->getMessage() . "<br/>");
         }
     }
 
+    function getMailPsicologo($link) {
+        try {
+            $consulta = "SELECT ps.nombre, ps.email from psicologo ps 
+            inner join paciente p on ps.id = p.id_psicologo
+            where p.id = :id;";
+            $result = $link->prepare($consulta);
+            $result->bindParam(':id',$this->id);
+            $result->execute();
+            return $result->fetch(PDO::FETCH_ASSOC);
+        }catch(PDOException $e){
+            $dato= "¡Error!: " . $e->getMessage() . "<br/>";
+            echo $dato;
+            die();
+        }
+    }
+
+    function buscarById ($link){
+        try{
+            $consulta="SELECT * FROM paciente where id='$this->id'";
+            $result=$link->prepare($consulta);
+            $result->execute();
+            return $result->fetch(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $e){
+            $dato= "¡Error!: " . $e->getMessage() . "<br/>";
+            echo $dato;
+            die();
+        }
+    }
+
 
     function buscar ($link){
         try{
@@ -114,6 +144,7 @@ echo ( "¡Error!: " . $e->getMessage() . "<br/>");
         }
         catch(PDOException $e){
             $dato= "¡Error!: " . $e->getMessage() . "<br/>";
+            echo $dato;
             die();
         }
     }

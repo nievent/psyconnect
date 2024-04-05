@@ -1,10 +1,8 @@
 <?php
 require '../../model/conexion.php';
 require '../../model/paciente.php';
-require '../../vendor/autoload.php';
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+require '../../vendor/mail.php';
+
 $bdd = new BD();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -16,10 +14,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Generar contraseña aleatoria
     function generarContrasena($longitud = 10) {
-        $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ?!@#$%&';
         $contrasena = '';
         $maxCaracteres = strlen($caracteres) - 1;
-
         for ($i = 0; $i < $longitud; $i++) {
             $contrasena .= $caracteres[mt_rand(0, $maxCaracteres)];
         }
@@ -34,22 +31,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $paciente = new Paciente("", $id_psicologo, $nombre, $apellidos, $dni, $email, $hashedPwd);
     if(!$paciente->buscar($bdd->link)){
         $paciente->insertar($bdd->link);
-        $mail = new PHPMailer;
-        $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';                       //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'nieves.98.nvv@gmail.com';                //SMTP username
-        $mail->Password   = 'rvhv bcsn oblj byyr';                      //SMTP password
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;                               
+        $subject = 'Contraseña generada para su cuenta';
 
-        $mail->setFrom('nieves.98.nvv@gmail.com', 'PsyConnect');
-        $mail->addAddress($email, $nombre.' '.$apellidos);     //Add a recipient
-        $mail->isHTML(true);
-        $mail->Subject = utf8_decode('Contraseña generada para su cuenta');
-        $mail->Body    = 'Se ha generado una contraseña aleatoria para tu cuenta: ' . $pwd;
-
-        if(!$mail->send()) {
+        $body    = '<p>Te damos la bienvenida a PsyConnect, ' . $nombre . '! Gracias por confiar en nosotros</p>
+        <p>Se ha generado una contraseña aleatoria para tu cuenta: ' . $pwd . '</p>';
+        if(!sendMail($email, $nombre, $apellidos, $subject, $body)) {
             echo 'El correo electrónico no pudo ser enviado.';
             echo 'Error: ' . $mail->ErrorInfo;
         } else {

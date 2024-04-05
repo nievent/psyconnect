@@ -1,6 +1,8 @@
 <?php
 require '../../model/conexion.php';
 require '../../model/estado_animo.php';
+require '../../model/paciente.php';
+require '../../vendor/mail.php';
 $bdd = new BD();
 
 
@@ -44,7 +46,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['editableData'])) {
                     // Insertar el nuevo registro en la base de datos
                     $estadoAnimo->insertar($bdd->link);
         }
-        header('location:  ../../view/vistaPaciente.php');     
+        
+        $paciente =  new Paciente ($_POST['id'], "", "", "", "", "", "" );
+        $resultado = $paciente->getMailPsicologo($bdd->link); 
+        if($resultado) {
+            $nombre = $resultado ['nombre'];
+            $email = $resultado ['email'];
+            $subject = "nuevo registro completado";
+            $body = "<p>¡Su paciente ha modificado su registro de Estado de Animo! Acceda a la app para revisarlo.</p>
+        <p>Pase un buen día.</p>";
+            if(!sendMail($email, $nombre, "", $subject, $body)) {
+                echo 'El correo electrónico no pudo ser enviado.';
+                echo 'Error: ' . $mail->ErrorInfo;
+            } else {
+                header('location: ../../view/vistaPaciente.php');
+                exit(); // Detener la ejecución del script después de la redirección
+            }
+        }    
     } else {
         header('location:  ../../view/vistaPaciente.php?error=1');
     }
