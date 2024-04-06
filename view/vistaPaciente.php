@@ -157,7 +157,7 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
             case 4:
                 if (isset($_POST['estadoAnimo_json'])) {
                     echo <<<HTML
-                    <h1 class="titulo">Registro de estado de animo</h1>
+                    <h1 class="titulo">Registro de estado de ánimo</h1>
                     <div class="descripcion"> $_POST[descripcion_estadoAnimo] </div>
                     <div class="descripcion">Pulsa en las celdas de la tabla para añadir o editar información</div>
                 HTML;

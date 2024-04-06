@@ -36,7 +36,7 @@ function listarPacientes($bdd, $id) {
                         <span class="tooltiptext">Ver registros</span> 
                     </div>
                     <div class="tooltip">
-                        <a onclick="mostrarAsignarRegistro('{$fila['id']}')"><i class="fas fa-file"></i><i class="fas fa-plus"></i></a>
+                        <a onclick="mostrarAsignarRegistro('{$fila['id']}')"><i class="fa-solid fa-file-circle-plus"></i></a>
                         <span class="tooltiptext">Asignar registro</span> 
                     </div>
                     <div class="tooltip">
@@ -94,7 +94,7 @@ function comentariosPendientes($bdd, $id) {
     $comentarios = Comentario::getAllById($bdd->link, $id);
     while ($fila = $comentarios->fetch(PDO::FETCH_ASSOC)) {
         echo "<article class='fila'>";
-        echo "<div class='pacientes'><span><strong>" . $fila['nombre'] . " " . $fila['apellidos'] . "</strong> ha comentado:</span> " . $fila["comentario"] . "</div>";
+        echo "<div class='pacientes'><span><strong>" . $fila['nombre'] . " " . $fila['apellidos'] . "</strong>:</span> " . $fila["comentario"] . "</div>";
         echo '<div>
         <div class="tooltip">  <a href="../controller/psicologo/verComentario.php?id=' . $fila['id'] . ' "><i class="fas fa-check-circle"></i></a>
         <span class="tooltiptext">Marcar como leído</span> </div>

@@ -59,7 +59,7 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
 
     <div class="modal" id="detallesRegistros">
         <article>
-            <p><strong>Descripcion: </strong></p>
+            <p><strong>Descripción: </strong></p>
             <p><span id="descripcionRegistro"></span></p>
         </article>
         <article>
