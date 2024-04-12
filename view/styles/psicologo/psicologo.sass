@@ -3,7 +3,7 @@
 
 .menu
     display: grid
-    grid-template-columns: repeat(4, 1fr)  /* Cuatro columnas con igual ancho */
+    grid-template-columns: repeat(5, 1fr)  /* Cuatro columnas con igual ancho */
     justify-content: center
     align-items: center
 //main
@@ -29,23 +29,27 @@ main
         text-align: center
         margin-bottom: 20px
 
-.introPaciente 
-    font-family: $font-logo
-    color: $base-color2
-    text-align: center
 
 
-//formulario alta 
-form 
-    max-width: 400px
-    margin: 50px auto
-    padding: 20px
-    background-color: $base-color2-whited
-    border-radius: 5px
-    box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.3)
+//buscador
+.buscador 
+    display: flex
+    gap: 8px
+    align-items: center
+    background-color: white
+    padding: 10px
+    border-radius: $border-radius-medium
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.5)
+    width: 200px
+    margin: 20px auto
+    margin-bottom: 80px
 
-input[type="text"], input[type="password"], input[type="email"]
-    background-color: $base-color2-whited 
+.buscador i 
+    color: $base-color
+
+
+.buscador input 
+    border: none
 
 
 
@@ -56,3 +60,17 @@ input[type="text"], input[type="password"], input[type="email"]
 .cancelBtn
     background: none
     @include boton(2rem, 1.5rem, $border-radius-medium, 0.8s, $delete-color)
+
+
+a.historial-btn
+    @include boton-gradiente(1rem, 1.5rem, $border-radius-medium, 0.8s)
+    text-decoration: none
+    position: absolute
+    right: 5%
+
+#comentarios img
+    width: 100px  // Reducimos el tamaño de la imagen
+    margin: 10px auto
+
+#comentarios
+    text-align: center

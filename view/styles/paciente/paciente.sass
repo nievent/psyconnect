@@ -2,7 +2,7 @@
 //menu 
 .menu
     display: grid
-    grid-template-columns: repeat(2, 1fr)  /* Cuatro columnas con igual ancho */
+    grid-template-columns: repeat(3, 1fr)  /* Cuatro columnas con igual ancho */
     justify-content: center
     align-items: center
 
@@ -23,6 +23,13 @@
         color: $base-color2-whited
         margin-right: 0px
 
+.editar-btn
+    background: none
+    @include boton(2rem, 0.5rem, $border-radius-large, 0.8s, $add-color)
+    i
+        color: $base-color2-whited
+        margin-right: 0px
+
 //notificaciones
 .titulo
     font-family: $font-logo
@@ -32,6 +39,7 @@
 .comentarios
     background-color: transparent
     width: 50%
+    box-shadow: none
     textarea
         resize: vertical
         height: 10rem
@@ -46,3 +54,12 @@
     text-align: center
     font-weight: 300
     margin: 30px 0
+
+#registro-logros .editando td,
+#registro-sensaciones .editando td,
+#registro-estadoAnimo .editando td,
+#registro-pensamientos .editando td,
+#registro-relajacion .editando td 
+    border: 1px solid $base-color2
+    background-color: $base-color-whited
+

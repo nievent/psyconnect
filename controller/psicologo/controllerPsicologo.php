@@ -102,5 +102,15 @@ function comentariosPendientes($bdd, $id) {
     }
 }
 
+function historialComentarios($bdd, $id) {
+    $comentarios = Comentario::getAllDeletedById($bdd->link, $id);
+    while ($fila = $comentarios->fetch(PDO::FETCH_ASSOC)) {
+        echo "<article class='fila'>";
+        echo "<div class='pacientes'><span><strong>" . $fila['nombre'] . " " . $fila['apellidos'] . "</strong>:</span> " . $fila["comentario"] . "</div>";
+        echo '</article>';
+    }
+}
+
+
 
 ?>

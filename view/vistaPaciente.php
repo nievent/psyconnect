@@ -20,11 +20,11 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
     <link rel="stylesheet" href="./styles/login/login.css">
     <link rel="stylesheet" href="./styles/estilos_comunes/comunes.css">
     <link rel="stylesheet" href="./styles/modals/modals.css">
-    <link rel="stylesheet" href="./styles/paciente/paciente.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Madimi+One&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles/paciente/paciente.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <title>Area Paciente</title>
 
@@ -35,6 +35,8 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
     if (isset($_GET['error'])) {
         if ($_GET['error'] == 1) {
             echo "<script>alert('No se puede enviar un registro vacio.');</script>";
+        }  else if ($_GET['error'] == 2) {
+            echo "<script>alert('La contraseña antigua es incorrecta');</script>";
         } 
     }
 ?>
@@ -105,6 +107,9 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
         </div>
         <div class="seccion">
             <a href="?main=1" <?php echo ($mainValue == 1) ? 'class="active"' : ''; ?>>Notificar al psicólogo</a>
+        </div>
+        <div class="seccion">
+            <a href="?main=7" <?php echo ($mainValue == 7) ? 'class="active"' : ''; ?>>Perfil</a>
         </div>
     </nav>
 
@@ -196,6 +201,36 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                     echo '<div id="div">No se recibieron datos para mostrar.</div>';
                 }
                 break;
+            case 7:
+                echo <<<HTML
+                <form id="perfilForm" action="../controller/paciente/editarPaciente.php" method="POST">
+                <h1 class='introPaciente'>Tu perfil:</h1>
+                <img src="./img/logo-sin-fondo.png" alt="logo psyconnect">
+                <input type="hidden" name="id" value="{$_SESSION['paciente']->getId()}">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" value="{$_SESSION['paciente']->getNombre()}" disabled>
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" name="apellidos" value="{$_SESSION['paciente']->getApellidos()}" disabled>
+                <label for="mail">Correo electrónico:</label>
+                <input type="email" name="email" value="{$_SESSION['paciente']->getEmail()}" disabled>
+                <label for="dni">DNI:</label>
+                <input type="text" name="dni" value="{$_SESSION['paciente']->getDni()}" disabled>
+                
+                
+                <div id="contraseñaFields" style="display: none;">
+                    <label for="contraseñaAntigua">Contraseña Antigua:</label>
+                    <input type="password" id="viejaPwd" value="" name="oldPassword" autocomplete="off">
+                    <label for="contraseñaNueva">Contraseña Nueva:</label>
+                    <input type="password" value="" name="newPassword" autocomplete="off">
+                </div>
+
+                
+                <button id="cambiarContraseña" style="display: none;" class='btn' type="button">Cambiar Contraseña</button>
+                <button id="editarPerfil" class='btn' type="button">Editar Perfil</button>
+                <button id="guardarPerfil" class='enviarBtn' type="submit" style="display: none;">Guardar Perfil</button>
+            </h1>
+        HTML;
+        break;
         }
     } else {
         registrosAsignados($bdd, $_SESSION['paciente']->getId(), false);

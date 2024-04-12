@@ -20,6 +20,23 @@ class Psicologo {
         }
     }
     
+    static function buscarPorId($link, $id) {
+        try {
+            $consulta = "SELECT * FROM psicologo WHERE id = :id";
+            $result = $link->prepare($consulta);
+            $result->bindParam(':id', $id);
+            $result->execute();
+            $fila = $result->fetch(PDO::FETCH_ASSOC);
+            if ($fila) {
+                return new Psicologo($fila['id'], $fila['nombre'], $fila['apellidos'], $fila['cop_num'], $fila['email'], $fila['pwd'], $fila['rol']);
+            } else {
+                return null; // El psicólogo no fue encontrado
+            }
+        } catch (PDOException $e) {
+            $dato = $e->getMessage();
+            die();
+        }
+    }
 
     function __construct($id, $nombre, $apellidos, $cop_num, $email, $pwd, $rol = false) { 
         $this->nombre = $nombre;
@@ -51,6 +68,42 @@ class Psicologo {
         }
     }
 
+    function editar($link){
+        try {
+            $consulta = "UPDATE psicologo SET `nombre` = :nombre, `apellidos` = :apellidos, `email` = :email 
+                         WHERE `id` = :id";
+            $result = $link->prepare($consulta);
+            $result->bindParam(':id', $this->id);
+            $result->bindParam(':nombre', $this->nombre);
+            $result->bindParam(':apellidos', $this->apellidos);
+            $result->bindParam(':email', $this->email);
+            $result->execute();
+            return $result->rowCount(); // Devuelve el número de filas afectadas por la consulta UPDATE
+        } catch(PDOException $e){
+            $dato = "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+    
+    
+    function editarConPwd($link){
+        try {
+            $consulta = "UPDATE psicologo SET `nombre` = :nombre, `apellidos` = :apellidos, `email` = :email, `pwd` = :pwd 
+                         WHERE `id` = :id";
+            $result = $link->prepare($consulta);
+            $result->bindParam(':id', $this->id);
+            $result->bindParam(':nombre', $this->nombre);
+            $result->bindParam(':apellidos', $this->apellidos);
+            $result->bindParam(':email', $this->email);
+            $result->bindParam(':pwd', $this->pwd);
+            $result->execute();
+            return $result->rowCount(); // Devuelve el número de filas afectadas por la consulta UPDATE
+        } catch(PDOException $e){
+            $dato = "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+
     function login ($link) {
         try {
             $consulta = "SELECT id, pwd, rol from psicologo
@@ -70,24 +123,6 @@ class Psicologo {
             $result->execute();
             return $result->fetch(PDO::FETCH_ASSOC);
         }
-        catch(PDOException $e){
-            $dato= "¡Error!: " . $e->getMessage() . "<br/>";
-            die();
-        }
-    }
-
-    function editar($link){
-        try {
-        $consulta = "UPDATE psicologo SET `nombre` = :nombre, `apellidos` = :apellidos, `email` = :email 
-        WHERE `id` = :id";
-        $result = $link->prepare($consulta);
-        $result->bindParam(':id',$this->id);
-        $result->bindParam(':nombre',$this->nombre);
-        $result->bindParam(':apellidos',$this->apellidos);
-        $result->bindParam(':email',$this->email);
-        $result->execute();
-        return $result->fetch(PDO::FETCH_ASSOC);
-        } 
         catch(PDOException $e){
             $dato= "¡Error!: " . $e->getMessage() . "<br/>";
             die();

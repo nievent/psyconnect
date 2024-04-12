@@ -144,6 +144,37 @@ i:hover
     tr td:last-child
         width: 40%
 
+
+.introPaciente 
+    font-family: $font-logo
+    color: $base-color2
+    text-align: center
+
+    
+//formularios 
+form 
+    max-width: 400px
+    margin: 50px auto
+    padding: 20px
+    background-color: $base-color2-whited
+    border-radius: 5px
+    box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.3)
+
+input[type="text"], input[type="password"], input[type="email"]
+    background-color: $base-color2-whited 
+
+//botones
+
+.btn 
+    @include boton-gradiente(2rem, 1.5rem, $border-radius-medium, 0.8s)
+
+
+.enviarBtn
+    background: none
+    @include boton(2rem, 1.5rem, $border-radius-medium, 0.8s, $add-color)
+
+
+
 @media print 
     body
         font-size: 12px

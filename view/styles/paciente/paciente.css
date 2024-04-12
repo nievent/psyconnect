@@ -1,6 +1,6 @@
 .menu {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   align-items: center;
 }
@@ -61,6 +61,27 @@
   margin-right: 0px;
 }
 
+.editar-btn {
+  background: none;
+  height: 2rem;
+  padding: 0 0.5rem;
+  color: white;
+  background-color: #48d654;
+  border-radius: 20px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6);
+  transition: all 0.8s ease;
+  cursor: pointer;
+}
+.editar-btn:hover {
+  background-color: #2bc038;
+  transform: translateY(-2px);
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6);
+}
+.editar-btn i {
+  color: #f7eeff;
+  margin-right: 0px;
+}
+
 .titulo {
   font-family: "Kode Mono", monospace;
   color: #AB7FC8;
@@ -70,6 +91,7 @@
 .comentarios {
   background-color: transparent;
   width: 50%;
+  box-shadow: none;
 }
 .comentarios textarea {
   resize: vertical;
@@ -100,6 +122,15 @@
   text-align: center;
   font-weight: 300;
   margin: 30px 0;
+}
+
+#registro-logros .editando td,
+#registro-sensaciones .editando td,
+#registro-estadoAnimo .editando td,
+#registro-pensamientos .editando td,
+#registro-relajacion .editando td {
+  border: 1px solid #AB7FC8;
+  background-color: #eafbff;
 }
 
 /*# sourceMappingURL=paciente.css.map */

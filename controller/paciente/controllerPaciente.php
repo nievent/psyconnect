@@ -15,12 +15,12 @@ function tablaLogros($logros, $id) {
         
         // Crear una fila de la tabla con atributos data y un ID único
         echo '<tr id="' . $filaId . '" class="editable-row" data-id-registro="' . $idRegistro . '" data-id-linea="' . $idLinea . '">';
-        echo '<td contenteditable="true">' . $logro['fecha'] . '</td>';
-        echo '<td contenteditable="true">' . $logro['que_he_logrado'] . '</td>';
-        echo '<td contenteditable="true">' . $logro['acciones_realizadas'] . '</td>';
-        echo '<td contenteditable="true">' . $logro['como_me_siento'] . '</td>';
-        echo '<td contenteditable="true">' . $logro['premio_obtenido'] . '</td>';
-        echo '<td><button class="borrar-btn" data-row="' . $rowCount . '"><i class="fas fa-trash"></i></button></td>';
+        echo '<td contenteditable="false">' . $logro['fecha'] . '</td>';
+        echo '<td contenteditable="false">' . $logro['que_he_logrado'] . '</td>';
+        echo '<td contenteditable="false">' . $logro['acciones_realizadas'] . '</td>';
+        echo '<td contenteditable="false">' . $logro['como_me_siento'] . '</td>';
+        echo '<td contenteditable="false">' . $logro['premio_obtenido'] . '</td>';
+        echo '<td><button class="borrar-btn" data-row="' . $rowCount . '"><i class="fas fa-trash"></i></button> <button class="editar-btn" data-row="' . $rowCount . '"><i class="fas fa-pencil-alt"></i></button> </td>';
         echo '</tr>';
         
         $rowCount++; // Incrementar el contador de filas
@@ -49,11 +49,11 @@ function tablaSensaciones($sensaciones, $id) {
         
         // Crear una fila de la tabla con atributos data y un ID único
         echo '<tr id="' . $filaId . '" class="editable-row" data-id-registro="' . $idRegistro . '" data-id-linea="' . $idLinea . '">';
-        echo '<td contenteditable="true">' . $sensacion['fecha'] . '</td>';
-        echo '<td contenteditable="true">' . $sensacion['ejercicio_provocador'] . '</td>';
-        echo '<td contenteditable="true">' . $sensacion['numero_repeticion'] . '</td>';
-        echo '<td contenteditable="true">' . $sensacion['miedo_maximo'] . '</td>';
-        echo '<td><button class="borrar-btn" data-row="' . $rowCount . '"><i class="fas fa-trash"></i></button></td>';
+        echo '<td contenteditable="false">' . $sensacion['fecha'] . '</td>';
+        echo '<td contenteditable="false">' . $sensacion['ejercicio_provocador'] . '</td>';
+        echo '<td contenteditable="false">' . $sensacion['numero_repeticion'] . '</td>';
+        echo '<td contenteditable="false">' . $sensacion['miedo_maximo'] . '</td>';
+        echo '<td><button class="borrar-btn" data-row="' . $rowCount . '"><i class="fas fa-trash"></i></button> <button class="editar-btn" data-row="' . $rowCount . '"><i class="fas fa-pencil-alt"></i></button> </td>';
         echo '</tr>';
         
         $rowCount++; // Incrementar el contador de filas
@@ -81,11 +81,11 @@ function tablaEstadoAnimo($estadoAnimo, $id) {
         
         // Crear una fila de la tabla con atributos data y un ID único
         echo '<tr id="' . $filaId . '" class="editable-row" data-id-registro="' . $idRegistro . '" data-id-linea="' . $idLinea . '">';
-        echo '<td contenteditable="true">' . $estado['fecha'] . '</td>';
-        echo '<td contenteditable="true">' . $estado['emociones'] . '</td>';
-        echo '<td contenteditable="true">' . $estado['grado_intensidad'] . '</td>';
-        echo '<td contenteditable="true">' . $estado['sensaciones_corporales'] . '</td>';
-        echo '<td><button class="borrar-btn" data-row="' . $rowCount . '"><i class="fas fa-trash"></i></button></td>';
+        echo '<td contenteditable="false">' . $estado['fecha'] . '</td>';
+        echo '<td contenteditable="false">' . $estado['emociones'] . '</td>';
+        echo '<td contenteditable="false">' . $estado['grado_intensidad'] . '</td>';
+        echo '<td contenteditable="false">' . $estado['sensaciones_corporales'] . '</td>';
+        echo '<td><button class="borrar-btn" data-row="' . $rowCount . '"><i class="fas fa-trash"></i></button> <button class="editar-btn" data-row="' . $rowCount . '"><i class="fas fa-pencil-alt"></i></button> </td>';
         echo '</tr>';
         
         $rowCount++; // Incrementar el contador de filas
@@ -113,12 +113,12 @@ function tablaPensamientos($pensamientos, $id) {
         
         // Crear una fila de la tabla con atributos data y un ID único
         echo '<tr id="' . $filaId . '" class="editable-row" data-id-registro="' . $idRegistro . '" data-id-linea="' . $idLinea . '">';
-        echo '<td contenteditable="true">' . $pensamiento['fecha'] . '</td>';
-        echo '<td contenteditable="true">' . $pensamiento['que_ha_sucedido'] . '</td>';
-        echo '<td contenteditable="true">' . $pensamiento['que_he_pensado'] . '</td>';
-        echo '<td contenteditable="true">' . $pensamiento['como_me_he_sentido'] . '</td>';
-        echo '<td contenteditable="true">' . $pensamiento['que_he_hecho'] . '</td>';
-        echo '<td><button class="borrar-btn" data-row="' . $rowCount . '"><i class="fas fa-trash"></i></button></td>';
+        echo '<td contenteditable="false">' . $pensamiento['fecha'] . '</td>';
+        echo '<td contenteditable="false">' . $pensamiento['que_ha_sucedido'] . '</td>';
+        echo '<td contenteditable="false">' . $pensamiento['que_he_pensado'] . '</td>';
+        echo '<td contenteditable="false">' . $pensamiento['como_me_he_sentido'] . '</td>';
+        echo '<td contenteditable="false">' . $pensamiento['que_he_hecho'] . '</td>';
+        echo '<td><button class="borrar-btn" data-row="' . $rowCount . '"><i class="fas fa-trash"></i></button> <button class="editar-btn" data-row="' . $rowCount . '"><i class="fas fa-pencil-alt"></i></button> </td>';
         echo '</tr>';
         
         $rowCount++; // Incrementar el contador de filas
@@ -147,11 +147,11 @@ function tablaRelajacion($relajacion, $id) {
         
         // Crear una fila de la tabla con atributos data y un ID único
         echo '<tr id="' . $filaId . '" class="editable-row" data-id-registro="' . $idRegistro . '" data-id-linea="' . $idLinea . '">';
-        echo '<td contenteditable="true">' . $relax['fecha'] . '</td>';
-        echo '<td contenteditable="true">' . $relax['momento_dia'] . '</td>';
-        echo '<td contenteditable="true">' . $relax['relajacion_conseguida'] . '</td>';
-        echo '<td contenteditable="true">' . $relax['concentracion_conseguida'] . '</td>';
-        echo '<td><button class="borrar-btn" data-row="' . $rowCount . '"><i class="fas fa-trash"></i></button></td>';
+        echo '<td contenteditable="false">' . $relax['fecha'] . '</td>';
+        echo '<td contenteditable="false">' . $relax['momento_dia'] . '</td>';
+        echo '<td contenteditable="false">' . $relax['relajacion_conseguida'] . '</td>';
+        echo '<td contenteditable="false">' . $relax['concentracion_conseguida'] . '</td>';
+        echo '<td><button class="borrar-btn" data-row="' . $rowCount . '"><i class="fas fa-trash"></i></button> <button class="editar-btn" data-row="' . $rowCount . '"><i class="fas fa-pencil-alt"></i></button> </td>';
         echo '</tr>';
         
         $rowCount++; // Incrementar el contador de filas

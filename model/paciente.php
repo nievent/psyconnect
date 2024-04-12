@@ -20,6 +20,25 @@ class Paciente {
         }
     }
 
+    
+    static function buscarPorId($link, $id) {
+        try {
+            $consulta = "SELECT * FROM paciente WHERE id = :id";
+            $result = $link->prepare($consulta);
+            $result->bindParam(':id', $id);
+            $result->execute();
+            $fila = $result->fetch(PDO::FETCH_ASSOC);
+            if ($fila) {
+                return new Paciente($fila['id'], $fila['id_psicologo'], $fila['nombre'], $fila['apellidos'], $fila['dni'], $fila['email'], $fila['pwd']);
+            } else {
+                return null; // El psicólogo no fue encontrado
+            }
+        } catch (PDOException $e) {
+            $dato = $e->getMessage();
+            die();
+        }
+    }
+
     static function verRegistrosAsignados($link, $id) {
         try {
             $consulta = "SELECT t.titulo, r.id, r.id_tipo_reg, t.descripcion FROM tipo_registro t 
@@ -148,10 +167,29 @@ echo ( "¡Error!: " . $e->getMessage() . "<br/>");
             die();
         }
     }
-
     function editar($link){
         try {
-        $consulta = "UPDATE paciente SET `nombre` = :nombre, `apellidos` = :apellidos, `dni`=:dni `email` = :email 
+            $consulta = "UPDATE paciente SET `nombre` = :nombre, `apellidos` = :apellidos, `dni` = :dni, `email` = :email 
+            WHERE `id` = :id";
+            $result = $link->prepare($consulta);
+            $result->bindParam(':id', $this->id);
+            $result->bindParam(':nombre', $this->nombre);
+            $result->bindParam(':apellidos', $this->apellidos);
+            $result->bindParam(':dni', $this->dni);
+            $result->bindParam(':email', $this->email);
+            $result->execute();
+            return $result->fetch(PDO::FETCH_ASSOC);
+        } catch(PDOException $e) {
+            $dato = "¡Error!: " . $e->getMessage() . "<br/>";
+            echo $dato;
+            die();
+        }
+    }
+    
+
+    function editarConPwd($link){
+        try {
+        $consulta = "UPDATE paciente SET `nombre` = :nombre, `apellidos` = :apellidos, `dni`=:dni, `email` = :email, `pwd` = :pwd
         WHERE `id` = :id";
         $result = $link->prepare($consulta);
         $result->bindParam(':id',$this->id);
@@ -159,6 +197,7 @@ echo ( "¡Error!: " . $e->getMessage() . "<br/>");
         $result->bindParam(':apellidos',$this->apellidos);
         $result->bindParam(':dni',$this->dni);
         $result->bindParam(':email',$this->email);
+        $result->bindParam(':pwd',$this->pwd);
         $result->execute();
         return $result->fetch(PDO::FETCH_ASSOC);
         } 
@@ -167,6 +206,8 @@ echo ( "¡Error!: " . $e->getMessage() . "<br/>");
             die();
         }
     }
+
+
 
     function buscarRegistro($link) {
         try {

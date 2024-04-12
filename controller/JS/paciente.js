@@ -84,16 +84,16 @@ document.querySelectorAll('.enviar-datos-btn').forEach(function(button) {
         let controller = this.getAttribute('data-controller');
         let id = this.getAttribute('data-id'); // Obtener la id
 
-        // Obtener todos los divs editables dentro de la tabla
-        let editableRows = document.querySelectorAll('#' + tableId + ' .editable-row');
+        // Obtener todos los tr dentro de la tabla
+        let rows = document.querySelectorAll('#' + tableId + ' tbody tr');
         let data = [];
         
-        // Iterar sobre cada fila editable y recopilar los datos
-        editableRows.forEach(function(row) {
+        // Iterar sobre cada fila y recopilar los datos
+        rows.forEach(function(row) {
             let rowData = {};
-            let cells = row.querySelectorAll('td[contenteditable="true"]');
+            let cells = row.querySelectorAll('td');
             
-            // Recopilar los datos de las celdas editables
+            // Recopilar los datos de las celdas
             cells.forEach(function(cell, index) {
                 rowData['cell_' + (index + 1)] = cell.textContent.trim();
             });
@@ -136,6 +136,7 @@ document.querySelectorAll('.enviar-datos-btn').forEach(function(button) {
     });
 });
 
+
 // Función para agregar una nueva fila a la tabla
 function agregarFila(btn, event = null) {
     // Obtener la fecha actual
@@ -156,7 +157,7 @@ function agregarFila(btn, event = null) {
     let nuevaFila = '<tr class="editable-row" data-id-registro="' + idRegistro + '" data-id-linea="' + idLinea + '">' +
         '<td contenteditable="true">' + fechaActual + '</td>' +
         tdContent + // Añadir las celdas generadas dinámicamente
-        '<td><button class="borrar-btn" data-row="' + idLinea + '"><i class="fas fa-trash"></i></button></td>' +
+        '<td><button class="borrar-btn" data-row="' + idLinea + '"><i class="fas fa-trash"></i></button></i></button> </td>' +
         '</tr>';
 
     // Agregar la nueva fila al final de la tabla correspondiente
@@ -190,4 +191,24 @@ document.getElementById('div').addEventListener('click', function(event) {
     if (event.target && (event.target.classList.contains('borrar-btn') || event.target.parentNode.classList.contains('borrar-btn'))) {
         borrarFila(event);
     }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const editarButtons = document.querySelectorAll(".editar-btn");
+
+    editarButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            const rowId = this.dataset.row;
+            const row = document.querySelector("#fila_" + rowId);
+
+            if (row) {
+                row.classList.toggle("editando");
+                const cells = row.querySelectorAll("td");
+
+                cells.forEach(cell => {
+                    cell.contentEditable = row.classList.contains("editando") ? "true" : "false";
+                });
+            }
+        });
+    });
 });

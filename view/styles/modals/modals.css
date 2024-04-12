@@ -98,4 +98,10 @@ table tbody tr:last-child td:last-child {
   border-bottom-right-radius: 8px;
 }
 
-/*# sourceMappingURL=modals.css.map */
+@media screen and (max-width: 900px) {
+  .modal {
+    left: 2%;
+    width: 90%;
+
+  }
+}

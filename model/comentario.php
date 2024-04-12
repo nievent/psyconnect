@@ -63,6 +63,22 @@ class Comentario {
         }
     }
 
+    static function getAllDeletedById($link, $id){
+        try {
+            $consulta = "SELECT c.*, p.nombre, p.apellidos  FROM comentario c
+            inner join paciente p on p.id = c.id_paciente
+            where c.id_psicologo = :id and c.visto = 1;";
+            $result = $link->prepare($consulta);
+            $result->bindParam(':id',$id);
+            $result->execute();
+            return $result;
+        } catch (PDOException $e) {
+            $dato = $e->getMessage();
+            echo $dato;
+            die();
+        }
+    }
+
     function insertar($link) {
         try {
             $consulta = "INSERT INTO comentario (id_psicologo, id_paciente, comentario) VALUES (:id_psicologo, :id_paciente, :comentario);";
