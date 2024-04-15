@@ -30,12 +30,6 @@ main {
   margin-bottom: 20px;
 }
 
-.introPaciente {
-  font-family: "Kode Mono", monospace;
-  color: #AB7FC8;
-  text-align: center;
-}
-
 .buscador {
   display: flex;
   gap: 8px;
@@ -89,23 +83,6 @@ main {
 }
 .cancelBtn:hover {
   background-color: #d61f1f;
-  transform: translateY(-2px);
-  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6);
-}
-
-.enviarBtn {
-  background: none;
-  height: 2rem;
-  padding: 0 1.5rem;
-  color: white;
-  background-color: #48d654;
-  border-radius: 10px;
-  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6);
-  transition: all 0.8s ease;
-  cursor: pointer;
-}
-.enviarBtn:hover {
-  background-color: #2bc038;
   transform: translateY(-2px);
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6);
 }

@@ -107,24 +107,37 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
         </div>
     </header>
     <nav class="menu">
-        <div class="seccion">
-            <a id="limpiarParametro" href="#" <?php echo ($mainValue == 0) ? 'class="active"' : ''; ?>>Inicio</a>
-        </div>
-        <div class="seccion">
-            <a href="?main=1" <?php echo ($mainValue == 1) ? 'class="active"' : ''; ?>>Pacientes</a>
-        </div>
-        <div class="seccion">
-            <a href="?main=2" <?php echo ($mainValue == 2) ? 'class="active"' : ''; ?>>Registros</a>
-        </div>
-        <div class="seccion">
-            <a href="?main=3" <?php echo ($mainValue == 3) ? 'class="active"' : ''; ?>>Dar de alta</a>
-        </div>
-        <div class="seccion">
-            <a href="?main=5" <?php echo ($mainValue == 5) ? 'class="active"' : ''; ?>>Perfil</a>
-        </div>
-    </nav>
+    <div class="seccion">
+        <a id="limpiarParametro" href="#" <?php echo ($mainValue == 0) ? 'class="active"' : ''; ?>>Inicio</a>
+    </div>
+    <div class="seccion">
+        <a href="?main=1" <?php echo ($mainValue == 1) ? 'class="active"' : ''; ?>>Pacientes</a>
+    </div>
+    <div class="seccion">
+        <a href="?main=2" <?php echo ($mainValue == 2) ? 'class="active"' : ''; ?>>Registros</a>
+    </div>
+    <div class="seccion">
+        <a href="?main=3" <?php echo ($mainValue == 3) ? 'class="active"' : ''; ?>>Dar de alta</a>
+    </div>
+    <div class="seccion">
+        <a href="?main=5" <?php echo ($mainValue == 5) ? 'class="active"' : ''; ?>>Perfil</a>
+    </div>
+</nav>
 
-    <main>
+
+<main>
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i> <!-- Icono de hamburguesa -->
+    </div>
+
+    <ul class="mobile-menu">
+        <li><a id="limpiarParametro2" href="#" <?php echo ($mainValue == 0) ? 'class="active"' : ''; ?>>Inicio</a></li>
+        <li><a href="?main=1" <?php echo ($mainValue == 1) ? 'class="active"' : ''; ?>>Pacientes</a></li>
+        <li><a href="?main=2" <?php echo ($mainValue == 2) ? 'class="active"' : ''; ?>>Registros</a></li>
+        <li><a href="?main=3" <?php echo ($mainValue == 3) ? 'class="active"' : ''; ?>>Dar de alta</a></li>
+        <li><a href="?main=5" <?php echo ($mainValue == 5) ? 'class="active"' : ''; ?>>Perfil</a></li>
+    </ul>
+
         <?php
         if (isset($_GET['main'])) {
             $mainValue = $_GET['main'];
@@ -133,8 +146,10 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                     echo <<<HTML
                         <h2 class="introPaciente">¿A quién busca?</h2>
                         <div class="buscador" id="buscador1"><i class="fas fa-search"></i><input type="text"></div>
+                        <div id="div">
                     HTML;
                     listarPacientes($bdd, $_SESSION['psicologo']->getId());
+                    echo "</div>";
                     break;
                 case 2:
                     listarRegistros($bdd);
@@ -214,11 +229,8 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
             comentariosPendientes($bdd, $_SESSION["psicologo"]->getId());
         } ?>
             </section>
-
-
-    </main>
-    <script src="../controller/JS/psicologo.js"></script>
-    <script src="../controller/JS/comunes.js"></script>
+</main>
+<script src="../controller/JS/psicologo.js"></script>
+<script src="../controller/JS/comunes.js"></script>
 </body>
-
 </html>

@@ -3,6 +3,20 @@ document.getElementById('limpiarParametro').addEventListener('click', function(e
     limpiarParametro();
 });
 
+document.getElementById('limpiarParametro2').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
+    limpiarParametro();
+});
+
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileMenu = document.querySelector('.mobile-menu');
+
+if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', function() {
+        mobileMenu.classList.toggle('visible');
+    });
+}
+
 function limpiarParametro() {
     let url = window.location.href; // Obtener la URL actual
     let cleanUrl = url.split('?')[0]; // Eliminar cualquier parámetro de la URL
@@ -29,3 +43,4 @@ document.getElementById('cambiarContraseña').addEventListener('click', function
         contraseñaFields.style.display = 'none';
     }
 });
+

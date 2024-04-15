@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+
     const input2 = document.querySelector("#buscador2 input");
     const comentarios = document.querySelectorAll("#comentarios .fila");
 
@@ -55,3 +56,4 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+

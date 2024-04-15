@@ -129,8 +129,10 @@
 #registro-estadoAnimo .editando td,
 #registro-pensamientos .editando td,
 #registro-relajacion .editando td {
-  border: 1px solid #AB7FC8;
   background-color: #eafbff;
+  border-top: 3px, solid #00daff;
+  border-bottom: 3px solid #00daff;
 }
+
 
 /*# sourceMappingURL=paciente.css.map */

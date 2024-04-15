@@ -154,10 +154,10 @@ function agregarFila(btn, event = null) {
     }
 
     // Crear una nueva fila con los valores predeterminados y los datos obtenidos
-    let nuevaFila = '<tr class="editable-row" data-id-registro="' + idRegistro + '" data-id-linea="' + idLinea + '">' +
+    let nuevaFila = '<tr class="editable-row editando" data-id-registro="' + idRegistro + '" data-id-linea="' + idLinea + '">' +
         '<td contenteditable="true">' + fechaActual + '</td>' +
         tdContent + // Añadir las celdas generadas dinámicamente
-        '<td><button class="borrar-btn" data-row="' + idLinea + '"><i class="fas fa-trash"></i></button></i></button> </td>' +
+        '<td><button class="borrar-btn" data-row="' + idLinea + '"><i class="fas fa-trash"></i></button></i></button></td>' +
         '</tr>';
 
     // Agregar la nueva fila al final de la tabla correspondiente
@@ -211,4 +211,17 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    console.log("entro");
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('visible');
+            console.log("evento")
+        });
+    }
 });
