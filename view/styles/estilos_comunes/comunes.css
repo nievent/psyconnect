@@ -377,6 +377,10 @@ input[type=text], input[type=password], input[type=email] {
     right: 20%;
     margin: 10px 0;
   }
+  form {
+    max-width: 100%;
+    width: 100%;
+  }
 }
 @media only screen and (min-width: 651px) {
   .mobile-menu {
