@@ -30,6 +30,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
     $paciente = new Paciente("", $id_psicologo, $nombre, $apellidos, $dni, $email, $hashedPwd);
     if(!$paciente->buscar($bdd->link)){
+        //se envia el mail.
         $paciente->insertar($bdd->link);
         $subject = 'Contraseña generada para su cuenta';
 
@@ -58,10 +59,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo 'Error: ' . $mail->ErrorInfo;
         } else {
             header('location: ../../view/vistaPsicologo.php');
-            exit(); // Detener la ejecución del script después de la redirección
+            exit(); 
         }
     } else {
         header('location: ../../view/vistaPsicologo.php?error=2');
-        exit(); // Detener la ejecución del script después de la redirección
+        exit(); 
     }
 }

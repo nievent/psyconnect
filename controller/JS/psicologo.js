@@ -1,4 +1,4 @@
-
+//confirms para eliminar datos.
 function confirmarBajaUsuario(id) {
     var confirmacion = confirm("¿Estás seguro de que deseas eliminar este paciente? Esta acción no se puede eliminar");
     if (confirmacion) {
@@ -13,6 +13,8 @@ function confirmarBajaRegistro(id, id_tipo_reg) {
     } 
 }
 
+//buscadores
+
 document.addEventListener("DOMContentLoaded", function() {
     const input1 = document.querySelector("#buscador1 input");
     const rows = document.querySelectorAll(".principal_table tbody tr");
@@ -21,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
         input1.addEventListener("input", function() {
             const searchTerm = this.value.trim().toLowerCase();
             console.log(searchTerm);
-
+            //cojo el valor del input. lo limpio, lo filtro y lo comparo con el contenido de la tabla
             rows.forEach(row => {
                 const nombre = row.cells[0].textContent.trim().toLowerCase();
                 const apellidos = row.cells[1].textContent.trim().toLowerCase();
@@ -30,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (nombre.includes(searchTerm) || apellidos.includes(searchTerm) || email.includes(searchTerm)) {
                     row.style.display = "";
                 } else {
+                    //oculto si no hay coincidencias.
                     row.style.display = "none";
                 }
             });

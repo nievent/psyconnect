@@ -1,9 +1,6 @@
 <?php 
-// require '../model/psicologo.php';
-// require '../model/paciente.php';
-// require '../model/registro.php';
 
-
+//funcion para mostrar los pacientes.
 function listarPacientes($bdd, $id) {
     $pacientes = Paciente::getAllById($bdd->link, $id);
     echo <<<HTML
@@ -53,6 +50,7 @@ function listarPacientes($bdd, $id) {
         HTML;
 }
 
+//funcion para mostrar los registros
 function listarRegistros($bdd) {
     $registros = Registro::getAllTipos($bdd->link);
     echo <<<HTML
@@ -77,6 +75,7 @@ function listarRegistros($bdd) {
     }
 }
 
+//el select para asignar registros
 function selectTiposRegistros($bdd) {
     $registros = Registro::getAllTipos($bdd->link);
     while($fila = $registros->fetch(PDO::FETCH_ASSOC)) {
@@ -84,12 +83,14 @@ function selectTiposRegistros($bdd) {
     }
 }
 
+//una funcion para conseguir el nombre del paciente
 function introPaciente($bdd, $id_paciente) {
     $paciente = Paciente::getPacienteByID($bdd->link, $id_paciente);
     $datosPaciente = $paciente->fetch(PDO::FETCH_ASSOC);
     echo "<h1 class='introPaciente'>Registros de " . $datosPaciente["nombre"]."</h1>";
 }
 
+//funcion para enseñar los comentarios que no estan vistos
 function comentariosPendientes($bdd, $id) {
     $comentarios = Comentario::getAllById($bdd->link, $id);
     while ($fila = $comentarios->fetch(PDO::FETCH_ASSOC)) {
@@ -102,6 +103,7 @@ function comentariosPendientes($bdd, $id) {
     }
 }
 
+//para mostrar los que sí estan vistos.
 function historialComentarios($bdd, $id) {
     $comentarios = Comentario::getAllDeletedById($bdd->link, $id);
     while ($fila = $comentarios->fetch(PDO::FETCH_ASSOC)) {

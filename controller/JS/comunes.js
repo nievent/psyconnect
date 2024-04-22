@@ -1,13 +1,17 @@
+//para limpiar los gets y llevar al usuario a inicio otra vez
+
 document.getElementById('limpiarParametro').addEventListener('click', function(event) {
-    event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
+    event.preventDefault(); 
     limpiarParametro();
 });
 
 document.getElementById('limpiarParametro2').addEventListener('click', function(event) {
-    event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
+    event.preventDefault();
     limpiarParametro();
 });
 
+
+//hacer visible o no el menú de movil.
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileMenu = document.querySelector('.mobile-menu');
 
@@ -17,11 +21,15 @@ if (menuToggle && mobileMenu) {
     });
 }
 
+//funcion para los botones de inicio.
+
 function limpiarParametro() {
     let url = window.location.href; // Obtener la URL actual
     let cleanUrl = url.split('?')[0]; // Eliminar cualquier parámetro de la URL
     window.location.href = cleanUrl; // Redirigir a la URL limpia
 }
+
+//funciones para el formulario de editar.
 
 document.getElementById('editarPerfil').addEventListener('click', function() {
     var inputs = document.querySelectorAll('#perfilForm input[type="text"], #perfilForm input[type="email"]');

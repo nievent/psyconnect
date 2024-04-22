@@ -24,9 +24,9 @@
             <h1>Login</h1>
             <img src="./img/logo-sin-fondo.png" alt="logo psyconnect">
             <label for="user">Correo electrónico:</label>
-            <input type="text" name="user" placeholder="Escribe tu correo electrónico">
+            <input type="text" name="user" placeholder="Escribe tu correo electrónico" maxlength="100">
             <label for="pwd">Contraseña:</label>
-            <input type="password" name="password" placeholder="Escribe tu contraseña">
+            <input type="password" name="password" placeholder="Escribe tu contraseña" maxlength="100">
             <button type="submit" name="submit" class="btn-submit"><i class="fa-solid fa-arrow-right"></i></button>
         <?php 
             if(isset($_GET['error']) && $_GET['error'] == 1){

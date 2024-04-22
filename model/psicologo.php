@@ -78,7 +78,7 @@ class Psicologo {
             $result->bindParam(':apellidos', $this->apellidos);
             $result->bindParam(':email', $this->email);
             $result->execute();
-            return $result->rowCount(); // Devuelve el número de filas afectadas por la consulta UPDATE
+            return $result->rowCount();
         } catch(PDOException $e){
             $dato = "¡Error!: " . $e->getMessage() . "<br/>";
             die();
@@ -97,7 +97,7 @@ class Psicologo {
             $result->bindParam(':email', $this->email);
             $result->bindParam(':pwd', $this->pwd);
             $result->execute();
-            return $result->rowCount(); // Devuelve el número de filas afectadas por la consulta UPDATE
+            return $result->rowCount(); 
         } catch(PDOException $e){
             $dato = "¡Error!: " . $e->getMessage() . "<br/>";
             die();

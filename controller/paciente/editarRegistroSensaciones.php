@@ -47,6 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['editableData'])) {
         $paciente =  new Paciente ($_POST['id'], "", "", "", "", "", "" );
         $resultado = $paciente->getMailPsicologo($bdd->link); 
         if($resultado) {
+            //se envia el mail.
             $nombre = $resultado ['nombre'];
             $email = $resultado ['email'];
             $subject = "nuevo registro completado";

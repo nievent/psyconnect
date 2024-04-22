@@ -56,6 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Redirigir a la página de vista del psicólogo
         header("Location:../../view/vistaPsicologo.php");
-        exit(); // Asegurarse de que el script se detenga después de la redirección
+        exit(); 
     }
 }

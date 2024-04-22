@@ -43,7 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $paciente = new Paciente($id, "", $nombre, $apellidos, $dni, $email, "");
         // Después de editar el paciente en la base de datos
         $paciente->editar($bdd->link);
-        echo "edito";
 
         // Recargar los datos del paciente desde la base de datos
         $pacienteActualizado = Paciente::buscarPorId($bdd->link, $paciente->getId());
@@ -59,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Redirigir a la página de vista del paciente
         header("Location:../../view/vistapaciente.php");
-        exit(); // Asegurarse de que el script se detenga después de la redirección
+        exit(); 
     }
 }
 ?>

@@ -26,8 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['editableData'])) {
         }
     
         // Ahora $organizedData contiene los datos actualizados
-        // Puedes procesarlos según tus necesidades
-        // print_r($organizedData);
         // Borrar los registros correspondientes al lastIdRegistro
         Logros::deleteById($bdd->link, $lastIdRegistro);
         
@@ -51,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['editableData'])) {
         $paciente =  new Paciente ($_POST['id'], "", "", "", "", "", "" );
         $resultado = $paciente->getMailPsicologo($bdd->link); 
         if($resultado) {
+            //se envia el mail.
             $nombre = $resultado ['nombre'];
             $email = $resultado ['email'];
             $subject = "nuevo registro completado";

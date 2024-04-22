@@ -25,15 +25,15 @@
             <h1>Regístrate</h1>
             <img src="./img/logo-sin-fondo.png" alt="logo psyconnect">
             <label for="user">Correo electrónico:</label>
-            <input type="email" name="email" placeholder="Escribe tu correo electrónico" required>
+            <input type="email" name="email" placeholder="Escribe tu correo electrónico" required maxlength="100">
             <label for="pwd">Contraseña:</label>
-            <input type="password" name="pwd" placeholder="Escribe tu contraseña" required>
+            <input type="password" name="pwd" placeholder="Escribe tu contraseña" required maxlength="100">
             <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" placeholder="Escribe tu nombre" required>
+            <input type="text" name="nombre" placeholder="Escribe tu nombre" required maxlength="100">
             <label for="apellidos">Apellidos:</label>
-            <input type="text" name="apellidos" placeholder="Escribe tus apellidos" required>
+            <input type="text" name="apellidos" placeholder="Escribe tus apellidos" required maxlength="100">
             <label for="cop_num">Número del COP (Colegio Oficial de Psicólogos):</label>
-            <input type="text" name="cop_num" placeholder="Escribe tu numero del COP" required>
+            <input type="text" name="cop_num" placeholder="Escribe tu numero del COP" required maxlength="100">
             <button type="submit" name="submit" class="btn-submit"><i class="fa-solid fa-arrow-right"></i></button>
         <?php 
             if(isset($_GET['error']) && $_GET['error'] == 1){

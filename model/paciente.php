@@ -8,6 +8,7 @@ class Paciente {
     private $email;
     private $pwd;
     
+    //listar
     static function getAll($link){
         try {
             $consulta = "SELECT * FROM paciente;";
@@ -20,7 +21,7 @@ class Paciente {
         }
     }
 
-    
+    //buscar a un paciente
     static function buscarPorId($link, $id) {
         try {
             $consulta = "SELECT * FROM paciente WHERE id = :id";
@@ -39,6 +40,7 @@ class Paciente {
         }
     }
 
+    //ver sus registros
     static function verRegistrosAsignados($link, $id) {
         try {
             $consulta = "SELECT t.titulo, r.id, r.id_tipo_reg, t.descripcion FROM tipo_registro t 
@@ -56,6 +58,7 @@ class Paciente {
         }
     }
 
+    //listar un paciente
     static function getPacienteById($link, $id){
         try {
             $consulta = "SELECT * FROM paciente WHERE id = '$id'";
@@ -68,6 +71,7 @@ class Paciente {
         }
     }
 
+    //un paciente de un psicologo
     static function getAllById($link, $id){
         try {
             $consulta = "SELECT * FROM paciente where id_psicologo = :id_psicologo;";
@@ -91,6 +95,7 @@ class Paciente {
         $this->pwd = $pwd;
     }
 
+    //insertar
     function insertar ($link){
         try{
             $consulta="INSERT INTO paciente (id_psicologo, nombre, apellidos, dni, email, pwd) VALUES (:id_psicologo, :nombre, :apellidos, :dni, :email,:pwd)";
@@ -111,6 +116,7 @@ echo ( "¡Error!: " . $e->getMessage() . "<br/>");
         }
     }
 
+    //login
     function login ($link) {
         try {
             $consulta = "SELECT id, pwd from paciente
@@ -123,6 +129,7 @@ echo ( "¡Error!: " . $e->getMessage() . "<br/>");
         }
     }
 
+    //seleccionar nombre y mail
     function getMailPsicologo($link) {
         try {
             $consulta = "SELECT ps.nombre, ps.email from psicologo ps 
@@ -139,6 +146,7 @@ echo ( "¡Error!: " . $e->getMessage() . "<br/>");
         }
     }
 
+    //un paciente
     function buscarById ($link){
         try{
             $consulta="SELECT * FROM paciente where id='$this->id'";
@@ -154,6 +162,7 @@ echo ( "¡Error!: " . $e->getMessage() . "<br/>");
     }
 
 
+    //un paciente por dni
     function buscar ($link){
         try{
             $consulta="SELECT * FROM paciente where dni='$this->dni'";
@@ -167,6 +176,8 @@ echo ( "¡Error!: " . $e->getMessage() . "<br/>");
             die();
         }
     }
+
+    //editar en la bd
     function editar($link){
         try {
             $consulta = "UPDATE paciente SET `nombre` = :nombre, `apellidos` = :apellidos, `dni` = :dni, `email` = :email 
@@ -187,6 +198,7 @@ echo ( "¡Error!: " . $e->getMessage() . "<br/>");
     }
     
 
+    //editar la pwd
     function editarConPwd($link){
         try {
         $consulta = "UPDATE paciente SET `nombre` = :nombre, `apellidos` = :apellidos, `dni`=:dni, `email` = :email, `pwd` = :pwd
@@ -208,20 +220,26 @@ echo ( "¡Error!: " . $e->getMessage() . "<br/>");
     }
 
 
-
+//buscar en la tabla intermedia
     function buscarRegistro($link) {
         try {
             $consulta = "SELECT * FROM paciente_registro where id_paciente = :id";
             $result = $link->prepare($consulta);
             $result->bindParam(':id', $this->id); 
             $result->execute();
+
+            if ($result->rowCount() === 0) {
+                return null;
+            }
+            
             return $result;
-        }catch(PDOException $e){
+        } catch(PDOException $e) {
             $dato= "¡Error!: " . $e->getMessage() . "<br/>";
             die();
         }
     }
-
+    
+//borrar
     function borrar($link) {
         try {
             $consulta = "DELETE FROM paciente WHERE id = :id";
@@ -235,6 +253,7 @@ echo ( "¡Error!: " . $e->getMessage() . "<br/>");
         }
     }
 
+    //asignar registro
     function asignarRegistro($link, $id_registro) {
         $fecha = date('Y-m-d'); // Obtener la fecha actual en formato YYYY-MM-DD
         try {

@@ -3,7 +3,7 @@ require '../../model/conexion.php';
 require '../../model/comentario.php';
 
 $bdd = new BD();
-
+//insertar el comentario en la bd
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_psicologo = $_POST['id_psicologo'];
     $id_paciente = $_POST['id_paciente'];

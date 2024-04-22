@@ -39,8 +39,6 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
             echo "<script>alert('No se puede eliminar a un paciente con registros asignados.');</script>";
         } else if ($_GET['error'] == 2) {
             echo "<script>alert('El paciente ya existe');</script>";
-        } else if ($_GET['error'] == 3) {
-            echo "<script>alert('No puedes borrar un registro con lineas escritas.');</script>";
         } else if ($_GET['error'] == 4) {
             echo "<script>alert('La contraseña vieja es incorrecta');</script>";
         }
@@ -161,14 +159,14 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                                 <h1 class='introPaciente'>Alta pacientes</h1>
                                 <img src="./img/logo-sin-fondo.png" alt="logo psyconnect">
                                 <label for="nombre">Nombre del paciente:</label>
-                                <input type="text" name="nombre" required>
+                                <input type="text" name="nombre" required maxlength='100'>
                                 <input type="text" name="id_psicologo" value="{$_SESSION['psicologo']->getID()}" hidden> 
                                 <label for="apellidos">Apellidos del paciente:</label>
-                                <input type="text" name="apellidos" required>
+                                <input type="text" name="apellidos" required maxlength='100'>
                                 <label for="dni">DNI del paciente:</label>
-                                <input type="text" name="dni">
+                                <input type="text" name="dni" maxlength='100' required>
                                 <label for="mail">Correo electrónico:</label>
-                                <input type="email" name="email" required>
+                                <input type="email" name="email" required maxlength='100'>
                                 <button type="submit" class="btn">Dar de alta</button>
                             </form>
                         HTML;
@@ -186,18 +184,18 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                             <img src="./img/logo-sin-fondo.png" alt="logo psyconnect">
                             <input type="hidden" name="id" value="{$_SESSION['psicologo']->getId()}">
                             <label for="nombre">Nombre:</label>
-                            <input type="text" name="nombre" value="{$_SESSION['psicologo']->getNombre()}" disabled>
+                            <input type="text" name="nombre" value="{$_SESSION['psicologo']->getNombre()}" disabled maxlength='100'>
                             <label for="apellidos">Apellidos:</label>
-                            <input type="text" name="apellidos" value="{$_SESSION['psicologo']->getApellidos()}" disabled>
+                            <input type="text" name="apellidos" value="{$_SESSION['psicologo']->getApellidos()}" disabled maxlength='100'>
                             <label for="mail">Correo electrónico:</label>
-                            <input type="email" name="email" value="{$_SESSION['psicologo']->getEmail()}" disabled>
+                            <input type="email" name="email" value="{$_SESSION['psicologo']->getEmail()}" disabled maxlength='100'>
                             
                             
                             <div id="contraseñaFields" style="display: none;">
                                 <label for="contraseñaAntigua">Contraseña Antigua:</label>
-                                <input type="password" id="viejaPwd" value="" name="oldPassword" autocomplete="off">
+                                <input type="password" id="viejaPwd" value="" name="oldPassword" autocomplete="off" maxlength='100'>
                                 <label for="contraseñaNueva">Contraseña Nueva:</label>
-                                <input type="password" value="" name="newPassword" autocomplete="off">
+                                <input type="password" value="" name="newPassword" autocomplete="off" maxlength='100'>
                             </div>
 
                             

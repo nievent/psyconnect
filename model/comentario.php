@@ -47,6 +47,7 @@ class Comentario {
         $this->comentario = $comentario;
     }
 
+    //obtener los comentarios pendientes
     static function getAllById($link, $id){
         try {
             $consulta = "SELECT c.*, p.nombre, p.apellidos  FROM comentario c
@@ -63,6 +64,7 @@ class Comentario {
         }
     }
 
+    //obtener el historial
     static function getAllDeletedById($link, $id){
         try {
             $consulta = "SELECT c.*, p.nombre, p.apellidos  FROM comentario c
@@ -79,6 +81,7 @@ class Comentario {
         }
     }
 
+    //insertar comentario
     function insertar($link) {
         try {
             $consulta = "INSERT INTO comentario (id_psicologo, id_paciente, comentario) VALUES (:id_psicologo, :id_paciente, :comentario);";
@@ -95,6 +98,7 @@ class Comentario {
         }
     }
 
+    //Marcar como leido
     function verRegistro($link){
         try {
             $consulta = "UPDATE comentario SET visto = 1 WHERE id = :id;";

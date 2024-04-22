@@ -1,4 +1,5 @@
 <?php
+//conexion bd
     class Bd    
     {
         private $link;

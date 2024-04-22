@@ -8,7 +8,8 @@ class Logros {
     private $como_me_siento;
     private $premio_obtenido;
 
-    
+
+    //listar
     static function getAllById($link, $id){
         try {
             $consulta = "SELECT * FROM logros WHERE id_registro = :id;";
@@ -22,6 +23,7 @@ class Logros {
         }
     }
 
+    //borrar
     static function deleteById($link, $id) {
         try {
             $consulta = "DELETE FROM logros WHERE id_registro = :id;";
@@ -107,13 +109,12 @@ class Logros {
         $this->premio_obtenido = $premio_obtenido;
     }
 
-    
+    //añadir linea
     function insertar($link) {
         try {
             $consulta = "INSERT INTO `logros` (`id_registro`, `id_linea`, `fecha`, `que_he_logrado`, `acciones_realizadas`, `como_me_siento`, `premio_obtenido`) 
                          VALUES (:id_registro, :id_linea, :fecha, :que_he_logrado, :acciones_realizadas, :como_me_siento, :premio_obtenido)";
             $result = $link->prepare($consulta);
-            // Enlaza los parámetros con los valores de la instancia actual
             $result->bindParam(":id_registro", $this->id_registro);
             $result->bindParam(":id_linea", $this->id_linea);
             $result->bindParam(":fecha", $this->fecha);

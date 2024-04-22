@@ -33,6 +33,7 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
 
 <body>
 <?php
+//gestionar errores
     if (isset($_GET['error'])) {
         if ($_GET['error'] == 1) {
             echo "<script>alert('No se puede enviar un registro vacio.');</script>";
@@ -63,6 +64,7 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                 </article>
             </div>
 
+        <!-- formularios para enviar los json a donde corresponde -->
     <form class="modal" id="formularioEditarLogros" action="?main=2" method="POST">
         <input type="hidden" id="inputLogrosJson" name="logros_json" value="">
         <input type="hidden" id="descripcionLogros" name="descripcion_logros" value="">
@@ -115,8 +117,9 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
     </nav>
 
     <main>
+        <!-- menu movil -->
         <div class="menu-toggle">
-            <i class="fas fa-bars"></i> <!-- Icono de hamburguesa -->
+            <i class="fas fa-bars"></i> 
         </div>
     
         <ul class="mobile-menu">
@@ -129,8 +132,10 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
     <?php
     if (isset($_GET['main'])) {
         $mainValue = $_GET['main'];
+        //metodo para no tener que cambiar de vista cada vez que el usuario actua con la ventana
         switch ($mainValue) {
             case 1:
+                //comentarios
                 echo <<<HTML
                 <h1 class="titulo">Ponte en contacto con tu terapeuta</h1>
                 <form action="../controller/paciente/enviarComentario.php" method="POST" class="comentarios">
@@ -143,6 +148,7 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                 HTML;
                 break;
             case 2:
+                //del dos al 6 son las paginas de registros.
                 if (isset($_POST['logros_json'])) {
                     echo <<<HTML
                         <h1 class="titulo">Registro de Logros</h1>
@@ -219,20 +225,20 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                 <img src="./img/logo-sin-fondo.png" alt="logo psyconnect">
                 <input type="hidden" name="id" value="{$_SESSION['paciente']->getId()}">
                 <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" value="{$_SESSION['paciente']->getNombre()}" disabled>
+                <input type="text" name="nombre" value="{$_SESSION['paciente']->getNombre()}" disabled maxlength='100'>
                 <label for="apellidos">Apellidos:</label>
-                <input type="text" name="apellidos" value="{$_SESSION['paciente']->getApellidos()}" disabled>
+                <input type="text" name="apellidos" value="{$_SESSION['paciente']->getApellidos()}" disabled maxlength='100'>
                 <label for="mail">Correo electrónico:</label>
-                <input type="email" name="email" value="{$_SESSION['paciente']->getEmail()}" disabled>
+                <input type="email" name="email" value="{$_SESSION['paciente']->getEmail()}" disabled maxlength='100'>
                 <label for="dni">DNI:</label>
-                <input type="text" name="dni" value="{$_SESSION['paciente']->getDni()}" disabled>
+                <input type="text" name="dni" value="{$_SESSION['paciente']->getDni()}" disabled maxlength='100'>
                 
                 
                 <div id="contraseñaFields" style="display: none;">
                     <label for="contraseñaAntigua">Contraseña Antigua:</label>
-                    <input type="password" id="viejaPwd" value="" name="oldPassword" autocomplete="off">
+                    <input type="password" id="viejaPwd" value="" name="oldPassword" autocomplete="off" maxlength='100'>
                     <label for="contraseñaNueva">Contraseña Nueva:</label>
-                    <input type="password" value="" name="newPassword" autocomplete="off">
+                    <input type="password" value="" name="newPassword" autocomplete="off" maxlength='100'>
                 </div>
 
                 

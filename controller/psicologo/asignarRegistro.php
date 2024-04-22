@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-    // Realizar acciones según el tipo de registro
+    // hacer el insert según el tipo de registro
     switch ($id_tipo_reg) {
         case 1:
             // Insertar datos en la tabla relajacion_muscular
@@ -46,7 +46,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $consulta = "INSERT INTO `sensaciones_corporales` (`id_registro`, `id_linea`, `fecha`, `ejercicio_provocador`, `numero_repeticion`, `miedo_maximo`) VALUES (:id_registro, 1, :fecha, '', 0, 0)";
             break;
         default:
-            // Acción por defecto si no coincide con ningún caso
+            echo "no se ha podido realizar la asignación";
             break;
     }
 
@@ -58,6 +58,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->execute();
     $resultado_busqueda = $paciente->buscarById($bdd->link);
     if($resultado_busqueda) {
+        //se envia el mail.
         $nombre = $resultado_busqueda["nombre"];
         $apellidos = $resultado_busqueda["apellidos"];
         $email = $resultado_busqueda["email"];
@@ -85,7 +86,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo 'Error: ' . $mail->ErrorInfo;
         } else {
             header('location: ../../view/vistaPsicologo.php');
-            exit(); // Detener la ejecución del script después de la redirección
+            exit(); 
         }
     }
 }

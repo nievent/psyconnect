@@ -8,6 +8,7 @@ function mostrarDetalles(nombre, apellidos, email, dni) {
     document.getElementById('detallesDni').textContent = dni;
 }
 
+//funcion para pintar las tablas de registros
 function mostrarDetallesRegistro(descripcion, id, registro = null) {
     document.getElementById('backdrop').style.display = 'block';
     document.getElementById('detallesRegistros').style.display = 'block';
@@ -17,6 +18,7 @@ function mostrarDetallesRegistro(descripcion, id, registro = null) {
     id = id.toString();
     tabla.innerHTML = '';
     tbody.innerHTML = '';
+    //segun el tipo de registro pinta unos campos u otros.
     switch(id) {
         case "1":
             console.log("Caso 1 ejecutado");
@@ -35,18 +37,22 @@ function mostrarDetallesRegistro(descripcion, id, registro = null) {
             let campo4 = document.createElement('th');
             campo4.textContent = 'Concentración conseguida';
             tabla.appendChild(campo4);
+
+            //si no hay registro me pinta un par de tablas vacias para poder reutilizar la funcion en la parte
+            //de ver registros del psicólogo
         
             if(registro == null) {
             for (let i = 0; i < 2; i++) {
                 let fila = document.createElement('tr');
                 for (let j = 0; j < 4; j++) {
                     let celda = document.createElement('td');
-                    celda.textContent = ''; // Contenido de la celda vacía
+                    celda.textContent = ''; 
                     fila.appendChild(celda);
                 }
                 tbody.appendChild(fila);
             }
         } else {
+            //si hay registro coge el json que he enviado con el php y lo pinta
             registro = registro.trim();
             let data = JSON.parse(registro);
             console.log(data.length);

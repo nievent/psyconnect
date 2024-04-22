@@ -7,6 +7,7 @@ class Estado_animo {
     private $grado_intensidad;
     private $sensaciones_corporales;
 
+    //obtener
     static function getAllById($link, $id){
         try {
             $consulta = "SELECT * FROM estado_animo where id_registro = :id;";
@@ -20,6 +21,7 @@ class Estado_animo {
         }
     } 
 
+    //borrar
     static function deleteById($link, $id) {
         try {
             $consulta = "DELETE FROM estado_animo WHERE id_registro = :id;";
@@ -92,6 +94,7 @@ class Estado_animo {
         $this->sensaciones_corporales = $sensaciones_corporales;
     }
 
+    //añadir linea
     function insertar($link) {
         try {
             $consulta = "INSERT INTO `estado_animo` (`id_registro`, `id_linea`, `fecha`, `emociones`, `grado_intensidad`, `sensaciones_corporales`) 

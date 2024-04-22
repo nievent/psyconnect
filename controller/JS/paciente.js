@@ -1,3 +1,4 @@
+//enviar los json al js correspondiente para trabajar.
 function editarLogros(logros_json, descripcion) {
     document.getElementById('inputLogrosJson').value = logros_json;
     document.getElementById("descripcionLogros").value = descripcion;
@@ -28,7 +29,7 @@ function editarRelajacion(relajacion_json, descripcion) {
     document.getElementById('formularioEditarRelajacion').submit();
 }
 
-
+//funcion para enviar los datos a la bd. 
 document.querySelectorAll('.enviar-datos-btn').forEach(function(button) {
     button.addEventListener('click', function() {
         let tableId = this.getAttribute('data-table');
@@ -78,6 +79,7 @@ document.querySelectorAll('.enviar-datos-btn').forEach(function(button) {
         form.submit();
     });
 });
+
 document.querySelectorAll('.enviar-datos-btn').forEach(function(button) {
     button.addEventListener('click', function() {
         let tableId = this.getAttribute('data-table');
@@ -193,6 +195,7 @@ document.getElementById('div').addEventListener('click', function(event) {
     }
 });
 
+//funcionalidad boton editar
 document.addEventListener("DOMContentLoaded", function() {
     const editarButtons = document.querySelectorAll(".editar-btn");
 

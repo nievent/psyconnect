@@ -11,7 +11,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $pwd = $_POST["pwd"];
 
     $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
-    $psicologo = new Psicologo("", $nombre, $apellidos, $cop_num, $email, $hashedPwd); // Utilizar la contraseña hasheada
+    $psicologo = new Psicologo("", $nombre, $apellidos, $cop_num, $email, $hashedPwd); 
     if(!$psicologo->buscar($bdd->link)){
         $psicologo->insertar($bdd->link);
         
