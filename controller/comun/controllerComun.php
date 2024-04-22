@@ -24,7 +24,7 @@ function registrosAsignados($bdd, $id, $psicologo) {
             </thead>
             <tbody>
         HTML;
-    while($fila = $paciente->fetch(PDO::FETCH_ASSOC)){
+    while ($fila = $paciente->fetch(PDO::FETCH_ASSOC)) {
         echo <<<HTML
                 <tr>
                     <td>$fila[titulo]</td>
@@ -37,26 +37,26 @@ function registrosAsignados($bdd, $id, $psicologo) {
                 $relajacion_json = json_encode($relajacion);
                 echo '<td>
                 <div class="tooltip">  
-                    <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($relajacion_json) . '\' , 1, \''.$fila["descripcion"] . '\')">
+                    <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($relajacion_json) . '\' , 1, \'' . $fila["descripcion"] . '\')">
                         <i class="fa-solid fa-eye"></i>
                     </a>
                 <span class="tooltiptext">Detalles</span></div>';
                 //pongo los botones del psicologo
                 if ($psicologo) {
                     echo '<div class="tooltip">  
-                            <a href="#" onclick="confirmarBajaRegistro(\''.$fila['id']. '\',1)">
+                            <a href="#" onclick="confirmarBajaRegistro(\'' . $fila['id'] . '\',1)">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                             <span class="tooltiptext">Borrar registro</span>
-                          </div>';
+                        </div>';
                 } else {
                     //pongo los botones del paciente
                     echo '<div class="tooltip">  
-                            <a href="#" onclick="editarRelajacion(\'' . htmlspecialchars($relajacion_json) . '\' , \''.$fila["descripcion"] . '\')">
+                            <a href="#" onclick="editarRelajacion(\'' . htmlspecialchars($relajacion_json) . '\' , \'' . $fila["descripcion"] . '\')">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                             <span class="tooltiptext">Editar registro</span>
-                          </div>';
+                        </div>';
                 }
                 break;
                 //mismo proceso con todos.
@@ -65,75 +65,75 @@ function registrosAsignados($bdd, $id, $psicologo) {
                 $pensamientos_json = json_encode($pensamientos);
                 echo '<td>
                     <div class="tooltip">  
-                        <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($pensamientos_json) . '\' , 2, \''.$fila["descripcion"] . '\')">
+                        <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($pensamientos_json) . '\' , 2, \'' . $fila["descripcion"] . '\')">
                             <i class="fa-solid fa-eye"></i>
                         </a>
                         <span class="tooltiptext">Detalles</span>
                     </div>';
-                    if ($psicologo) {
-                        echo '<div class="tooltip">  
-                                <a href="#" onclick="confirmarBajaRegistro(\''.$fila['id']. '\',1)">
+                if ($psicologo) {
+                    echo '<div class="tooltip">  
+                                <a href="#" onclick="confirmarBajaRegistro(\'' . $fila['id'] . '\',1)">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
                                 <span class="tooltiptext">Borrar registro</span>
-                              </div>';
-                    } else {
-                        echo '<div class="tooltip">  
-                                <a href="#" onclick="editarPensamiento(\'' . htmlspecialchars($pensamientos_json) . '\' , \''.$fila["descripcion"] . '\')">
+                            </div>';
+                } else {
+                    echo '<div class="tooltip">  
+                                <a href="#" onclick="editarPensamiento(\'' . htmlspecialchars($pensamientos_json) . '\' , \'' . $fila["descripcion"] . '\')">
                                     <i class="fas fa-pencil-alt"></i>
                                 </a>
                                 <span class="tooltiptext">Editar registro</span>
-                              </div>';
-                    }
+                            </div>';
+                }
                 break;
             case 3:
                 $estado_animo = Estado_animo::getAllById($bdd->link, $fila["id"])->fetchAll(PDO::FETCH_ASSOC);
                 $estado_animo_json = json_encode($estado_animo);
                 echo '<td>
                 <div class="tooltip">  
-                    <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($estado_animo_json) . '\' , 3, \''.$fila["descripcion"] . '\')">
+                    <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($estado_animo_json) . '\' , 3, \'' . $fila["descripcion"] . '\')">
                         <i class="fa-solid fa-eye"></i>
                     </a>
                 <span class="tooltiptext">Detalles</span></div>';
                 if ($psicologo) {
                     echo '<div class="tooltip">  
-                            <a href="#" onclick="confirmarBajaRegistro(\''.$fila['id']. '\',1)">
+                            <a href="#" onclick="confirmarBajaRegistro(\'' . $fila['id'] . '\',1)">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                             <span class="tooltiptext">Borrar registro</span>
-                          </div>';
+                        </div>';
                 } else {
                     echo '<div class="tooltip">  
-                            <a href="#" onclick="editarEstadoAnimo(\'' . htmlspecialchars($estado_animo_json) . '\' , \''.$fila["descripcion"] . '\')">
+                            <a href="#" onclick="editarEstadoAnimo(\'' . htmlspecialchars($estado_animo_json) . '\' , \'' . $fila["descripcion"] . '\')">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                             <span class="tooltiptext">Editar registro</span>
-                          </div>';
+                        </div>';
                 }
                 break;
             case 4:
-                $logros = Logros::getAllById($bdd->link, $fila["id"])->fetchAll(PDO::FETCH_ASSOC); 
+                $logros = Logros::getAllById($bdd->link, $fila["id"])->fetchAll(PDO::FETCH_ASSOC);
                 $logros_json = json_encode($logros);
                 echo '<td>
                 <div class="tooltip">  
-                    <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($logros_json) . '\' , 4, \''.$fila["descripcion"] . '\')">
+                    <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($logros_json) . '\' , 4, \'' . $fila["descripcion"] . '\')">
                         <i class="fa-solid fa-eye"></i>
                     </a>
                 <span class="tooltiptext">Detalles</span></div>';
                 if ($psicologo) {
                     echo '<div class="tooltip">  
-                            <a href="#" onclick="confirmarBajaRegistro(\''.$fila['id']. '\',1)">
+                            <a href="#" onclick="confirmarBajaRegistro(\'' . $fila['id'] . '\',1)">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                             <span class="tooltiptext">Borrar registro</span>
-                          </div>';
+                        </div>';
                 } else {
                     echo '<div class="tooltip">  
-                    <a href="#" onclick="editarLogros(\'' . htmlspecialchars($logros_json) . '\' , \''.$fila["descripcion"] . '\')">
+                    <a href="#" onclick="editarLogros(\'' . htmlspecialchars($logros_json) . '\' , \'' . $fila["descripcion"] . '\')">
                         <i class="fas fa-pencil-alt"></i>
                     </a>
                     <span class="tooltiptext">Editar registro</span>
-                  </div>';            
+                </div>';
                 }
                 break;
             case 5:
@@ -141,35 +141,35 @@ function registrosAsignados($bdd, $id, $psicologo) {
                 $sensaciones_corporales_json = json_encode($sensaciones_corporales);
                 echo '<td>
                 <div class="tooltip"> 
-                    <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($sensaciones_corporales_json) . '\' , 5, \''.$fila["descripcion"] . '\')">
+                    <a href="#" onclick="detallesRegistroTipo(\'' . htmlspecialchars($sensaciones_corporales_json) . '\' , 5, \'' . $fila["descripcion"] . '\')">
                         <i class="fa-solid fa-eye"></i>
                     </a>
                 <span class="tooltiptext">Detalles</span> </div>';
                 if ($psicologo) {
                     echo '<div class="tooltip">  
-                            <a href="#" onclick="confirmarBajaRegistro(\''.$fila['id']. '\',1)">
+                            <a href="#" onclick="confirmarBajaRegistro(\'' . $fila['id'] . '\',1)">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                             <span class="tooltiptext">Borrar registro</span>
-                          </div>';
+                        </div>';
                 } else {
                     echo '<div class="tooltip">  
-                    <a href="#" onclick="editarSensaciones(\'' . htmlspecialchars($sensaciones_corporales_json) . '\' , \''.$fila["descripcion"] . '\')">
+                    <a href="#" onclick="editarSensaciones(\'' . htmlspecialchars($sensaciones_corporales_json) . '\' , \'' . $fila["descripcion"] . '\')">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                             <span class="tooltiptext">Editar registro</span>
-                          </div>';
+                        </div>';
                 }
-                
+
                 break;
-            default: 
+            default:
                 echo '<div>
                     <div class="tooltip">  <a><i class="fa-solid fa-eye"></i></a>
                     <span class="tooltiptext">Detalles</span> </div>
-                    <div class="tooltip">  <a href="#" onclick="confirmarBajaRegistro(\''.$fila['id']. '\')"><i class="fa-solid fa-trash"></i></a>
+                    <div class="tooltip">  <a href="#" onclick="confirmarBajaRegistro(\'' . $fila['id'] . '\')"><i class="fa-solid fa-trash"></i></a>
                     <span class="tooltiptext">Borrar registro</span> </div>';
         }
 
         echo '</td>';
-    } 
+    }
 }

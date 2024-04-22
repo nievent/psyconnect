@@ -193,7 +193,7 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
             case 5:
                 if (isset($_POST['pensamiento_json'])) {
                     echo <<<HTML
-                    <h1 class="titulo">Registro de logros</h1>
+                    <h1 class="titulo">Registro de Pensamientos</h1>
                     <div class="descripcion"> $_POST[descripcion_pensamiento] </div>
                     <div class="descripcion">Pulsa en las celdas de la tabla para añadir o editar información</div>
                 HTML;
