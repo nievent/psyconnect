@@ -231,7 +231,7 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                 <label for="mail">Correo electrónico:</label>
                 <input type="email" name="email" value="{$_SESSION['paciente']->getEmail()}" disabled maxlength='100'>
                 <label for="dni">DNI:</label>
-                <input type="text" name="dni" value="{$_SESSION['paciente']->getDni()}" disabled maxlength='100'>
+                <input type="text" name="dni" value="{$_SESSION['paciente']->getDni()}" disabled maxlength='10'>
                 
                 
                 <div id="contraseñaFields" style="display: none;">

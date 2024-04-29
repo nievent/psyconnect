@@ -164,7 +164,7 @@ $mainValue = isset($_GET['main']) ? $_GET['main'] : 0;
                                 <label for="apellidos">Apellidos del paciente:</label>
                                 <input type="text" name="apellidos" required maxlength='100'>
                                 <label for="dni">DNI del paciente:</label>
-                                <input type="text" name="dni" maxlength='100' required>
+                                <input type="text" name="dni" maxlength='10' required>
                                 <label for="mail">Correo electrónico:</label>
                                 <input type="email" name="email" required maxlength='100'>
                                 <button type="submit" class="btn">Dar de alta</button>

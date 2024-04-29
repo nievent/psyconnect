@@ -95,11 +95,17 @@ document.querySelectorAll('.enviar-datos-btn').forEach(function(button) {
             let rowData = {};
             let cells = row.querySelectorAll('td');
             
-            // Recopilar los datos de las celdas
             cells.forEach(function(cell, index) {
-                rowData['cell_' + (index + 1)] = cell.textContent.trim();
+                // Escapar etiquetas HTML, comillas simples y dobles en el contenido de las celdas
+                let escapedContent = cell.textContent.trim()
+                    .replace(/&/g, '&amp;') // Escapar el carácter '&'
+                    .replace(/</g, '&lt;')   // Escapar el carácter '<'
+                    .replace(/>/g, '&gt;')   // Escapar el carácter '>'
+                    .replace(/"/g, '&quot;') // Escapar comillas dobles
+                    .replace(/'/g, '&#39;'); // Escapar comillas simples
+                
+                rowData['cell_' + (index + 1)] = escapedContent;
             });
-            
             // Obtener los atributos data-id-registro y data-id-linea
             let idRegistro = row.dataset.idRegistro;
             let idLinea = row.dataset.idLinea;
